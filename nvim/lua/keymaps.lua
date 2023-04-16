@@ -58,6 +58,10 @@ keymap("v", "v", "$h", opts)
 keymap("v", "<C-p>", '"0p', opts)
 
 
+-- ターミナルモード
+keymap("t", "<ESC>", '<C-\\><C-n>', opts)
+
+
 --local 
 
 -- leader key設定

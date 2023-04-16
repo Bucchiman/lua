@@ -9,6 +9,8 @@
 
 
 --
+-- expandtab:       タブ挿入時に半角スペースを使用
+-- smartcase:       検索時に大文字を含んでいる場合はignorecaseを上書きして大文字・小文字を区別する
 -- shell:        ![Command]でシェル実行できる
 
 
