@@ -32,7 +32,20 @@ function M.nvim_open_win()
     })
 end
 
+function M.term_split()
+    vim.api.nvim_command('split | wincmd j | resize 10 | terminal')
+end
 
-vim.api.nvim_create_user_command('T', 'split | wincmd j | resize 10 | terminal', {nargs=0})
+
+local api = vim.api
+
+-- Highlight on yank
+local yankGrp = api.nvim_create_augroup("YankHighlight", { clear = true })
+api.nvim_create_autocmd("TextYankPost", {
+  command = "silent! lua vim.highlight.on_yank()",
+  group = yankGrp,
+})
+
+--vim.api.nvim_create_user_command('T', 'split | wincmd j | resize 10 | terminal', {nargs=0})
 
 return M
