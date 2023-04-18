@@ -93,5 +93,16 @@ end
 
 vim.cmd('echo len(filter(range(1, bufnr("$")), "buflisted(v:val)"))')
 
+v = {name="feifei", age=28, sex="female"}
+
+setmetatable(v, {memo1="test1", memo2="test2"})
+
+for key, val in pairs(v) do
+    print(key, val)
+end
+
+
+
+
 
 return M
