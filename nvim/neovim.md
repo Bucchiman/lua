@@ -39,3 +39,21 @@
     - anchor:    隅(NW, NE, SW, SE)の位置を指定
     - focusable: :wincmdなどでウィンドウにフォーカスできるか
     - style:     minimalなどでnumber, cursorlineオフにする
+
+
+
+# [nvim_create_augroup(name, opts)](https://neovim.io/doc/user/api.html#nvim_create_augroup())
+ - name(string, the name of group)
+ - opts(Dictionary)
+    - clear: clear existing commands if the group already exists
+
+
+
+# [nvim_create_autocmd(event, opts)](https://neovim.io/doc/user/api.html#nvim_create_autocmd())
+ - event(string|array)
+ - opts
+    - group
+    - pattern (*.py, *.c)
+    - buffer
+    - callback
+

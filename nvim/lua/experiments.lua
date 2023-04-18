@@ -1,4 +1,5 @@
 -- Reference: https://zenn.dev/botamotch/articles/46bd760b44c6a2
+-- autocmdに関するドキュメント: https://vim-jp.org/vimdoc-ja/autocmd.html
 
 local Window = {}
 
@@ -38,14 +39,59 @@ end
 
 
 local api = vim.api
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
 
 -- Highlight on yank
-local yankGrp = api.nvim_create_augroup("YankHighlight", { clear = true })
-api.nvim_create_autocmd("TextYankPost", {
+local yankGrp = augroup("YankHighlight", { clear = true })
+autocmd("TextYankPost", {
   command = "silent! lua vim.highlight.on_yank()",
   group = yankGrp,
 })
 
 --vim.api.nvim_create_user_command('T', 'split | wincmd j | resize 10 | terminal', {nargs=0})
+
+-- バッファの新規作成でコマンド実行
+autocmd({"BufEnter", "BufWinEnter"}, {
+    pattern = {"*.c", "*.h"},
+    command = "echo 'Entering a C or C++ file'",
+})
+
+-- 起動後に文字列を出力
+--autocmd("VimEnter", {
+--    command = "echo '8ucchiman was here!'",
+--})
+
+
+-- 起動後にコールバック軌道
+autocmd("VimEnter", {
+    callback = M.term_split
+})
+
+
+--autocmd('BufWritePre', {
+--    pattern = '',
+--    command = ":%s/\\s\\+$//e",
+--})
+
+
+
+local mt = {
+    __add = complex_add,
+    __mul = complex_multiply,
+}
+
+local function complex(real, imaginary)
+    local result = {
+        real = real,
+        imaginary = imaginary,
+    }
+    setmetatable(result, mt)
+    return result
+end
+
+
+vim.cmd('echo len(filter(range(1, bufnr("$")), "buflisted(v:val)"))')
+
 
 return M
