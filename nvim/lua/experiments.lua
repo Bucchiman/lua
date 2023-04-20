@@ -56,7 +56,6 @@ autocmd({"BufEnter", "BufWinEnter"}, {
     pattern = {"*.c", "*.h"},
     command = "echo 'Entering a C or C++ file'",
 })
-
 -- 起動後に文字列を出力
 --autocmd("VimEnter", {
 --    command = "echo '8ucchiman was here!'",
@@ -66,7 +65,12 @@ autocmd({"BufEnter", "BufWinEnter"}, {
 -- 起動後にコールバック軌道
 autocmd("VimEnter", {
     callback = M.term_split
+    --command = 
 })
+
+--autocmd("VimEnter", {
+--    command = "buffer 1"
+--})
 
 
 --autocmd('BufWritePre', {
@@ -101,8 +105,14 @@ for key, val in pairs(v) do
     print(key, val)
 end
 
-
-
-
+--vim.cmd('buffers')
+--vim.cmd([[
+--    let g:multiline_list = [
+--        \ 1,
+--        \ 2,
+--        \ 3,
+--        \ ]
+--    echo g:multiline_list
+--]])
 
 return M
