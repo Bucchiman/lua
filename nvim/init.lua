@@ -25,7 +25,7 @@ require("keymaps")
 --require("plugins.packer")
 require("plugins.lazy")
 require("plugins.lspconfig")
-require("8ucchiman")
+--require("8ucchiman")
 local experiments = require("experiments")
 
 vim.api.nvim_create_user_command('ExampleOpenWin', experiments.nvim_open_win, {nargs=0})
