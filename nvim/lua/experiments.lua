@@ -94,16 +94,8 @@ local function complex(real, imaginary)
     return result
 end
 
-
+-- バッファの数
 vim.cmd('echo len(filter(range(1, bufnr("$")), "buflisted(v:val)"))')
-
-v = {name="feifei", age=28, sex="female"}
-
-setmetatable(v, {memo1="test1", memo2="test2"})
-
-for key, val in pairs(v) do
-    print(key, val)
-end
 
 --vim.cmd('buffers')
 --vim.cmd([[
@@ -114,5 +106,21 @@ end
 --        \ ]
 --    echo g:multiline_list
 --]])
+
+--v = {
+--    name="feifei",
+--    age=28,
+--    sex="female"
+--}
+--
+--setmetatable(v, {memo1="test1", memo2="test2"})
+--
+--for key, val in pairs(v) do
+--    print(key, val)
+--end
+
+--print(vim.api.nvim_get_current_win())
+--print(vim.api.nvim_buf_get_name(1))
+print(tostring(vim.api.nvim_get_current_line()))
 
 return M
