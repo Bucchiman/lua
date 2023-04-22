@@ -18,11 +18,18 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappin
 
 require("lazy").setup(
 {
+    "kkharji/sqlite.lua",
     "folke/which-key.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "folke/neodev.nvim",
+    'nvim-lua/plenary.nvim',
+    'nvim-lua/popup.nvim',
+    'MunifTanjim/nui.nvim',
+    'nvim-tree/nvim-web-devicons',
+    'rcarriga/nvim-notify',
     {
         "folke/neoconf.nvim", cmd = "Neoconf"
     },
-    "folke/neodev.nvim",
     {
         "catppuccin/nvim", name = "catppuccin"
     },
@@ -32,7 +39,7 @@ require("lazy").setup(
         }, 
         config = function()
             require('template').setup({
-                temp_dir = "/tmp/template",
+                temp_dir = "$HOME/.config/template",
                 author = "8ucchiman",
                 email = "8ucchiman@gmail.com",
             })
@@ -95,10 +102,6 @@ require("lazy").setup(
         }
     },
 
-    -- Treesitter
-    {
-        "nvim-treesitter/nvim-treesitter",
-    },
     {
 	    "L3MON4D3/LuaSnip",
 	    -- follow latest release.

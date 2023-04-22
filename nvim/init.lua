@@ -1,10 +1,11 @@
 #!/usr/bin/env lua
 --
 -- FileName:     init
--- Author: 8ucchiman
+-- Author:       8ucchiman
 -- CreatedDate:  2023-03-26 11:40:26 +0900
 -- LastModified: 2023-03-31 21:41:28 +0900
--- Reference: https://zenn.dev/hisasann/articles/neovim-settings-to-lua
+-- Reference:    https://zenn.dev/hisasann/articles/neovim-settings-to-lua
+--               https://developer.jmatsuzaki.com/posts/get-file-name-in-vim/
 --
 
 
@@ -44,4 +45,7 @@ vim.api.nvim_create_user_command('T', experiments.term_split, {nargs=0})
 --    endif
 --endfun
 --autocmd BufWritePre * call LastModified()
+
+local file = vim.fn.expand("%")
+
 
