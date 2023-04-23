@@ -1,3 +1,15 @@
+#!/usr/bin/env lua
+--
+-- FileName:     main
+-- Author:       8ucchiman
+-- Email:        8ucchiman@gmail.com
+-- CreatedDate:  2023-04-23 15:12:09
+-- LastModified: 2023-01-23 14:18:33 +0900
+-- Reference:    https://www.lua.org/pil/13.4.1.html
+-- Description:  オブジェクト指向型な書き方
+--
+
+
 -- create a namespace
 Window = {}
 
@@ -24,3 +36,4 @@ end
 w = Window.new{x=10, y=20}
 print(w.width)
 print(w.x)
+

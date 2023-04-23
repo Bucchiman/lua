@@ -48,4 +48,61 @@ vim.api.nvim_create_user_command('T', experiments.term_split, {nargs=0})
 
 local file = vim.fn.expand("%")
 
+vim.api.nvim_create_autocmd(
+    "BufNewFile",
+    {
+        pattern = {
+            "*.c",
+            "*.cpp",
+            "*.h",
+            "*.hpp",
+            "*.cu",
+            "*.cs",
+            "*.rs",
+            "*.rb",
+            "*.py",
+            "*.lua",
+            "*.vim",
+            "*.yaml",
+            "*.md",
+            "*.sh",
+            "*.zsh",
+            "*.Dockerfile",
+    },
+        command = "Template "..file.." template"
+    }
+)
 
+
+vim.api.nvim_create_autocmd(
+    "BufNewFile",
+    {
+        pattern = "CMakeLists.txt",
+        command = "Template "..file.." CMakeLists"
+    }
+)
+
+vim.api.nvim_create_autocmd(
+    "BufNewFile",
+    {
+        pattern = "Dockerfile",
+        command = "Template "..file.." Dockerfile"
+    }
+)
+
+
+vim.api.nvim_create_autocmd(
+    "BufNewFile",
+    {
+        pattern = "Docker-compose.yml",
+        command = "Template "..file.." Docker-compose"
+    }
+)
+
+vim.api.nvim_create_autocmd(
+    "BufNewFile",
+    {
+        pattern = "Makefile",
+        command = "Template "..file.." Makefile"
+    }
+)
