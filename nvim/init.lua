@@ -26,6 +26,7 @@ require("keymaps")
 --require("plugins.packer")
 require("plugins.lazy")
 require("plugins.lspconfig")
+require("plugins.dap")
 --require("8ucchiman")
 local experiments = require("experiments")
 
