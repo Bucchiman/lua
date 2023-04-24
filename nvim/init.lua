@@ -1,10 +1,11 @@
 #!/usr/bin/env lua
 --
 -- FileName:     init
--- Author: 8ucchiman
+-- Author:       8ucchiman
 -- CreatedDate:  2023-03-26 11:40:26 +0900
 -- LastModified: 2023-03-31 21:41:28 +0900
--- Reference: https://zenn.dev/hisasann/articles/neovim-settings-to-lua
+-- Reference:    https://zenn.dev/hisasann/articles/neovim-settings-to-lua
+--               https://developer.jmatsuzaki.com/posts/get-file-name-in-vim/
 --
 
 
@@ -23,9 +24,9 @@ require("base")
 require("options")
 require("keymaps")
 --require("plugins.packer")
---require("plugins.lazy").setup(plugins, opts)
-require("lazy").setup(plugins, opts)
---require("plugins.lspconfig")
+require("plugins.lazy")
+require("plugins.lspconfig")
+require("plugins.dap")
 --require("8ucchiman")
 local experiments = require("experiments")
 
@@ -46,3 +47,63 @@ vim.api.nvim_create_user_command('T', experiments.term_split, {nargs=0})
 --endfun
 --autocmd BufWritePre * call LastModified()
 
+local file = vim.fn.expand("%")
+
+vim.api.nvim_create_autocmd(
+    "BufNewFile",
+    {
+        pattern = {
+            "*.c",
+            "*.cpp",
+            "*.h",
+            "*.hpp",
+            "*.cu",
+            "*.cs",
+            "*.rs",
+            "*.rb",
+            "*.py",
+            "*.lua",
+            "*.vim",
+            "*.yaml",
+            "*.md",
+            "*.sh",
+            "*.zsh",
+            "*.Dockerfile",
+    },
+        command = "Template "..file.." template"
+    }
+)
+
+
+vim.api.nvim_create_autocmd(
+    "BufNewFile",
+    {
+        pattern = "CMakeLists.txt",
+        command = "Template "..file.." CMakeLists"
+    }
+)
+
+vim.api.nvim_create_autocmd(
+    "BufNewFile",
+    {
+        pattern = "Dockerfile",
+        command = "Template "..file.." Dockerfile"
+    }
+)
+
+
+vim.api.nvim_create_autocmd(
+    "BufNewFile",
+    {
+        pattern = "Docker-compose.yml",
+        command = "Template "..file.." Docker-compose"
+    }
+)
+
+vim.api.nvim_create_autocmd(
+    "BufNewFile",
+    {
+        pattern = "Makefile",
+        command = "Template "..file.." Makefile"
+    }
+)

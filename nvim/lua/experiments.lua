@@ -63,10 +63,10 @@ autocmd({"BufEnter", "BufWinEnter"}, {
 
 
 -- 起動後にコールバック軌道
-autocmd("VimEnter", {
-    callback = M.term_split
-    --command = 
-})
+--autocmd("VimEnter", {
+--    callback = M.term_split
+--    --command = 
+--})
 
 --autocmd("VimEnter", {
 --    command = "buffer 1"

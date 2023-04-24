@@ -14,7 +14,7 @@ local term_opts = { silent = true }
 local keymap = vim.api.nvim_set_keymap
 
 
-
+vim.g.mapleader = ','
 -- Nop
 keymap("", "<Space>", "<Nop>", opts)
 keymap("", "<Up>",  "<Nop>",  opts)
@@ -37,7 +37,7 @@ keymap("n", "x", '"_x', opts)
 -- Delete a word backwards
 keymap("n", "dw", 'vb"_d', opts)
 -- ;でコマンド入力( ;と:を入れ替)
-keymap("n", ";", ":", opts)
+--keymap("n", ";", ":", opts)
 -- 行の端に行く
 keymap("n", "<Space>h", "^", opts)
 keymap("n", "<Space>l", "$", opts)
@@ -103,5 +103,7 @@ vim.g.maplocalleader = " "
 --" ターミナルモード
 --tnoremap <silent> <ESC> <C-\><C-n>
 
-
+vim.keymap.set('n', '<Leader>t', function()
+    return ':Template '
+end, { remap = true})
 
