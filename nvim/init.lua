@@ -54,11 +54,11 @@ vim.api.nvim_create_autocmd(
     {
         pattern = {
             "*.c",
-            "*.cpp",
             "*.h",
             "*.hpp",
             "*.cu",
             "*.cs",
+            "*.cpp",
             "*.rs",
             "*.rb",
             "*.py",
@@ -73,7 +73,6 @@ vim.api.nvim_create_autocmd(
         command = "Template "..file.." template"
     }
 )
-
 
 vim.api.nvim_create_autocmd(
     "BufNewFile",

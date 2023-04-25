@@ -32,6 +32,16 @@ require("lazy").setup(
     "leoluz/nvim-dap-go",
     'rcarriga/nvim-notify',
     {
+        "dpayne/CodeGPT.nvim",
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'MunifTanjim/nui.nvim',
+        },
+        config = function()
+            require("codegpt.config")
+        end
+    },
+    {
         "folke/neoconf.nvim", cmd = "Neoconf"
     },
     {
@@ -97,6 +107,18 @@ require("lazy").setup(
                 email = "8ucchiman@gmail.com",
             })
         end
+    },
+    {
+      "jackMort/ChatGPT.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("chatgpt").setup()
+        end,
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim"
+        }
     },
     {
         "neovim/nvim-lspconfig",
