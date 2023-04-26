@@ -21,6 +21,7 @@ require("lazy").setup(
     "kkharji/sqlite.lua",
     "folke/which-key.nvim",
     "nvim-treesitter/nvim-treesitter",
+    "nvim-treesitter/playground",
     "folke/neodev.nvim",
     'nvim-lua/plenary.nvim',
     'nvim-lua/popup.nvim',
@@ -30,6 +31,8 @@ require("lazy").setup(
     'theHamsta/nvim-dap-virtual-text',
     "rcarriga/nvim-dap-ui",
     "leoluz/nvim-dap-go",
+    "lervag/vimtex",
+    "jbyuki/nabla.nvim",
     'rcarriga/nvim-notify',
     {
         "dpayne/CodeGPT.nvim",
