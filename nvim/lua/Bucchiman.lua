@@ -10,3 +10,6 @@ Bucchiman.new = function()
     }
     return self
 end
+
+function Bucchiman:setup()
+end
