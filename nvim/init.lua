@@ -64,8 +64,8 @@ vim.api.nvim_create_autocmd(
             "*.py",
             "*.lua",
             "*.vim",
-            "*.yaml",
             "*.md",
+            "*.yaml",
             "*.sh",
             "*.zsh",
             "*.Dockerfile",
@@ -94,8 +94,8 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd(
     "BufNewFile",
     {
-        pattern = "Docker-compose.yml",
-        command = "Template "..file.." Docker-compose"
+        pattern = "docker-compose.yml",
+        command = "Template "..file.." docker_compose"
     }
 )
 
