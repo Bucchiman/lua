@@ -106,3 +106,11 @@ vim.api.nvim_create_autocmd(
         command = "Template "..file.." Makefile"
     }
 )
+
+vim.api.nvim_create_autocmd(
+    "BufNewFile",
+    {
+        pattern = "Cargo.toml",
+        command = "Template " ..file.." Cargo"
+    }
+)
