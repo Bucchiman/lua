@@ -11,6 +11,7 @@
   "cmp_luasnip": { "branch": "master", "commit": "18095520391186d634a0045dacaa346291096566" },
   "firenvim": { "branch": "master", "commit": "386239e1b1e6e3884db4da8bb7057709bec3dc51" },
   "friendly-snippets": { "branch": "main", "commit": "1d0dac346de7c6895ac72528df3276386c6b149b" },
+  "fzf-lua": { "branch": "main", "commit": "c56cd5c9e84e724ed6c707a4a7fc71ccfb0c6c1d" },
   "hologram.nvim": { "branch": "main", "commit": "f5194f71ec1578d91b2e3119ff08e574e2eab542" },
   "lazy.nvim": { "branch": "main", "commit": "aba872ec78ffe7f7367764ab0fff6f0170421fde" },
   "lsp-zero.nvim": { "branch": "v1.x", "commit": "6a6be78ffc1bd87cc20b4d4487f5de42ab9660c2" },
