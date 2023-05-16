@@ -17,6 +17,10 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappin
 --require("lazy").setup(plugins, opts)
 local img_previewer = vim.fn.executable("ueberzug") == 1 and { "ueberzug" } or { "viu", "-b" }
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+
 require("lazy").setup(
 {
     "kkharji/sqlite.lua",
@@ -188,7 +192,18 @@ require("lazy").setup(
             'nvim-tree/nvim-web-devicons',
         },
         config = function()
-            require("nvim-tree").setup{}
+            require("nvim-tree").setup({
+                sort_by = "case_sensitive",
+                view = {
+                  width = 30,
+                },
+                renderer = {
+                  group_empty = true,
+                },
+                filters = {
+                  dotfiles = true,
+                },
+            })
         end,
     },
 
@@ -202,7 +217,7 @@ require("lazy").setup(
     },
     {
         "princejoogie/chafa.nvim",
-        requires = {
+        dependencies = {
             "nvim-lua/plenary.nvim",
             "m00qek/baleia.nvim"
         },
