@@ -182,10 +182,13 @@ require("lazy").setup(
     -- Nvimtree (File Explorer)
     {
         'nvim-tree/nvim-tree.lua',
-        lazy = true,
+        version = "*",
         dependencies = {
             'nvim-tree/nvim-web-devicons',
         },
+        config = function()
+            require("nvim-tree").setup{}
+        end,
     },
 
     -- Telescope (Fuzzy Finder)
@@ -196,6 +199,25 @@ require("lazy").setup(
             {'nvim-lua/plenary.nvim'},
         }
     },
+    {
+        "princejoogie/chafa.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "m00qek/baleia.nvim"
+        },
+        config = function()
+            require("chafa").setup({
+                render = {
+                    min_padding = 5,
+                    show_label = true,
+                },
+                events = {
+                    update_on_nvim_resize = true,
+                }
+            })
+        end,
+
+    }
 
     --{
 	--    "L3MON4D3/LuaSnip",
@@ -230,6 +252,16 @@ cmp.setup({
     ghost_text = true,
   },
 })
+
+-- require("chafa").setup({
+--     render = {
+--         min_padding = 5,
+--         show_label = true,
+--     },
+--     events = {
+--         update_on_nvim_resize = true,
+--     }
+-- }
 
 -- setup must be called before loading
 vim.cmd.colorscheme "catppuccin"
