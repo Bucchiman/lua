@@ -1,0 +1,4 @@
+snippet _callback
+	int func(int (*callback)(int, int, int), int x) {
+		return callback(x, x, x);
+	}
