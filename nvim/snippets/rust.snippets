@@ -1,0 +1,32 @@
+snippet _8io_stdin
+	let mut value = String::new();
+	io::stdin().read_line(&mut value).expect("Failed to read line");
+
+snippet _8std_cmp
+	use std::cmp::Ordering;
+	match guess.cmp(&) {
+		Ordering::Less => println!("small"),
+		Ordering::Greater => println!("big"),
+		Ordering::Equal => {
+			println("equal");
+			break;
+		}
+	}
+
+snippet _8while_stdin
+	let guess: u32 = match guess.trim().parse() {
+		Ok(num) => num,
+		Err(_) => continue,
+	};
+
+snippet _8string2digits
+	strval.trim().parse().expect("Please type a number!");
+
+snippet _8struct
+	struct User {
+		username: String,
+		email: String,
+		sign_in_count: u64,
+		active: bool,
+	}
+
