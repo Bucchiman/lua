@@ -30,6 +30,20 @@ snippet _8struct
 		active: bool,
 	}
 
+snippet _8updatestruct
+	let user2 = User {
+		username: String::from("hoge"),
+		..user1,
+	};
+
+snippet _8tuplestruct
+	struct Color(i32, i32, i32);
+	let black = Color(0, 0, 0);
+	black.0;  # 参照
+
+snippet _8unitstruct
+	struct Unit;
+
 
 snippet _8calc
 	assert_eq!(10_u8.checked_add(20), Some(30));  	   # チェック付き演算
