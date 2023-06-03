@@ -1,3 +1,13 @@
+#!/usr/bin/env lua
+--
+-- FileName:     lazy
+-- Author:       8ucchiman
+-- Email:        8ucchiman@gmail.com
+-- CreatedDate:  2023-06-03 15:39:49
+-- LastModified: 2023-01-23 14:18:33 +0900
+-- Reference:    https://github.com/MiaadTeam/lesvim/blob/main/lua/lazy/plugins.lua
+-- Description:  ---
+--
 
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -276,15 +286,14 @@ require("lazy").setup(
                 },
             })
         end
+    },
+    {
+	    "L3MON4D3/LuaSnip",
+	    -- follow latest release.
+	    version = "1.2.1.*",
+	    -- install jsregexp (optional!).
+	    build = "make install_jsregexp"
     }
-
-    --{
-	--    "L3MON4D3/LuaSnip",
-	--    -- follow latest release.
-	--    version = "<CurrentMajor>.*",
-	--    -- install jsregexp (optional!).
-	--    build = "make install_jsregexp"
-    --}
 })
 
 local has_words_before = function()
@@ -295,13 +304,8 @@ end
 
 local cmp = require("cmp")
 local snippy = require("snippy")
-cmp.setup({
-  -- snippet = {
-  --   expand = function(args)
-  --     vim.fn["vsnip#anonymous"](args.body)
-  --   end,
-  -- },
 
+cmp.setup({
   sources = {
     { name = "nvim_lsp" },
     -- { name = "buffer" },
