@@ -175,6 +175,15 @@ require("lazy").setup(
         },
     },
     {
+        'hrsh7th/nvim-cmp',
+        config = function()
+            require('config.cmp')
+        end,
+    },
+    {
+        'saadparwaizl/cmp_luasnip'
+    },
+    {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
         dependencies = {
@@ -195,6 +204,13 @@ require("lazy").setup(
             {'L3MON4D3/LuaSnip'},             -- Required
             {'rafamadriz/friendly-snippets'}, -- Optional
         }
+    },
+    {
+        'L3MON4D3/LuaSnip',
+        after = 'nvim-cmp',
+        config = function()
+            require('config.snippets')
+        end,
     },
     -- Nvimtree (File Explorer)
     {
@@ -308,6 +324,7 @@ local snippy = require("snippy")
 cmp.setup({
   sources = {
     { name = "nvim_lsp" },
+    { name = "luasnip"},
     -- { name = "buffer" },
     -- { name = "path" },
   },
