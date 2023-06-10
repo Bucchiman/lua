@@ -181,9 +181,6 @@ require("lazy").setup(
         end,
     },
     {
-        'saadparwaizl/cmp_luasnip'
-    },
-    {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
         dependencies = {
