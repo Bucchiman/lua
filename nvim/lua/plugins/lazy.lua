@@ -319,44 +319,48 @@ local cmp = require("cmp")
 local snippy = require("snippy")
 
 cmp.setup({
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "luasnip"},
-    -- { name = "buffer" },
-    -- { name = "path" },
-  },
-  mapping = cmp.mapping.preset.insert({
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif snippy.can_expand_or_advance() then
-        snippy.expand_or_advance()
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif snippy.can_jump(-1) then
-        snippy.previous()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    ['<C-l>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm { select = true },
-  }),
-  experimental = {
-    ghost_text = true,
-  },
-})
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end
+    },
+    sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip"},
+        -- { name = "buffer" },
+        -- { name = "path" },
+    },
+    mapping = cmp.mapping.preset.insert({
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif snippy.can_expand_or_advance() then
+                snippy.expand_or_advance()
+            elseif has_words_before() then
+                cmp.complete()
+            else
+                fallback()
+            end
+            end, { "i", "s" }),
+            ["<S-Tab>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    endendcmp.select_prev_item()
+                elseif snippy.can_jump(-1) then
+                    snippy.previous()
+                else
+                    fallback()
+                end
+            end, { "i", "s" }),
+            ["<C-p>"] = cmp.mapping.select_prev_item(),
+            ["<C-n>"] = cmp.mapping.select_next_item(),
+            ['<C-l>'] = cmp.mapping.complete(),
+            ['<C-e>'] = cmp.mapping.abort(),
+            ["<CR>"] = cmp.mapping.confirm { select = true },
+        }),
+        experimental = {
+            ghost_text = true,
+        },
+    })
 
 -- require("chafa").setup({
 --     render = {
