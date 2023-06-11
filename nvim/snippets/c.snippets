@@ -1,4 +1,50 @@
-snippet _callback
+snippet _8callback
+
+	/** @brief Converts an image from one color space to another.
+
+		@param src input image: 8-bit unsigned, 16-bit unsigned ( CV_16UC... ), or single-precision floating-point.
+		@param dst output image of the same size and depth as src.
+		@param code color space conversion code (see #ColorConversionCodes).
+		@param dstCn number of channels in the destination image; if the parameter is 0, the number of the channels is derived automatically from src and code.
+	*/
 	int func(int (*callback)(int, int, int), int x) {
 		return callback(x, x, x);
+	}
+
+
+snippet _8multithread
+	/**
+		スレッドで処理する関数
+		
+	*/
+	void *thread_func(void* arg) {
+		int id = (int)arg;
+		for (int i=0; i<5; i++) {
+			printf("id = %d, i = %d\n", id, i);
+			sleep(1);
+		}
+		return "finished";
+	}
+
+	int main(int argc, char** argv) {
+		pthread_t v[10];
+		for (int i=0; i<10; i++) {
+			if (pthread_create(&v[i], NULL, thread_func, (void*)i) != 0) {
+				perror("pthread_create");
+				return -1;
+			}
+		}
+
+		for (int i=0; i<10; i++) {
+			char* ptr;
+
+			if (pthread_join(v[i], (void**)&ptr) == 0) {
+				printf("msg = %s\n", ptr);
+			}
+			else {
+				perror("pthread_join");
+				return -1;
+			}
+		}
+		return 0;
 	}
