@@ -33,3 +33,5 @@ ls.add_snippets(nil, {
         })
     }
 })
+
+require("luasnip.loaders.from_snipmate").load()
