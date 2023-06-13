@@ -39,20 +39,51 @@ snippet _8updatestruct
 snippet _8tuplestruct
 	struct Color(i32, i32, i32);
 	let black = Color(0, 0, 0);
-	black.0;  # 参照
+	black.0;  // 参照
 
 snippet _8unitstruct
 	struct Unit;
 
 
 snippet _8calc
-	assert_eq!(10_u8.checked_add(20), Some(30));  	   # チェック付き演算
-	assert_eq!(100_u8.checked_addd(200), None);   	   # チェック付き演算
-	assert_eq!(100_u16.wrapping_mul(200), 20000); 	   # ラップ演算
-	assert_eq!(32760_i16.saturating_add(100), 32767);  # 飽和演算
-	assert_eq!(255_u8.overflowing_add(1), (1, true))   # オーバフロー演算
+	assert_eq!(10_u8.checked_add(20), Some(30));  	   // チェック付き演算
+	assert_eq!(100_u8.checked_addd(200), None);   	   // チェック付き演算
+	assert_eq!(100_u16.wrapping_mul(200), 20000); 	   // ラップ演算
+	assert_eq!(32760_i16.saturating_add(100), 32767);  // 飽和演算
+	assert_eq!(255_u8.overflowing_add(1), (1, true))   // オーバフロー演算
 
 
 snippet _8error01
-	println!("{}", (-4).abs())   # メソッドを呼び出す場合、オブジェクトの型を明示する必要がある。
+	println!("{}", (-4).abs())      // メソッドを呼び出す場合、オブジェクトの型を明示する必要がある。
 	println!("{}", (-4_i32)abs())
+
+
+snippet _8arrayrange
+    let a: [usize; 100] = core::array::from_fn(|i| i+1);    // 1から100まで
+
+snippet _8basic_if01
+	// 3.5.1.2 let文内でif式を使う
+	let number = if true {
+		5
+	} else {
+		6
+	};
+
+snippet _8basic_loop
+	// 3.5.2.1 loopでコードを繰り返す
+	loop {
+		println!("8ucchiman was here!");
+	}
+
+snippet _8basic_for01
+	// 3.5.2.3 forでコレクションを覗き見る
+	let a = [10, 20, 30, 40, 50];
+	for element in a.iter() {
+		println!("the vaue is: {}", element);
+	}
+
+snippet _8basic_for02
+	// 3.5.2.3 forでコレクションを覗き見る
+	for number in (1..4).rev() {
+		println!("{}!", number);
+	}
