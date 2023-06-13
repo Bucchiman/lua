@@ -87,3 +87,9 @@ snippet _8basic_for02
 	for number in (1..4).rev() {
 		println!("{}!", number);
 	}
+
+
+snippet _8const
+	# 定数の場合は、必ず型を指定する必要がある
+	# 定数は関数の呼び出しや実行時に評価される値にはセットできない
+	const value:i32 = 4;
