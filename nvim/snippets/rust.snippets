@@ -69,6 +69,16 @@ snippet _8basic_if01
 		6
 	};
 
+snippet _8basic_array
+	let lazy_poco: [u32; 5] = [1, 2, 3, 4, 5];
+	let txas = ["amecano", "boyd"];
+	let mut sieve = [true; 10000];   // 10000のtrue配列
+
+snippet _8basic_vec
+	let mut primes = vec![2, 3, 5, 7];
+	let mut pal = Vec::new();
+	let v: Vec<i32> = (0..5).collect();  // 型は基本的に必要
+
 snippet _8basic_loop
 	// 3.5.2.1 loopでコードを繰り返す
 	loop {
