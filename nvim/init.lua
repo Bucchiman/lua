@@ -69,6 +69,7 @@ vim.api.nvim_create_autocmd(
             "*.sh",
             "*.zsh",
             "*.Dockerfile",
+            "*.snippets",
     },
         command = "Template "..file.." template"
     }
@@ -114,3 +115,4 @@ vim.api.nvim_create_autocmd(
         command = "Template " ..file.." Cargo"
     }
 )
+
