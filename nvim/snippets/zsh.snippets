@@ -1,0 +1,35 @@
+snippet _8getopts
+	function _usage() {
+	    echo "Usage: $0 -u username -n image_name -f dockerfile"
+	    exit 1
+	}
+	
+	if [[ $# = 0 ]]
+	then
+	    echo No arguments or options
+	    exit 1
+	fi
+	
+	while getopts :ab:c: OPT
+	do
+	    case $OPT in
+	        a) flag=1;;
+	        b) b=$OPTARG;;
+	        c) c=$OPTARG;;
+	        :|\?) _usage;;
+	    esac
+	done
+	if [[ ! -z $flag ]]
+	then
+	    printf "stand flag\n"
+	fi
+	
+	return
+	
+	#
+	# a:bc:
+	# -> aとcオプションは引数
+	# -> command -a hoge -b -c geho
+	# :a:bc:
+	# -> 未定義オプションの場合、?として処理
+	#
