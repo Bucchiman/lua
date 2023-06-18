@@ -11,7 +11,6 @@ snippet _8callback
 		return callback(x, x, x);
 	}
 
-
 snippet _8multithread
 	/**
 		スレッドで処理する関数
@@ -47,4 +46,42 @@ snippet _8multithread
 			}
 		}
 		return 0;
+	}
+
+snippet _8struct
+	/**
+		- typedef不使用
+		struct _playersData { };      // 宣言
+		struct _playersData player_x;
+		- typedef使用
+		typedef struct _playersData { }_playersData; // 宣言
+		_playersData player_x;
+	*/
+	typedef struct _playersData {
+		char* name;
+		int age;
+		int position;
+		double* RBI;
+	}_playersData;
+
+snippet _8file_read
+	/**
+		
+
+
+	 */
+	void file(char* file_name) {
+	    FILE *fp;
+	    if ((fp = fopen(file_name, "r")) == NULL) {
+			perror("Error: failed to read a file.");
+			exit(EXIT_FAILURE);
+	    }
+	    int l;
+	    char** words = (char**) malloc(MAX_WORDS*sizeof(char*));
+	
+	    while ((l = getc(fp)) != EOF) {
+	        char* tmp_char = (char*)malloc(CHAR_LEN*sizeof(char));
+	        printf("%c\n", l);
+	    }
+	    fclose(fp);
 	}
