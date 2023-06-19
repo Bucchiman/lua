@@ -44,7 +44,6 @@ snippet _8tuplestruct
 snippet _8unitstruct
 	struct Unit;
 
-
 snippet _8calc
 	assert_eq!(10_u8.checked_add(20), Some(30));  	   // チェック付き演算
 	assert_eq!(100_u8.checked_addd(200), None);   	   // チェック付き演算
@@ -52,11 +51,9 @@ snippet _8calc
 	assert_eq!(32760_i16.saturating_add(100), 32767);  // 飽和演算
 	assert_eq!(255_u8.overflowing_add(1), (1, true))   // オーバフロー演算
 
-
 snippet _8error01
 	println!("{}", (-4).abs())      // メソッドを呼び出す場合、オブジェクトの型を明示する必要がある。
 	println!("{}", (-4_i32)abs())
-
 
 snippet _8arrayrange
     let a: [usize; 100] = core::array::from_fn(|i| i+1);    // 1から100まで
@@ -97,7 +94,6 @@ snippet _8basic_for02
 	for number in (1..4).rev() {
 		println!("{}!", number);
 	}
-
 
 snippet _8const
 	// 定数の場合は、必ず型を指定する必要がある
