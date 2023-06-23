@@ -41,6 +41,7 @@ require("mason-lspconfig").setup_handlers {
   end,
 }
 
+
 -- Setup language servers.
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {}
@@ -51,6 +52,7 @@ lspconfig.rust_analyzer.setup {
     ['rust-analyzer'] = {},
   },
 }
+
 lspconfig.lua_ls.setup {
     settings = {
         Lua = {
@@ -65,6 +67,7 @@ lspconfig.lua_ls.setup {
             },
             workspace = {
                 library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false
             },
             telemetry = {
                 enable = false,
@@ -72,15 +75,6 @@ lspconfig.lua_ls.setup {
         }
     }
 }
--- lspconfig.sumneko_lua.setup {
---     settings = {
---         Lua = {
---             diagnostics = {
---                 globals = { "vim" }
---             }
---         }
---     }
--- }
 
 
 -- Global mappings.
@@ -120,3 +114,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, opts)
   end,
 })
+
