@@ -14,3 +14,151 @@ snippet repeat
 		${2:what}
 	while ${1:condition}
 
+
+snippet _8basics_constructor
+	--
+	-- ref http://www.nct9.ne.jp/m_hiroi/light/lua05.html
+	--
+	Foo = {}
+	function Foo.new(a, b)
+		return {
+			a = a,
+			b = b,
+			get_a = function(self) return self.a end,
+			get_b = function(self) return self.b end,
+			set_a = function(self, x) self.a = x end,
+			set_b = function(self, x) self.b = x end
+		}
+	end
+
+snippet _8basics_class
+	--
+	-- ref http://www.nct9.ne.jp/m_hiroi/light/lua05.html
+	--
+	Foo = {}
+	function Foo.new(a, b)
+		local function get_a(self) return self.a end
+		local function get_b(self) return self.b end
+		local function set_a(self, x) self.a = x end
+		local function set_b(self, x) self.b = x end
+		return {
+			a = a,
+			b = b,
+			get_a = get_a,
+			get_b = get_b,
+			set_a = set_a,
+			set_b = set_b
+		}
+	end
+
+snippet _8basics_coroutine_minicompo
+	--
+	-- basics
+	-- ref: https://www.lua.org/pil/9.1.html
+	-- 最小構成
+	--
+	co = coroutine.create(function ()
+		print('hi')
+	end)
+
+	print(coroutine.status(co)) 	--> suspended
+	coroutine.resume(co)            --> hi
+	print(coroutine.status(co))     --> dead
+
+snippet _8basics_coroutine_yield
+	--
+	-- basics
+	-- ref: https://www.lua.org/pil/9.1.html
+	-- yield ... メインスレッドでcoスレッドを再生する際、yieldから始まる
+	--
+	co = coroutine.create(function ()
+		for i = 1, 10 do
+			print("co", i)
+			coroutine.yield()       -- yield allows a running coroutine to suspend its execution so that it can be resumed later.
+		end
+	end)
+
+	coroutine.resume(co)            --> co 1
+	coroutine.resume(co)            --> co 2
+	-- ..
+	coroutine.resume(co)            --> co 10
+	coroutine.resume(co)            -- prints nothing
+
+
+snippets _8basics_coroutine_arguments
+	--
+	-- basics
+	-- ref: https://www.lua.org/pil/9.1.html
+	-- 引数あり
+	co = coroutine.create(function (a, b, c)
+		print("co", a, b, c)
+	end)
+	coroutine.resume(co, 1, 2, 3)
+
+	co = coroutine.create(function (a, b)
+		coroutine.yield(a+b, a-b)
+	end)
+	print(coroutine.resume(co, 20, 10))  --> true 30 10
+
+	co = coroutine.create(function ()
+		print("co", coroutine.yield())
+	end)
+	coroutine.resume(co)
+	coroutine.resume(co, 4, 5)       --> co 4 5
+
+	co = coroutine.create(function ()
+		return 6, 7
+	end)
+	print(coroutine.resume(co))      --> co 6 7
+
+snippets _8producer_consumer
+	-- receive関数
+	-- @param prod: producer関数
+	-- @return value
+	--
+	-- receive関数はconsumer関数内で呼び出される
+	-- coroutine.resumeでyieldを呼び出す。
+	function receive (prod)
+      local status, value = coroutine.resume(prod)
+      return value
+    end
+    
+	-- send関数
+	-- @param x: 
+	--
+	-- send関数はprducer関数内で呼び出される
+	-- coroutine.yield
+    function send (x)
+      coroutine.yield(x)
+    end
+    
+    function producer ()
+      return coroutine.create(function ()
+        while true do
+          local x = io.read()     -- produce new value
+          send(x)
+        end
+      end)
+    end
+    
+    function filter (prod)
+      return coroutine.create(function ()
+        local line = 1
+        while true do
+          local x = receive(prod)   -- get new value
+          x = string.format("%5d %s", line, x)
+          send(x)      -- send it to consumer
+          line = line + 1
+        end
+      end)
+    end
+    
+    function consumer (prod)
+      while true do
+        local x = receive(prod)   -- get new value
+        io.write(x, "\n")          -- consume new value
+      end
+    end
+    p = producer()
+    f = filter(p)
+    consumer(f)
