@@ -1,0 +1,84 @@
+snippet _8static
+	static: *.o
+		ar rvs libhoge.a geho.o
+
+snippet _8dynamic
+	g++ -shared hoge.o -o libhoge.so
+
+snippet _8filter
+	# - $(filter PATTERN..., TEXT)  PATTERNの文字列に一致する要素を取得
+	VAR := hoge.h hoge.cpp geho.h geho.cpp
+	sample_filter:
+		@echo "$(filter %.cpp, $(VAR))" # -> hoge.cpp, geho.cpp
+
+snippet _8filter_out
+	# - $(filter-out PATTERN..., TEXT) PATTERNの文字列に一致しない要素
+	VAR := hoge.h hoge.cpp geho.h geho.cpp
+	sample_filter_out:
+		@echo "$(filter-out %.cpp, $(VAR))" # -> hoge.h geho.h
+
+snippet _8findstring
+	# - $(findstring FIND, IN) IN内にFINDの文字列があれば、その文字列を抽出
+	VAR := abc def ghi
+	sample_findstring:
+		@echo "$(findstring bc, $(VAR))" # -> bc
+
+snippet _8firstword
+	# - $(firstword NAMES...) NAMES内の最初の要素を取得
+	VAR := abc def ghi
+	sample_firstword:
+		@echo "$(firstword $(VAR))" # -> abc
+
+snippet _8lastword
+	# - $(lastword NAMES...) NAMES内の最後の要素を取得
+	VAR := abc def ghi
+	sample_lastword:
+		@echo "$(lastword $(VAR))" # -> ghi
+
+snippet _8patsubst
+	# - $(patsubst PATTERN,REPLACEMENT,TEXT) TEXT内からPATTERNにマッチしたものをREPLACEMENTに置き換える。
+	VAR := hoge.cpp geho.cpp
+	sample_patsubst:
+		@echo "$(patsubst %.cpp, %.o, $(VAR))" # -> hoge.o geho.o
+
+snippet _8sort
+	# - $(sort LIST)
+	VAR := hoge foo geho fuga
+	sample_sort:
+		@echo "$(sort $(VAR))" # -> foo fuga geho hoge
+
+snippet _8strip
+	# - $(strip STRING) STRINGの無駄な空白を取り除く
+	VAR := a b  c     d
+	sample_strip:
+		@echo "$(strip $(VAR))" # -> a b c d
+
+snippet _8subst
+	# - $(subst FROM, TO, TEXT) TEXT内のFROMをTOに置き換える
+	VAR := hoge.cpp geho.cpp
+	sample_subst:
+		@echo "$(subst .cpp, .o, $(VAR))"
+
+snippet _8word
+	# - $(word N,TEXT) TEXT内のN番目の要素を取得
+	VAR := abc def ghi
+	sample_word:
+		@echo "$(word 1, $(VAR))"
+
+snippet _8wordlist
+	# - $(wordlist S, E, TEXT) TEXTのSからEまでの要素を取得
+	VAR := abc def ghi
+	sample_wordlist:
+		@echo "$(wordlist 1, 2, $(VAR))" # -> abc def
+
+snippet _8words
+	# - $(words TEXT) TEXTの要素数を取得
+	VAR := abc def ghi
+	sample_words:
+		@echo "$(words $(VAR))" # -> 3
+
+snippet _8abspath
+	# - $(abspath NAMES...) NAMESの各要素の絶対パスを取得
+	VAR := ../ ./ Makefile
+	sample_abspath:
+		@echo "$(abspath $(VAR))"
