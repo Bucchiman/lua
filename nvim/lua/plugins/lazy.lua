@@ -42,9 +42,7 @@ require("lazy").setup(
     'nvim-lua/popup.nvim',
     'MunifTanjim/nui.nvim',
     'nvim-tree/nvim-web-devicons',
-    'mfussenegger/nvim-dap',
     'theHamsta/nvim-dap-virtual-text',
-    "rcarriga/nvim-dap-ui",
     "leoluz/nvim-dap-go",
     "lervag/vimtex",
     "jbyuki/nabla.nvim",
@@ -127,14 +125,15 @@ require("lazy").setup(
         end
     },
     {
-        'mfussenegger/nvim-dap',
-        config = function()
-        end
+        "rcarriga/nvim-dap-ui",
+        dependencies = {
+            'mfussenegger/nvim-dap',
+        },
     },
     {
         'mfussenegger/nvim-dap-python',
         config = function()
-            require('dap-python').setup('/mnt/b/general_venv/bin/python')
+            require('dap-python').setup('$HOME/general_venv/bin/python')
         end
     },
     {
