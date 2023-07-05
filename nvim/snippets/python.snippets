@@ -35,6 +35,50 @@ snippet _8figax
 snippet _8listlambda
 	hoge = list(map(lambda x: x+1, hoge))  # hogeの各要素に+1する
 
+snippet _8wrapper01
+	#
+	# ref: https://qiita.com/keishi04hrikzira/items/dd6ef7fcd67092c9baba
+	#
+	from functools import wraps
+	def deco(f):
+		@wraps(f, "__name__")
+		def wrapper(*args, **kwargs):
+			"""test"""
+			return f(*args, **kwargs)
+		return wrapper
+	@deco
+	def hoge():
+		""" sample """
+		pass
+
+	print(hoge.__name__)
+	# 出力: hoge
+	# __name__はwrapsで指定しているのでそのまま
+
+	print(hoge.__doc__)
+	# 出力: test
+	# __doc__はwrapsで指定しないので上書きされる
+
+snippet _8wrapper02
+	#
+	# ref: https://www.geeksforgeeks.org/function-wrappers-in-python/
+	#
+
+
+snippet _8basics_repl
+	#
+	# ref: https://codesolid.com/dunder-methods-in-python-the-ugliest-awesome-sauce/
+	#
+	class Point:
+		def __init__(self, x, y):
+			self.x = x
+			self.y = y
+
+		def __repr__(self):
+			return f"Point(x={self.x}, y={self.y})"
+
+	p = Point(10, 4)
+	print(p)        # Point(x=10, y=5)
 
 snippet _8timer_decorator
 	#

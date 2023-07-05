@@ -249,8 +249,8 @@ require("lazy").setup(
     {
         "princejoogie/chafa.nvim",
         dependencies = {
-            "nvim-lua/plenary.nvim",
-            "m00qek/baleia.nvim"
+            {"nvim-lua/plenary.nvim"},
+            {"m00qek/baleia.nvim"}
         },
         config = function()
             require("chafa").setup({

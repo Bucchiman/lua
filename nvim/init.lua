@@ -70,8 +70,18 @@ vim.api.nvim_create_autocmd(
             "*.zsh",
             "*.Dockerfile",
             "*.snippets",
-    },
+        },
         command = "Template "..file.." template"
+    }
+)
+
+vim.api.nvim_create_autocmd(
+    "BufNewFile",
+    {
+        pattern = {
+            "plugin.lua"
+        },
+        command = "Template "..file.." plugin"
     }
 )
 
