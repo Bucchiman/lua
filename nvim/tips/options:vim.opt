@@ -1,0 +1,17 @@
+Description>
+           > vim.opt.number = true              -- 行番号表示
+           > vim.opt.list = true                -- 特殊文字表示
+           > vim.opt.showmatch                  -- true
+           > vim.opt.buftype = 'nowrite'        -- https://vim-jp.org/vimdoc-ja/options.html#'buftype'
+           > vim.opt.swapfile = false           -- swapfile
+           > vim.opt.bufhidden = 'wipe'         -- バッファがウィンドウに表示されなくなった時の動作, https://vim-jp.org/vimdoc-ja/options.html#'bufhidden'
+           > vim.opt.wrap = false
+           > vim.opt.cursorline = false
+           > vim.opt.cursorcolumn = false
+           >
+           >
+           >
+           >
+           >
+           >
+           >
