@@ -1,0 +1,38 @@
+Command> vim.inspect(ex)
+
+Reference>
+
+
+
+
+e.g.> -- sample.lua
+    > M = {}
+    > M["hoge"] = "bucchiman"
+    > M["geho"] = "8ucchiman"
+    > vim.inspect(M)
+    > $ nvim -u sample.lua
+    > | {
+    > |     geho = "8ucchiman",
+    > |     hoge = "bucchiman"
+    > | }
+
+
+e.g.> -- sample.lua
+    > vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+    >   pattern = {"*.c", "*.h"},
+    >   callback = function(ev)
+    >     print(string.format('event fired: %s', vim.inspect(ev)))
+    >   end
+    > })
+    > $ nvim -u sample.lua
+    > | :new unko.c
+    > | 
+    > | table: 0x0104325130
+    > | event fired: {
+    > |   buf = 2,
+    > |   event = "BufEnter",
+    > |   file = "/Users/8ucchiman/common/snippets/codes/lua/nvim/tips/kinmo.c",
+    > |   id = 3,
+    > |   match = "/Users/8ucchiman/common/snippets/codes/lua/nvim/tips/kinmo.c"
+    > | }
+    > |
