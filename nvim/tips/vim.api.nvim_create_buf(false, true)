@@ -1,0 +1,7 @@
+Description> The first argument `false` specifies whether to load the buffer with the contents of the
+           > current buffer. Setting it to `false` creates an empty buffer. The second argument `true`
+           > specifies whether to set the buffer as listed. Setting it to `true` adds the buffer to the
+           > buffer list.
+
+
+Reference> https://zenn.dev/notomo/articles/neovim-win-call-api
