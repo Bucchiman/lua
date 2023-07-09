@@ -141,7 +141,7 @@ require("lazy").setup(
     {
         'glepnir/template.nvim', cmd = {
             'Template','TemProject'
-        }, 
+        },
         config = function()
             require('template').setup({
                 temp_dir = "$HOME/.config/template",
@@ -381,4 +381,8 @@ cmp.setup({
 
 -- setup must be called before loading
 vim.cmd.colorscheme "catppuccin"
-
+require("plugins.template")
+require("plugins.dap")
+require("plugins.chatgpt")
+require("plugins.lspconfig")
+require("plugins.telescope")

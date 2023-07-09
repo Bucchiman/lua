@@ -10,6 +10,9 @@
 --
 
 
+local dap = require('dap')
+
+
 local function map(mode, lhs, rhs, opts)
     local options = {noremap = true}
     if opts then options = vim.tbl_extend('force', options, opts) end
@@ -104,7 +107,7 @@ require("dapui").setup({
 	}
 })
 
-
+print("8ucchiman dap")
 
 
 require("dap-go").setup()
