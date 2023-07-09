@@ -14,7 +14,7 @@ local term_opts = { silent = true }
 local keymap = vim.api.nvim_set_keymap
 
 
-vim.g.mapleader = ','
+vim.g.mapleader = ','                   -- <leader> = ''
 -- Nop
 keymap("", "<Space>", "<Nop>", opts)
 keymap("", "<Up>",  "<Nop>",  opts)

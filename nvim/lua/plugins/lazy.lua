@@ -9,7 +9,9 @@
 -- Description:  ---
 --
 
-
+--#region
+--  Reference: https://github.com/folke/lazy.nvim
+--#endregion
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -22,8 +24,8 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
+-----------------------------------------------------------
 
-vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 --require("lazy").setup(plugins, opts)
 local img_previewer = vim.fn.executable("ueberzug") == 1 and { "ueberzug" } or { "viu", "-b" }
 

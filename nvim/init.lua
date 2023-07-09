@@ -27,6 +27,7 @@ require("keymaps")
 require("plugins.lazy")
 require("plugins.lspconfig")
 require("plugins.dap")
+require("plugins.template")
 --require("8ucchiman")
 local experiments = require("experiments")
 
@@ -47,82 +48,4 @@ vim.api.nvim_create_user_command('T', experiments.term_split, {nargs=0})
 --endfun
 --autocmd BufWritePre * call LastModified()
 
-local file = vim.fn.expand("%")
-
-vim.api.nvim_create_autocmd(
-    "BufNewFile",
-    {
-        pattern = {
-            "*.c",
-            "*.h",
-            "*.hpp",
-            "*.cu",
-            "*.cs",
-            "*.cpp",
-            "*.rs",
-            "*.rb",
-            "*.py",
-            "*.lua",
-            "*.vim",
-            "*.md",
-            "*.yaml",
-            "*.sh",
-            "*.zsh",
-            "*.Dockerfile",
-            "*.snippets",
-        },
-        command = "Template "..file.." template"
-    }
-)
-
-vim.api.nvim_create_autocmd(
-    "BufNewFile",
-    {
-        pattern = {
-            "plugin.lua"
-        },
-        command = "Template "..file.." plugin"
-    }
-)
-
-vim.api.nvim_create_autocmd(
-    "BufNewFile",
-    {
-        pattern = "CMakeLists.txt",
-        command = "Template "..file.." CMakeLists"
-    }
-)
-
-vim.api.nvim_create_autocmd(
-    "BufNewFile",
-    {
-        pattern = "Dockerfile",
-        command = "Template "..file.." Dockerfile"
-    }
-)
-
-
-vim.api.nvim_create_autocmd(
-    "BufNewFile",
-    {
-        pattern = "docker-compose.yml",
-        command = "Template "..file.." docker_compose"
-    }
-)
-
-vim.api.nvim_create_autocmd(
-    "BufNewFile",
-    {
-        pattern = "Makefile",
-        command = "Template "..file.." Makefile"
-    }
-)
-
-vim.api.nvim_create_autocmd(
-    "BufNewFile",
-    {
-        pattern = "Cargo.toml",
-        command = "Template " ..file.." Cargo"
-    }
-)
 

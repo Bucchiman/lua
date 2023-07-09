@@ -10,9 +10,9 @@
 local t = vim.api.nvim_buf_get_lines(0, 2, -1, true)
 
 
---for num, line in ipairs(t) do
---    print(num, line)
---end
+for num, line in ipairs(t) do
+    print(num, line)
+end
 
 
 

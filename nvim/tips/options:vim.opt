@@ -8,8 +8,9 @@ Description>
            > vim.opt.wrap = false
            > vim.opt.cursorline = false
            > vim.opt.cursorcolumn = false
-           >
-           >
+           > vim.opt.expandtab = true           -- タブ挿入時に半角スペースを使用
+           > vim.opt.smartcase = false          -- 検索時に大文字を含んでいる場合はignorecaseを上書きして大文字・小文字を区別する
+           > vim.opt.shell = "zsh"              -- ![Command]でシェル実行できる
            >
            >
            >

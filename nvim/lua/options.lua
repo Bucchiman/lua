@@ -8,15 +8,8 @@
 --
 
 
---
--- expandtab:       タブ挿入時に半角スペースを使用
--- smartcase:       検索時に大文字を含んでいる場合はignorecaseを上書きして大文字・小文字を区別する
--- shell:        ![Command]でシェル実行できる
-
-
 local options = {
     number = true,
-    backup = false,
     virtualedit = "onemore",
     hidden = true,
     autoindent = true,
@@ -78,4 +71,4 @@ vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
 
 
 local opts = { noremap = true, silent = true }
-local term_opts = { silent = ture }
+local term_opts = { silent = true }
