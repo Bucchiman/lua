@@ -16,7 +16,14 @@ vim.api.nvim_command('set runtimepath^=.')
 
 -- コンテンツ用ウィンドウの作成
 local function create_contents_window(config)
-  local config = {relative = 'editor', row = config.row + 1, col = config.col + 2, width = config.width - 4, height = config.height - 2, style = 'minimal'}
+  local config = {
+      relative = 'editor',
+      row = config.row + 1,
+      col = config.col + 2,
+      width = config.width - 4,
+      height = config.height - 2,
+      style = 'minimal'
+  }
   local buffer = vim.api.nvim_create_buf(false, true)
   return vim.api.nvim_open_win(buffer, true, config)
 end
@@ -45,7 +52,15 @@ local function new_window(config)
 end
 
 -- ex.) 使い方
-let config = { 'relative': 'editor', 'row': 30, 'col': 30, 'width': 50, 'height': 20, 'anchor': 'NW', 'style': 'minimal'}
-call s:new_window(config)
+local config = {
+    relative = 'editor',
+    row = 30,
+    col = 30,
+    width = 50,
+    height = 20,
+    anchor = 'NW',
+    style = 'minimal'
+}
+new_window(config)
 
 

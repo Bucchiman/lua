@@ -162,3 +162,33 @@ snippets _8producer_consumer
     p = producer()
     f = filter(p)
     consumer(f)
+
+
+snippets _8set
+	local Bucchiman = {}
+	Bucchiman.new = function()
+	  local self = setmetatable({}, { __index = Bucchiman })
+	  self.images = {}
+	  self.default_options = {
+	    wait_ms = 100,
+	    direction = 'expand',
+	    count = 3,
+	  }
+	  return self
+	end
+
+	function Bucchiman:setup()
+	  vim.api.nvim_create_user_command('Bucchiman', function(options)
+	    local opts = options.args == '' and {} or assert(loadstring('return ' .. options.args)())
+	    self:start(opts)
+	  end, { nargs = '?' })
+	end
+
+	local Bu = Bucchiman.new()
+
+	return {
+	  bucchiman = Bu,
+	  setup = function()
+	    u:setup()
+	  end,
+	}
