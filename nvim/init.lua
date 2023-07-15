@@ -23,14 +23,10 @@ local current_dir = vim.fn.getcwd()
 require("base")
 require("options")
 require("keymaps")
---require("plugins.packer")
 require("plugins.lazy")
 --require("8ucchiman")
 local experiments = require("experiments")
 
-vim.api.nvim_create_user_command('ExampleOpenWin', experiments.nvim_open_win, {nargs=0})
-
-vim.api.nvim_create_user_command('T', experiments.term_split, {nargs=0})
 
 -- Insert timestamp after 'LastModified: '
 --function! LastModified()

@@ -1,7 +1,7 @@
 #!/usr/bin/env lua
 --
 -- FileName:     lua/keymaps
--- Author: 8ucchiman
+-- Author:       8ucchiman
 -- CreatedDate:  2023-03-31 23:40:18 +0900
 -- LastModified: 2023-01-23 14:18:33 +0900
 -- Reference: https://zenn.dev/hisasann/articles/neovim-settings-to-lua
