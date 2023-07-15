@@ -12,6 +12,6 @@ end
 setmetatable(ts, mt)
 
 
-ts()
-ts(5, 66)
-ts"String construct-call"
+-- ts()
+-- ts(5, 66)
+-- ts"String construct-call"

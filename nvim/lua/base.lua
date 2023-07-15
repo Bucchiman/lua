@@ -11,7 +11,7 @@
 vim.cmd("autocmd!")
 
 vim.api.nvim_create_autocmd(
-    "InsertLeave",
+    "InsertLeave",           -- 挿入モードを抜ける時
     {
         pattern = "*",
         command = "set nopaste"
