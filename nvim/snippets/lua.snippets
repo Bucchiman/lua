@@ -85,7 +85,7 @@ snippet _8basics_coroutine_yield
 	coroutine.resume(co)            -- prints nothing
 
 
-snippets _8basics_coroutine_arguments
+snippet _8basics_coroutine_arguments
 	--
 	-- basics
 	-- ref: https://www.lua.org/pil/9.1.html
@@ -111,7 +111,7 @@ snippets _8basics_coroutine_arguments
 	end)
 	print(coroutine.resume(co))      --> co 6 7
 
-snippets _8producer_consumer
+snippet _8producer_consumer
 	-- receive関数
 	-- @param prod: producer関数
 	-- @return value
@@ -164,31 +164,31 @@ snippets _8producer_consumer
     consumer(f)
 
 
-snippets _8set
+snippet _8set
 	local Bucchiman = {}
 	Bucchiman.new = function()
-	  local self = setmetatable({}, { __index = Bucchiman })
-	  self.images = {}
-	  self.default_options = {
-	    wait_ms = 100,
-	    direction = 'expand',
-	    count = 3,
-	  }
-	  return self
+	  	local self = setmetatable({}, { __index = Bucchiman })
+	  	self.images = {}
+	  	self.default_options = {
+	    	wait_ms = 100,
+	    	direction = 'expand',
+	    	count = 3,
+	  	}
+	  	return self
 	end
 
 	function Bucchiman:setup()
-	  vim.api.nvim_create_user_command('Bucchiman', function(options)
-	    local opts = options.args == '' and {} or assert(loadstring('return ' .. options.args)())
-	    self:start(opts)
-	  end, { nargs = '?' })
+	  	vim.api.nvim_create_user_command('Bucchiman', function(options)
+	    	local opts = options.args == '' and {} or assert(loadstring('return ' .. options.args)())
+	    	-- self:start(opts)
+	  	end, { nargs = '?' })
 	end
 
 	local Bu = Bucchiman.new()
 
 	return {
-	  bucchiman = Bu,
-	  setup = function()
-	    u:setup()
-	  end,
+	  	bucchiman = Bu,
+	  	setup = function()
+	    	Bu:setup()
+	  	end,
 	}
