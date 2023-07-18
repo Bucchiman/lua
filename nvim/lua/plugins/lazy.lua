@@ -45,8 +45,9 @@ require("lazy").setup(
     'MunifTanjim/nui.nvim',
     'nvim-tree/nvim-web-devicons',
     'theHamsta/nvim-dap-virtual-text',
-    "leoluz/nvim-dap-go",
+    -- "leoluz/nvim-dap-go",
     "lervag/vimtex",
+    "Pocco81/DAPInstall.nvim",
     "jbyuki/nabla.nvim",
     'rcarriga/nvim-notify',
     {
@@ -125,6 +126,9 @@ require("lazy").setup(
                 },
             })
         end
+    },
+    {
+        "mfussenegger/nvim-dap",
     },
     {
         "rcarriga/nvim-dap-ui",
@@ -382,7 +386,7 @@ cmp.setup({
 -- setup must be called before loading
 vim.cmd.colorscheme "catppuccin"
 require("plugins.template")
-require("plugins.dap")
+-- require("plugins.dap")
 require("plugins.chatgpt")
 require("plugins.lspconfig")
 require("plugins.telescope")
