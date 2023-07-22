@@ -1,5 +1,3 @@
-#!/usr/bin/env lua
---
 -- FileName:     lazy
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
@@ -26,367 +24,133 @@ end
 vim.opt.rtp:prepend(lazypath)
 -----------------------------------------------------------
 
---require("lazy").setup(plugins, opts)
-local img_previewer = vim.fn.executable("ueberzug") == 1 and { "ueberzug" } or { "viu", "-b" }
+local venv = os.getenv("VIRTUAL_ENV")
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.opt.termguicolors = true
-
-require("lazy").setup(
-{
-    "kkharji/sqlite.lua",
-    "folke/which-key.nvim",
-    "nvim-treesitter/nvim-treesitter",
-    "nvim-treesitter/playground",
-    "folke/neodev.nvim",
-    'nvim-lua/plenary.nvim',
-    'nvim-lua/popup.nvim',
-    'MunifTanjim/nui.nvim',
-    'nvim-tree/nvim-web-devicons',
-    'theHamsta/nvim-dap-virtual-text',
-    -- "leoluz/nvim-dap-go",
-    "lervag/vimtex",
-    "Pocco81/DAPInstall.nvim",
-    "jbyuki/nabla.nvim",
-    'rcarriga/nvim-notify',
+require("lazy").setup({
+    'mfussenegger/nvim-dap',
     {
-        "dpayne/CodeGPT.nvim",
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            'MunifTanjim/nui.nvim',
-        },
+        'rcarriga/nvim-dap-ui',
         config = function()
-            require("codegpt.config")
-        end
-    },
-    {
-        "folke/neoconf.nvim", cmd = "Neoconf"
-    },
-    {
-        "uhooi/uhooi.nvim",
-        config = function()
-            require("uhooi").setup()
-        end
-    },
-    {
-        'glacambre/firenvim',
-
-        -- Lazy load firenvim
-        -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
-        cond = not not vim.g.started_by_firenvim,
-        build = function()
-            require("lazy").load({ plugins = "firenvim", wait = true })
-            vim.fn["firenvim#install"](0)
-        end
-    },
-    {
-        "catppuccin/nvim", name = "catppuccin",
-        config = function()
-            require("catppuccin").setup({
-                flavour = "mocha", -- latte, frappe, macchiato, mocha
-                background = { -- :h background
-                    light = "latte",
-                    dark = "mocha",
+            require("dapui").setup({
+                icons = { expanded = "", collapsed = "" },
+                layouts = {
+                    {
+                        elements = {
+                            { id = "watches", size = 0.20 },
+                            { id = "stacks", size = 0.20 },
+                            { id = "breakpoints", size = 0.20 },
+                            { id = "scopes", size = 0.40 },
+                    },
+                    size = 64,
+                    position = "right",
                 },
-                transparent_background = true,
-                show_end_of_buffer = false, -- show the '~' characters after the end of buffers
-                term_colors = false,
-                dim_inactive = {
-                    enabled = false,
-                    shade = "dark",
-                    percentage = 0.15,
+                {
+                    elements = {
+                        "repl",
+                        "console",
+                    },
+                    size = 0.20,
+                    position = "bottom",
                 },
-                no_italic = false, -- Force no italic
-                no_bold = false, -- Force no bold
-                styles = {
-                    comments = { "italic" },
-                    conditionals = { "italic" },
-                    loops = {},
-                    functions = {},
-                    keywords = {},
-                    strings = {},
-                    variables = {},
-                    numbers = {},
-                    booleans = {},
-                    properties = {},
-                    types = {},
-                    operators = {},
-                },
-                color_overrides = {},
-                custom_highlights = {},
-                integrations = {
-                    cmp = true,
-                    gitsigns = true,
-                    nvimtree = true,
-                    telescope = true,
-                    notify = false,
-                    mini = false,
-                    -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-                },
-            })
+            },
+        })
         end
-    },
-    {
-        "mfussenegger/nvim-dap",
-    },
-    {
-        "rcarriga/nvim-dap-ui",
-        dependencies = {
-            'mfussenegger/nvim-dap',
-        },
     },
     {
         'mfussenegger/nvim-dap-python',
         config = function()
-            require('dap-python').setup('$HOME/general_venv/bin/python')
+            require("dap-python").setup(venv .. "/bin/python")
         end
     },
     {
-        'glepnir/template.nvim', cmd = {
-            'Template','TemProject'
-        },
+        'catppuccin/nvim',
         config = function()
-            require('template').setup({
-                temp_dir = "$HOME/.config/template",
-                author = "8ucchiman",
-                email = "8ucchiman@gmail.com",
+            require("catppuccin").setup({
+                transparent_background = true,
             })
         end
     },
     {
-      "jackMort/ChatGPT.nvim",
-        event = "VeryLazy",
+        'williamboman/mason.nvim',
         config = function()
-            require("chatgpt").setup()
-        end,
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim"
-        }
+            require("mason").setup()
+        end
     },
     {
-        -- OK(05/22)
-        "neovim/nvim-lspconfig",
-        lazy = false,
-        dependencies = {
-            -- Helpers to install LSPs and maintain them
-            "mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
-        },
+        'williamboman/mason-lspconfig.nvim',
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = {"lua_ls"}
+            })
+        end
     },
+    --#region
+    --  Reference: https://github.com/hrsh7th/nvim-cmp
+    --#endregion
     {
-        -- OK(05/22)
-        "williamboman/mason.nvim",
-        dependencies = {
-          "williamboman/mason-lspconfig.nvim",
-          "jose-elias-alvarez/null-ls.nvim",
-          "jay-babu/mason-null-ls.nvim",
-        },
+        'neovim/nvim-lspconfig'
     },
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/cmp-vsnip',
+    'hrsh7th/vim-vsnip',
+    -- For luasnip users
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
     {
         'hrsh7th/nvim-cmp',
-        config = function()
-            require('config.cmp')
-        end,
-    },
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
-        dependencies = {
-            -- LSP Support
-            {'neovim/nvim-lspconfig'},             -- Required
-            {'williamboman/mason.nvim'},           -- Optional
-            {'williamboman/mason-lspconfig.nvim'}, -- Optional
-
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},         -- Required
-            {'hrsh7th/cmp-nvim-lsp'},     -- Required
-            {'hrsh7th/cmp-buffer'},       -- Optional
-            {'hrsh7th/cmp-path'},         -- Optional
-            {'saadparwaiz1/cmp_luasnip'}, -- Optional
-            {'hrsh7th/cmp-nvim-lua'},     -- Optional
-
-            -- Snippets
-            {'L3MON4D3/LuaSnip'},             -- Required
-            {'rafamadriz/friendly-snippets'}, -- Optional
-        }
-    },
-    {
-        'L3MON4D3/LuaSnip',
-        after = 'nvim-cmp',
-        config = function()
-            require('config.snippets')
-        end,
-    },
-    -- Nvimtree (File Explorer)
-    {
-        'nvim-tree/nvim-tree.lua',
-        version = "*",
-        dependencies = {
-            'nvim-tree/nvim-web-devicons',
-        },
-        config = function()
-            require("nvim-tree").setup({
-                sort_by = "case_sensitive",
-                view = {
-                  width = 30,
+        config = function ()
+            require("cmp").setup({
+                snippet = {
+                  -- REQUIRED - you must specify a snippet engine
+                  expand = function(args)
+                    vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                    -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+                    -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+                  end,
                 },
-                renderer = {
-                  group_empty = true,
+                window = {
+                  -- completion = cmp.config.window.bordered(),
+                  -- documentation = cmp.config.window.bordered(),
                 },
-                filters = {
-                  dotfiles = true,
-                },
-            })
-        end,
-    },
-
-    -- Telescope (Fuzzy Finder)
-    {
-        'nvim-telescope/telescope.nvim',
-        lazy = true,
-        dependencies = {
-            {'nvim-lua/plenary.nvim'},
-        }
-    },
-    {
-        "princejoogie/chafa.nvim",
-        dependencies = {
-            {"nvim-lua/plenary.nvim"},
-            {"m00qek/baleia.nvim"}
-        },
-        config = function()
-            require("chafa").setup({
-                render = {
-                    min_padding = 5,
-                    show_label = true,
-                },
-                events = {
-                    update_on_nvim_resize = true,
-                }
-            })
-        end,
-    },
-    {
-        "edluffy/hologram.nvim",
-        config = function()
-            require('hologram').setup{
-                auto_display = true -- WIP automatic markdown image display, may be prone to breaking
-            }
-        end
-    },
-    {
-        "ibhagwan/fzf-lua",
-        config = function()
-            require("fzf-lua").setup({
-                previewers = {
-                    builtin = {
-                        ueberzug_scaler = "cover",
-                        extensions = {
-                        ["gif"] = img_previewer,
-                        ["png"] = img_previewer,
-                        ["jpg"] = img_previewer,
-                        ["jpeg"] = img_previewer,
-                        },
-                    },
-                },
+                -- mapping = cmp.mapping.preset.insert({
+                --   ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                --   ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                --   ['<C-Space>'] = cmp.mapping.complete(),
+                --   ['<C-e>'] = cmp.mapping.abort(),
+                --   ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                -- }),
+                -- sources = cmp.config.sources({
+                --   { name = 'nvim_lsp' },
+                --   { name = 'vsnip' }, -- For vsnip users.
+                --   -- { name = 'luasnip' }, -- For luasnip users.
+                --   -- { name = 'ultisnips' }, -- For ultisnips users.
+                --   -- { name = 'snippy' }, -- For snippy users.
+                -- }, {
+                --   { name = 'buffer' },
+                -- })
             })
         end
     },
-    {
-        "dcampos/nvim-snippy",
-        config = function()
-            require('snippy').setup({
-                mappings = {
-                    is = {
-                        ['<Tab>'] = 'expand_or_advance',
-                        ['<S-Tab>'] = 'previous'
-                    },
-                    nx = {
-                        ['<leader>x'] = 'cut_text',
-                    },
-                },
-            })
-        end
-    },
-    {
-	    "L3MON4D3/LuaSnip",
-	    -- follow latest release.
-	    version = "1.2.1.*",
-	    -- install jsregexp (optional!).
-	    build = "make install_jsregexp"
-    }
 })
 
-local has_words_before = function()
-  unpack = unpack or table.unpack
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
+vim.api.nvim_set_keymap('n', '<F5>', ':DapContinue<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<F10>', ':DapStepOver<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<F11>', ':DapStepInto<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<F12>', ':DapStepOut<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>b', ':DapToggleBreakpoint<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>B', ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Breakpoint condition: "))<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lp', ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dr', ':lua require("dap").repl.open()<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dl', ':lua require("dap").run_last()<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>d', ':lua require("dapui").toggle()<CR>', {})
 
-local cmp = require("cmp")
-local snippy = require("snippy")
-
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-        end
-    },
-    sources = {
-        { name = "nvim_lsp" },
-        { name = "luasnip"},
-        -- { name = "buffer" },
-        -- { name = "path" },
-    },
-    mapping = cmp.mapping.preset.insert({
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif snippy.can_expand_or_advance() then
-                snippy.expand_or_advance()
-            elseif has_words_before() then
-                cmp.complete()
-            else
-                fallback()
-            end
-            end, { "i", "s" }),
-            ["<S-Tab>"] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                    endendcmp.select_prev_item()
-                elseif snippy.can_jump(-1) then
-                    snippy.previous()
-                else
-                    fallback()
-                end
-            end, { "i", "s" }),
-            ["<C-p>"] = cmp.mapping.select_prev_item(),
-            ["<C-n>"] = cmp.mapping.select_next_item(),
-            ['<C-l>'] = cmp.mapping.complete(),
-            ['<C-e>'] = cmp.mapping.abort(),
-            ["<CR>"] = cmp.mapping.confirm { select = true },
-        }),
-        experimental = {
-            ghost_text = true,
-        },
-    })
-
--- require("chafa").setup({
---     render = {
---         min_padding = 5,
---         show_label = true,
---     },
---     events = {
---         update_on_nvim_resize = true,
---     }
--- }
-
--- setup must be called before loading
 vim.cmd.colorscheme "catppuccin"
-require("plugins.template")
--- require("plugins.dap")
-require("plugins.chatgpt")
-require("plugins.lspconfig")
-require("plugins.telescope")
+
+
+require("plugins.config.lspconfig")
+
+
