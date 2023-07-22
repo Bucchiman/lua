@@ -27,33 +27,17 @@ vim.opt.rtp:prepend(lazypath)
 local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
-    'mfussenegger/nvim-dap',
+    {
+        'mfussenegger/nvim-dap',
+        config = function ()
+            require("plugins.config.dap")
+        end
+    },
     {
         'rcarriga/nvim-dap-ui',
         config = function()
-            require("dapui").setup({
-                icons = { expanded = "", collapsed = "" },
-                layouts = {
-                    {
-                        elements = {
-                            { id = "watches", size = 0.20 },
-                            { id = "stacks", size = 0.20 },
-                            { id = "breakpoints", size = 0.20 },
-                            { id = "scopes", size = 0.40 },
-                    },
-                    size = 64,
-                    position = "right",
-                },
-                {
-                    elements = {
-                        "repl",
-                        "console",
-                    },
-                    size = 0.20,
-                    position = "bottom",
-                },
-            },
-        })
+            local cfg = require("plugins.config.dapui")
+            require("dapui").setup(cfg)
         end
     },
     {
@@ -68,6 +52,7 @@ require("lazy").setup({
             require("catppuccin").setup({
                 transparent_background = true,
             })
+            vim.cmd.colorscheme "catppuccin"
         end
     },
     {
@@ -79,6 +64,7 @@ require("lazy").setup({
     {
         'williamboman/mason-lspconfig.nvim',
         config = function()
+            require("plugins.config.lspconfig")
             require("mason-lspconfig").setup({
                 ensure_installed = {"lua_ls"}
             })
@@ -87,9 +73,7 @@ require("lazy").setup({
     --#region
     --  Reference: https://github.com/hrsh7th/nvim-cmp
     --#endregion
-    {
-        'neovim/nvim-lspconfig'
-    },
+    'neovim/nvim-lspconfig',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
@@ -102,55 +86,9 @@ require("lazy").setup({
     {
         'hrsh7th/nvim-cmp',
         config = function ()
-            require("cmp").setup({
-                snippet = {
-                  -- REQUIRED - you must specify a snippet engine
-                  expand = function(args)
-                    vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-                    -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-                    -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-                  end,
-                },
-                window = {
-                  -- completion = cmp.config.window.bordered(),
-                  -- documentation = cmp.config.window.bordered(),
-                },
-                -- mapping = cmp.mapping.preset.insert({
-                --   ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-                --   ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                --   ['<C-Space>'] = cmp.mapping.complete(),
-                --   ['<C-e>'] = cmp.mapping.abort(),
-                --   ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                -- }),
-                -- sources = cmp.config.sources({
-                --   { name = 'nvim_lsp' },
-                --   { name = 'vsnip' }, -- For vsnip users.
-                --   -- { name = 'luasnip' }, -- For luasnip users.
-                --   -- { name = 'ultisnips' }, -- For ultisnips users.
-                --   -- { name = 'snippy' }, -- For snippy users.
-                -- }, {
-                --   { name = 'buffer' },
-                -- })
-            })
+            require("plugins.config.cmp")
         end
     },
 })
-
-vim.api.nvim_set_keymap('n', '<F5>', ':DapContinue<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<F10>', ':DapStepOver<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<F11>', ':DapStepInto<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<F12>', ':DapStepOut<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>b', ':DapToggleBreakpoint<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>B', ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Breakpoint condition: "))<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>lp', ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>dr', ':lua require("dap").repl.open()<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>dl', ':lua require("dap").run_last()<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>d', ':lua require("dapui").toggle()<CR>', {})
-
-vim.cmd.colorscheme "catppuccin"
-
-
-require("plugins.config.lspconfig")
 
 
