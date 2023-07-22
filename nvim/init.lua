@@ -24,7 +24,6 @@ require("base")
 require("options")
 require("keymaps")
 require("plugins.lazy")
---require("8ucchiman")
 local experiments = require("experiments")
 
 
