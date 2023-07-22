@@ -29,8 +29,17 @@ local venv = os.getenv("VIRTUAL_ENV")
 require("lazy").setup({
     {
         'mfussenegger/nvim-dap',
+        dependencies = {
+            "ravenxrz/DAPInstall.nvim",
+            "theHamsta/nvim-dap-virtual-text",
+            "rcarriga/nvim-dap-ui",
+            "mfussenegger/nvim-dap-python",
+            "nvim-telescope/telescope-dap.nvim",
+            "leoluz/nvim-dap-go",
+            "jbyuki/one-small-step-for-vimkind",
+        },
         config = function ()
-            require("plugins.config.dap")
+            require("plugins.config.dap.dap").setup()
         end
     },
     {
@@ -89,6 +98,18 @@ require("lazy").setup({
             require("plugins.config.cmp")
         end
     },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+        opts = {
+            -- your configuration comes hereby
+            -- or leave it empty to use the default settings_window
+            -- refer to the configuration section belowright
+        }
+    }
 })
-
 

@@ -66,8 +66,8 @@ keymap("t", "<ESC>", '<C-\\><C-n>', opts)
 
 -- leader key設定
 -- https://original-game.com/mini_howto/how-to-use-the-leader-key-in-vim/
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- vim.g.mapleader = " "
+-- vim.g.maplocalleader = " "
 
 
 -- Visual --
