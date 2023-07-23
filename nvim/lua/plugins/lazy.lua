@@ -24,9 +24,62 @@ end
 vim.opt.rtp:prepend(lazypath)
 -----------------------------------------------------------
 
+
+local img_previewer = vim.fn.executable("ueberzug") == 1 and { "ueberzug", "layer" } or { "viu", "-b" }
+
 local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
+    {
+        "ibhagwan/fzf-lua",
+        dependencies = {"nvim-tree/nvim-web-devicons"},
+        config = function()
+            require("fzf-lua").setup({
+                previewers = {
+                    builtin = {
+                        ueberzug_scaler = "cover",
+                        extensions = {
+                        ["gif"] = img_previewer,
+                        ["png"] = img_previewer,
+                        ["jpg"] = img_previewer,
+                        ["jpeg"] = img_previewer,
+                        },
+                    },
+                },
+            })
+        end
+    },
+    {
+        'glepnir/template.nvim',
+        cmd = {
+            'Template',
+            'TemProject'
+        },
+        config = function()
+            require('template').setup({
+                temp_dir = "$HOME/.config/template",
+                author = "8ucchiman",
+                email = "8ucchiman@gmail.com",
+            })
+        end
+    },
+    "nvim-lua/plenary.nvim",
+    {
+        "folke/neodev.nvim",
+        opts = {}
+    },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function ()
+            local configs = require("nvim-treesitter.configs").setup({
+                ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+                sync_install = false,
+                highlight = { enable = true },
+                indent = { enable = true },
+            })
+        end
+    },
     {
         'mfussenegger/nvim-dap',
         dependencies = {
