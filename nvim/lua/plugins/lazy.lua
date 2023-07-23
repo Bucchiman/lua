@@ -77,7 +77,7 @@ require("lazy").setup({
             'TemProject'
         },
         config = function()
-            require('template').setup({
+            require("template").setup({
                 temp_dir = "$HOME/.config/template",
                 author = "8ucchiman",
                 email = "8ucchiman@gmail.com",
@@ -195,3 +195,4 @@ require("lazy").setup({
     }
 })
 
+require("plugins.config.template")
