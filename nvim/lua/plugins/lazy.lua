@@ -31,6 +31,27 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'nvim-tree/nvim-tree.lua',
+        version = "*",
+        dependencies = {
+            'nvim-tree/nvim-web-devicons',
+        },
+        config = function()
+            require("nvim-tree").setup({
+                sort_by = "case_sensitive",
+                view = {
+                  width = 30,
+                },
+                renderer = {
+                  group_empty = true,
+                },
+                filters = {
+                  dotfiles = true,
+                },
+            })
+        end,
+    },
+    {
         "ibhagwan/fzf-lua",
         dependencies = {"nvim-tree/nvim-web-devicons"},
         config = function()
@@ -143,7 +164,15 @@ require("lazy").setup({
     'hrsh7th/cmp-vsnip',
     'hrsh7th/vim-vsnip',
     -- For luasnip users
-    'L3MON4D3/LuaSnip',
+    {
+        'L3MON4D3/LuaSnip',
+        after = 'nvim-cmp',
+        version = "v2.*",
+        build = "make install_jsregexp",
+        config = function ()
+            require('plugins.config.snippets')
+        end
+    },
     'saadparwaiz1/cmp_luasnip',
     {
         'hrsh7th/nvim-cmp',
