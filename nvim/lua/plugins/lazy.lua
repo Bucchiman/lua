@@ -31,6 +31,12 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        "cocopon/iceberg.vim",
+        config = function ()
+            vim.cmd.colorscheme "iceberg"
+        end
+    },
+    {
         'nvim-tree/nvim-tree.lua',
         version = "*",
         dependencies = {
@@ -135,7 +141,7 @@ require("lazy").setup({
             require("catppuccin").setup({
                 transparent_background = true,
             })
-            vim.cmd.colorscheme "catppuccin"
+            -- vim.cmd.colorscheme "catppuccin"
         end
     },
     {
