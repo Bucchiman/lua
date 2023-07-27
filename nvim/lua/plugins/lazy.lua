@@ -31,6 +31,9 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        "theHamsta/nvim-dap-virtual-text"
+    },
+    {
         "xiyaowong/transparent.nvim",
         config = function ()
             require("transparent").setup({
