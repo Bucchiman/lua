@@ -30,6 +30,18 @@ local img_previewer = vim.fn.executable("ueberzug") == 1 and { "ueberzug", "laye
 local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
+    {
+      "jackMort/ChatGPT.nvim",
+        event = "VeryLazy",
+        config = function()
+          require("chatgpt").setup()
+        end,
+        dependencies = {
+          "MunifTanjim/nui.nvim",
+          "nvim-lua/plenary.nvim",
+          "nvim-telescope/telescope.nvim"
+        }
+    },
     "nvim-lua/popup.nvim",
     {
         "nvim-telescope/telescope.nvim",
