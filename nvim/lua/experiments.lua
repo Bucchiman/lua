@@ -121,6 +121,6 @@ vim.cmd('echo len(filter(range(1, bufnr("$")), "buflisted(v:val)"))')
 
 --print(vim.api.nvim_get_current_win())
 --print(vim.api.nvim_buf_get_name(1))
-print(tostring(vim.api.nvim_get_current_line()))
+--print(tostring(vim.api.nvim_get_current_line()))
 
 return M

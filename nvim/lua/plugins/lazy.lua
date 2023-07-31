@@ -31,10 +31,10 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
-      "jackMort/ChatGPT.nvim",
+        "jackMort/ChatGPT.nvim",
         event = "VeryLazy",
         config = function()
-          require("chatgpt").setup()
+            require("chatgpt").setup()
         end,
         dependencies = {
           "MunifTanjim/nui.nvim",

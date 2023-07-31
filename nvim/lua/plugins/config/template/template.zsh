@@ -29,6 +29,6 @@ function main() {
     {{_cursor_}}
 }
 
-main
+main $@
 
 return
