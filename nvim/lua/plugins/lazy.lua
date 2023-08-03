@@ -10,6 +10,8 @@
 --#region
 --  Reference: https://github.com/folke/lazy.nvim
 --#endregion
+
+vim.cmd("autocmd!")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -30,6 +32,14 @@ local img_previewer = vim.fn.executable("ueberzug") == 1 and { "ueberzug", "laye
 local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
+    {
+        'rcarriga/nvim-notify',
+        config = function ()
+            require("notify").setup({
+              background_colour = "#000000",
+            })
+        end
+    },
     {
         "jackMort/ChatGPT.nvim",
         event = "VeryLazy",

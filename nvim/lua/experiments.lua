@@ -1,5 +1,17 @@
--- Reference: https://zenn.dev/botamotch/articles/46bd760b44c6a2
+#!/usr/bin/env lua
+--
+-- FileName:     experiments
+-- Author:       8ucchiman
+-- Email:        8ucchiman@gmail.com
+-- CreatedDate:  2023-08-04 00:47:41
+-- LastModified: 2023-01-23 14:18:33 +0900
+-- Reference:    https://zenn.dev/botamotch/articles/46bd760b44c6a2
+--               https://zenn.dev/kawarimidoll/articles/7e986ceb6802fc
 -- autocmdに関するドキュメント: https://vim-jp.org/vimdoc-ja/autocmd.html
+
+-- vim.api.nvim_command('set runtimepath^=.')
+
+
 
 local Window = {}
 
@@ -124,3 +136,4 @@ vim.cmd('echo len(filter(range(1, bufnr("$")), "buflisted(v:val)"))')
 --print(tostring(vim.api.nvim_get_current_line()))
 
 return M
+
