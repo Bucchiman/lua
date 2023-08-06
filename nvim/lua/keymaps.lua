@@ -62,6 +62,10 @@ keymap("v", "<C-p>", '"0p', opts)
 keymap("t", "<ESC>", '<C-\\><C-n>', opts)
 
 
+keymap("n", "<C-p>", ":bprev<CR>", opts)
+keymap("n", "<C-n>", ":bnext<CR>", opts)
+
+
 --local 
 
 -- leader key設定
