@@ -15,7 +15,7 @@
 
 local modules = require("tools.modules")
 
-vim.api.nvim_create_user_command("Open_Window", modules.open_window, {})
-vim.api.nvim_set_keymap("n", "<Leader>8t", ":Open_Window", {noremap=true, silent=true})
+vim.api.nvim_create_user_command("OpenWindow", modules.open_window, {})
+vim.api.nvim_set_keymap("n", "<Leader>8t", ":OpenWindow<CR>", {noremap=true, silent=true})
 
 -- modules.open_window()
