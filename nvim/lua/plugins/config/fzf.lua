@@ -17,4 +17,7 @@ local opts = { noremap = true, silent = true }
 
 
 local keymap = vim.api.nvim_set_keymap
-keymap("n", "<Leader>fb", ":FzfLua buffers<CR>", opts)
+keymap("n", "<Leader>ff", ":lua require('fzf-lua').files()<CR>", opts)
+keymap("n", "<Leader>fb", ":lua require('fzf-lua').buffers()<CR>", opts)
+keymap("n", "<Leader>fc", ":lua require('fzf-lua').colorschemes({ winopts = { height=0.33, width=0.33 } })<CR>", opts)
+keymap("n", "<Leader>fg", ":lua require'fzf-lua'.live_grep({ cmd = 'git grep --line-number --column --color=always' })<CR>", opts)
