@@ -24,6 +24,7 @@ require("base")
 require("options")
 require("keymaps")
 require("plugins.lazy")
+require("tools.settings")
 local experiments = require("experiments")
 
 
