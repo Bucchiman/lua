@@ -64,9 +64,9 @@ keymap("t", "<ESC>", '<C-\\><C-n>', opts)
 
 keymap("n", "<C-p>", ":bprev<CR>", opts)
 keymap("n", "<C-n>", ":bnext<CR>", opts)
+-- keymap("n", "<C-t>", ":Files<CR>", opts)
+-- keymap("n", ";", ":Buffers<CR>", opts)
 
-
---local 
 
 -- leader key設定
 -- https://original-game.com/mini_howto/how-to-use-the-leader-key-in-vim/

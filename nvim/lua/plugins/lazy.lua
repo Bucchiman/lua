@@ -121,6 +121,7 @@ require("lazy").setup({
         "ibhagwan/fzf-lua",
         dependencies = {"nvim-tree/nvim-web-devicons"},
         config = function()
+            require("plugins.config.fzf")
             require("fzf-lua").setup({
                 previewers = {
                     builtin = {
