@@ -27,6 +27,11 @@ require("plugins.lazy")
 require("tools.settings")
 local experiments = require("experiments")
 
+if vim.fn.filereadable(vim.fn.expand("$HOME/.config/local/init.lua")) then
+    -- print("file exists")
+    local local_config = require(vim.fn.expand("local.init"))
+end
+
 
 -- Insert timestamp after 'LastModified: '
 --function! LastModified()
