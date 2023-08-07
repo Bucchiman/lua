@@ -9,7 +9,7 @@ snippet _8
 	# Description:  ---
 	#
 
-snippet _8getopts
+snippet _8:getopts
 	function _usage() {
 	    echo "Usage: $0 -u username -n image_name -f dockerfile"
 	    exit 1
@@ -45,8 +45,44 @@ snippet _8getopts
 	# -> 未定義オプションの場合、?として処理
 	#
 
-snippet _8randomgenerator
+snippet _8:randomgenerator
 	# 10個の乱数を生成
 	for i in $(seq 1 10); do
 		echo $(RANDOME)
 	done
+
+snippet _8:readline
+	while read LINE; do
+		#...
+	done< <(cat txt_info/val.txt)
+
+snippet _8:if:str
+	# https://tanakatarou.tech/1699/
+	if [[ $file == "hoge" ]]; then
+		#...
+	fi
+
+snippet _8:if:file:exist_file_with_oneline
+	# https://tanakatarou.tech/1699/
+	[ -e file ]; echo $?; # or [ -a file ];
+
+snippet _8:if:dir:exist_dir_with_oneline
+	# https://tanakatarou.tech/1699/
+	[ -d dir/ ]; echo $?
+
+snippet _8:if:file:not_empty_file
+	# https://tanakatarou.tech/1699/
+	[ -s file ]; echo $?; # not empty file
+
+snippet _8:if:file:olderfile
+	# https://tanakatarou.tech/1699/
+	[ fileA -ot fileB ]; echo $?; # fileA older than fileB
+
+snippet _8:if:file:newerfile
+	# https://tanakatarou.tech/1699/
+	[ fileA -nt fileB ]; echo $?; # fileA newer than fileB
+
+snippet _8:if:str:regex
+	# https://tanakatarou.tech/1699/
+	[ fileA =~ "regex" ]; echo $?;
+
