@@ -10,8 +10,6 @@
 --
 
 
-
-
 local hoge = {
     yank_register = "+",
     edit_with_instructions = {

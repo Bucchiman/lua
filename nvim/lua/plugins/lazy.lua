@@ -33,6 +33,17 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'akinsho/bufferline.nvim',
+        version = "*",
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        config = function ()
+            -- require("bufferline").setup({
+            -- })
+            require("plugins.config.bufferline")
+            require("bufferline").setup({})
+        end
+    },
+    {
         'rcarriga/nvim-notify',
         config = function ()
             require("notify").setup({
