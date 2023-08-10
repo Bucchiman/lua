@@ -40,7 +40,6 @@ require("lazy").setup({
             -- require("bufferline").setup({
             -- })
             require("plugins.config.bufferline")
-            require("bufferline").setup({})
         end
     },
     {
