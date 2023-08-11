@@ -19,3 +19,9 @@ vim.api.nvim_create_autocmd(
 )
 
 vim.opt.formatoptions:append { 'r' }
+
+
+local terminal_buffer = vim.api.nvim_create_buf(false, true)
+vim.api.nvim_buf_call(terminal_buffer, function ()
+    vim.cmd("terminal")
+end)
