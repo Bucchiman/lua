@@ -46,4 +46,9 @@ local experiments = require("experiments")
 --endfun
 --autocmd BufWritePre * call LastModified()
 
-
+-- vim.api.nvim_create_autocmd("BufWritePre",{
+--     pattern = "*",
+--     callback = function ()
+-- 
+--     end
+-- })
