@@ -41,6 +41,16 @@ require("lazy").setup({
         end
     },
     {
+        'glepnir/dashboard-nvim',
+        event = 'VimEnter',
+        config = function()
+            require('dashboard').setup {
+            -- config
+            }
+        end,
+        dependencies = { {'nvim-tree/nvim-web-devicons'}}
+    },
+    {
         'akinsho/bufferline.nvim',
         version = "*",
         dependencies = 'nvim-tree/nvim-web-devicons',
@@ -119,6 +129,9 @@ require("lazy").setup({
         version = "*",
         dependencies = {
             'nvim-tree/nvim-web-devicons',
+        },
+        after = {
+            'glepnir/template.nvim',
         },
         config = function()
             require("nvim-tree").setup({
