@@ -33,6 +33,14 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'edluffy/hologram.nvim',
+        config = function()
+            require("hologram").setup{
+                auto_display = true
+            }
+        end
+    },
+    {
         'akinsho/bufferline.nvim',
         version = "*",
         dependencies = 'nvim-tree/nvim-web-devicons',
