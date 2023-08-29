@@ -9,10 +9,26 @@
 #
 
 
-function _usage() {
+function func_lst () {
+    echo "***********************************"
+    echo "The following function is prepared."
+    echo "***********************************"
+    cat go | awk '/^function/ {printf "| %s\n", $2}'
+    echo "***********************************"
 }
 
+########################################
+#function main01 () {
+#
+#    eval $@
+#}
+#
+#main01 $@
+########################################
 
+
+
+########################################
 while getopts :i:c:g OPT
 do
     case $OPT in
@@ -22,13 +38,17 @@ do
         :|\?) _usage;;
     esac
 done
+function _usage () {
+    echo 
+}
+function help () {
 
-
-
-function main() {
-    {{_cursor_}}
 }
 
-main $@
+
+function main02 () {
+    
+}
+########################################
 
 return
