@@ -86,3 +86,36 @@ snippet _8:if:str:regex
 	# https://tanakatarou.tech/1699/
 	[ fileA =~ "regex" ]; echo $?;
 
+snippet _8:function:func_lst
+	function function_lst () {
+	    echo "***********************************"
+	    echo "The following function is prepared."
+	    echo "***********************************"
+	    cat go | awk '/^function/ {printf "| %s\n", $2}'
+	    echo "***********************************"
+	}
+
+snippet _8:function:set_variables
+	typeset -A REPOS
+	
+	function set_variables () {
+	    BASE_DIR=$PWD
+	    GIT_DIR=$BASE_DIR/git
+	    REPOS=(jetson_containers https://github.com/dusty-nv/jetson-containers.git)
+	}
+
+snippet _8:if:str:check_variables
+	# https://ex1.m-yabe.com/archives/4548
+	str = ""
+	if [[ ! -n $str ]]; then
+		echo "empty"
+	fi
+
+snippet _8:regex:head
+	fileA="hoge"; [ fileA =~ "^h" ]; echo $?;
+
+snippet _8:regex:last
+	fileA="hoge"; [ fileA =~ "e$" ]; echo $?;
+
+
+

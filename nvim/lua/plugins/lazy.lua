@@ -33,14 +33,22 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
-      'glepnir/dashboard-nvim',
-      event = 'VimEnter',
-      config = function()
-        require('dashboard').setup {
-          -- config
-        }
-      end,
-      dependencies = { {'nvim-tree/nvim-web-devicons'}}
+        'edluffy/hologram.nvim',
+        config = function()
+            require("hologram").setup{
+                auto_display = true
+            }
+        end
+    },
+    {
+        'glepnir/dashboard-nvim',
+        event = 'VimEnter',
+        config = function()
+            require('dashboard').setup {
+            -- config
+            }
+        end,
+        dependencies = { {'nvim-tree/nvim-web-devicons'}}
     },
     {
         'akinsho/bufferline.nvim',
