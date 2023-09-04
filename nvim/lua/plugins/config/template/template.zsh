@@ -13,7 +13,7 @@ function func_lst () {
     echo "***********************************"
     echo "The following function is prepared."
     echo "***********************************"
-    cat go | awk '/^function/ {printf "| %s\n", $2}'
+    cat $0 | awk '/^function/ {printf "| %s\n", $2}'
     echo "***********************************"
 }
 

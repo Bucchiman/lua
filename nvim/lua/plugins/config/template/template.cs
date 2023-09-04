@@ -11,9 +11,10 @@
 using System;
 
 
-namespace HOGE{
-    class GEHO{
+namespace SAMPLE{
+    class SAMPLE01{
         static void Main(string[] argv){
+            System.Console.WriteLine("Hello World");
             {{_cursor_}}
         }
     }

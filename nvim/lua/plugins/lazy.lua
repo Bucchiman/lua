@@ -83,6 +83,9 @@ require("lazy").setup({
     "nvim-lua/popup.nvim",
     {
         "nvim-telescope/telescope.nvim",
+        dependencies = {
+            "nvim-telescope/telescope-media-files.nvim",
+        },
         config = function ()
             -- require('telescope').load_extension('media_files')
             require'telescope'.setup {
@@ -99,7 +102,6 @@ require("lazy").setup({
         end
 
     },
-    "nvim-telescope/telescope-media-files.nvim",
     {
         "theHamsta/nvim-dap-virtual-text"
     },
