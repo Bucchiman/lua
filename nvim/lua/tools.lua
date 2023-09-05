@@ -10,3 +10,16 @@
 
 vim.api.nvim_create_user_command('ExampleOpenWin', experiments.nvim_open_win, {nargs=0})
 vim.api.nvim_create_user_command('T', experiments.term_split, {nargs=0})
+local M = {}
+
+M.file_exists = function (name)
+    local f = io.open(name, "r")
+    if f ~= nil then
+        io.close(f)
+        return true
+    else
+        return false
+    end
+end
+
+return M
