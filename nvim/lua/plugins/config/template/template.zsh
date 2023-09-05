@@ -72,6 +72,7 @@ function default () {
 
 #######################################
 function main01 () {
+    set_viriables
     if [[ $@ == "" ]]; then
         default
     else
@@ -80,6 +81,7 @@ function main01 () {
 
 }
 
+ME=$0
 main01 $@
 #######################################
 
