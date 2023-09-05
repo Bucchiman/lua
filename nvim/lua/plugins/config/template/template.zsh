@@ -13,42 +13,75 @@ function func_lst () {
     echo "***********************************"
     echo "The following function is prepared."
     echo "***********************************"
-    cat go | awk '/^function/ {printf "| %s\n", $2}'
+    cat $0 | awk '/^function/ {printf "| %s\n", $2}'
     echo "***********************************"
 }
 
-########################################
-#function main01 () {
-#
-#    eval $@
-#}
-#
-#main01 $@
-########################################
-
-
 
 ########################################
-while getopts :i:c:g OPT
-do
-    case $OPT in
-        i) image_name=$OPTARG;;
-        g) gpu_flag=true;;
-        c) container_name=$OPTARG;;
-        :|\?) _usage;;
-    esac
-done
-function _usage () {
-    echo 
+# while getopts :i:c:g OPT
+# do
+#     case $OPT in
+#         i) image_name=$OPTARG;;
+#         g) gpu_flag=true;;
+#         c) container_name=$OPTARG;;
+#         :|\?) _usage;;
+#     esac
+# done
+# function _usage () {
+#     echo 
+# }
+# function help () {
+# 
+# }
+# 
+# 
+# function main02 () {
+#     
+# }
+########################################
+
+typset -A SUBMODULES
+function set_variables () {
+    #
+    #
+    #
+    #
+    echo "******************************"
+    echo "* set_variables              *"
+    echo "******************************"
+    BASE_DIR=$PWD
+    SUBMODULES=(yolostereo3D https://github.com/Owen-Liuyuxuan/visualDet3D.git)
 }
-function help () {
+
+
+
+function default () {
+    #
+    # this is default setting
+    # you can run this function without no arguments.
+    #
+    echo "******************************"
+    echo "* default                    *"
+    echo "******************************"
+    echo "this is default setting"
+    echo "you can run this function without no arguments."
 
 }
 
 
-function main02 () {
-    
+#######################################
+function main01 () {
+    if [[ $@ == "" ]]; then
+        default
+    else
+        eval $@
+    fi
+
 }
-########################################
+
+main01 $@
+#######################################
+
 
 return
