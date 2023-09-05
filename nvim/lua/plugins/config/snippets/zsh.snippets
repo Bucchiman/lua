@@ -91,7 +91,7 @@ snippet _8:function:func_lst
 	    echo "***********************************"
 	    echo "The following function is prepared."
 	    echo "***********************************"
-	    cat go | awk '/^function/ {printf "| %s\n", $2}'
+	    cat $1 | awk '/^function/ {printf "| %s\n", $2}'
 	    echo "***********************************"
 	}
 
@@ -117,5 +117,7 @@ snippet _8:regex:head
 snippet _8:regex:last
 	fileA="hoge"; [ fileA =~ "e$" ]; echo $?;
 
-
+snippet _8:array
+	typeset -A SUBMODULES;
+	SUBMODULES=(yolostereo3d https://github.com/)
 

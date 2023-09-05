@@ -32,6 +32,15 @@ ls.add_snippets(nil, {
         },{
             func(date, {}),
         }),
+        snip({
+            trig = "tldr",
+            namr = "",
+            dscr = "Too Long; Don't Read",
+        },{
+            func(function ()
+                    return "TL;DR"
+                end, {})
+        })
     }
 })
 
