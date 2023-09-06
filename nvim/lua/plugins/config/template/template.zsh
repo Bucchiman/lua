@@ -9,6 +9,8 @@
 #
 
 
+set -ex        # 途中のエラーで実行中断
+
 function func_lst () {
     echo "***********************************"
     echo "The following function is prepared."
@@ -52,6 +54,10 @@ function set_variables () {
     echo "******************************"
     BASE_DIR=$PWD
     SUBMODULES=(yolostereo3D https://github.com/Owen-Liuyuxuan/visualDet3D.git)
+}
+
+
+function setup_environment () {
 }
 
 
