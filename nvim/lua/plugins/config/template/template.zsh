@@ -9,6 +9,8 @@
 #
 
 
+set -ex        # 途中のエラーで実行中断
+
 function func_lst () {
     echo "***********************************"
     echo "The following function is prepared."
@@ -55,6 +57,10 @@ function set_variables () {
 }
 
 
+function setup_environment () {
+}
+
+
 
 function default () {
     #
@@ -72,6 +78,7 @@ function default () {
 
 #######################################
 function main01 () {
+    set_viriables
     if [[ $@ == "" ]]; then
         default
     else
@@ -80,6 +87,7 @@ function main01 () {
 
 }
 
+ME=$0
 main01 $@
 #######################################
 

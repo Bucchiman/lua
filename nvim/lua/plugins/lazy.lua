@@ -33,6 +33,27 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        "princejoogie/chafa.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "m00qek/baleia.nvim"
+        },
+        config = function ()
+            require("chafa").setup({
+                render = {
+                    min_padding = 5,
+                    show_label = true,
+                },
+                event = {
+                    update_on_nvim_resize = true
+                }
+            })
+        end
+    },
+    {
+        'nvim-telescope/telescope-media-files.nvim'
+    },
+    {
         'edluffy/hologram.nvim',
         config = function()
             require("hologram").setup{
@@ -85,9 +106,9 @@ require("lazy").setup({
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-telescope/telescope-media-files.nvim",
+            "nvim-lua/plenary.nvim",
         },
         config = function ()
-            -- require('telescope').load_extension('media_files')
             require'telescope'.setup {
               extensions = {
                 media_files = {
@@ -296,3 +317,4 @@ require("lazy").setup({
 })
 
 require("plugins.config.template")
+require('telescope').load_extension('media_files')
