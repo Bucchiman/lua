@@ -33,6 +33,16 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'nvim-lualine/lualine.nvim',
+        config = function ()
+            require('lualine').setup({
+                options = {
+                    theme = "jellybeans"
+                }
+            })
+        end
+    },
+    {
         "princejoogie/chafa.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
