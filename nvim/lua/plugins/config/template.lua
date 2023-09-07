@@ -17,6 +17,7 @@ vim.api.nvim_create_autocmd(
     {
         pattern = {
             "*.c",
+            "*.s",
             "*.h",
             "*.hpp",
             "*.cu",
