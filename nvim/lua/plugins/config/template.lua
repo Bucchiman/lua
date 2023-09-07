@@ -33,6 +33,7 @@ vim.api.nvim_create_autocmd(
             "*.zsh",
             "*.Dockerfile",
             "*.snippets",
+            "*.asm",
         },
         command = "Template "..file.." template"
     }
