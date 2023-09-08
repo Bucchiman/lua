@@ -66,18 +66,18 @@ require("lazy").setup({
     {
         'edluffy/hologram.nvim',
         config = function()
-            require("hologram").setup{
+            require("hologram").setup ({
                 auto_display = true
-            }
+            })
         end
     },
     {
         'glepnir/dashboard-nvim',
         event = 'VimEnter',
         config = function()
-            require('dashboard').setup {
+            require('dashboard').setup ({
             -- config
-            }
+            })
         end,
         dependencies = { {'nvim-tree/nvim-web-devicons'}}
     },
