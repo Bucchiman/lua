@@ -33,6 +33,12 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'willothy/flatten.nvim',
+        config = true,
+        lazy = false,
+        priority = 1001,
+    },
+    {
         'romgrk/barbar.nvim',
         dependencies = {
             'lewis6991/gitsigns.nvim',
