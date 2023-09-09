@@ -33,6 +33,26 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'romgrk/barbar.nvim',
+        dependencies = {
+            'lewis6991/gitsigns.nvim',
+            'nvim-tree/nvim-web-devicons'
+        },
+        init = function () vim.g.barbar_auto_setup = false end,
+        opts= {
+
+        },
+        version = '^1.0.0'
+    },
+    {
+        {
+            'akinsho/toggleterm.nvim',
+            version = "*",
+            config = true
+        }
+
+    },
+    {
         'nvim-lualine/lualine.nvim',
         config = function ()
             require('lualine').setup({
