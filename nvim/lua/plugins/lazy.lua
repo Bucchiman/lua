@@ -33,6 +33,13 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'chipsenkbeil/distant.nvim', 
+        branch = 'v0.3',
+        config = function()
+            require('distant'):setup()
+        end
+    },
+    {
         'pwntester/octo.nvim',
         dependencies = {
             'nvim-lua/plenary.nvim',

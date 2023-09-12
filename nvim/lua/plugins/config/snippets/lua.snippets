@@ -1,4 +1,4 @@
-snippet _8
+snippet _8 metadata
 	#!/usr/bin/env lua
 	--
 	-- FileName:     lua
@@ -282,4 +282,11 @@ snippet _8basic_love
 	function love.draw()
 	    -- love.graphics.print(number)
 	    love.graphics.rectangle("fill", 600, 30, 200, 100)    -- upper left x, upper left y, width, height
+	end
+
+snippet _8getdir
+	-- https://stackoverflow.com/questions/9102126/lua-return-directory-path-from-path
+	getPath=function(str,sep)
+	    sep=sep or'/'
+	    return str:match("(.*"..sep..")")
 	end

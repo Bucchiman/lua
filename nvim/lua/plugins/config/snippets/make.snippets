@@ -1,4 +1,4 @@
-snippet _8
+snippet _8 metadate
 	#
 	# FileName:     Makefile
 	# Author: 		8ucchiman
@@ -8,10 +8,48 @@ snippet _8
 	# Description:	---
 	#
 
+snippet _8template template_variables
+	# https://nao-bamboo.hatenablog.com/entry/2015/09/11/175832
+	PROGNAME := 8ucchiman
+	INDIR := include
+	SRCDIR := src
+	LIBDIR := lib
+	OUTDIR := build
+	TARGET := $(OUTDIR)/$(PROGNAME)
+	SRCS := $(wildcard $(SRCDIR)/*.c) $(wildcard $(SRCDIR)/$(LIBDIR)/*.c)
+	OBJS := $(addprefix $(OUTDIR)/,$(patsubst %.c,%.o,$(SRCS)))
+
+	CC = gcc
+	CFLAGS = -Wall -O2 -I $(INCDIR)
+	
+	.PHONY: all clean
+	all: $(TARGET)
+
+	$(TARGET): $(OBJS)
+		$(CC) $(CFLAGS) -o $@ $^
+
+	$(OUTDIR)/%.o:%.c
+		@if [ ! -e `dirname $@` ]; then mkdir -p `dirname $@`; fi
+		$(CC) $(CFLAGS) -o $@ -c $<
+
+	clean:
+		rm -rf $(OUTDIR)
+
+
+snippet _8macro:$@ target (target: prerequisites)
+	$@
+
+snippet _8macro:$^ prerequisites list (target: prerequisites)
+	$^
+
+snippet _8macro:$< first prerequisite (target: one, the rest)
+	$<		# 最初の依存ファイル
+
 
 snippet _8static
 	static: *.o
 		ar rvs libhoge.a geho.o
+
 
 snippet _8dynamic
 	g++ -shared hoge.o -o libhoge.so
