@@ -41,40 +41,19 @@ ls.add_snippets(nil, {
             dscr = "Too Long; Don't Read",
         },{
             func(function ()
-                    return "TL;DR"
-                end, {})
+                return "TL;DR"
+            end, {})
         }),
         snip({
             trig = "oneline_temp",
             namr = "",
             dscr = "template for the onelines repo"
         },{
-                func(function ()
-                    return _[[
-                        Command> 
-                        
-                        Arguments> 
-                        
-                        TL;DR> 
-                        
-                        Keywords> 
-                        
-                        Alias> 
-                        
-                        Description> 
-                        
-                        Scene01> 
-                        Scene02> 
-                        Scene03> 
-                        
-                        Related> 
-                        
-                        Reference> 
-                        
-                        LastModified> 
-                    ]]
-                end)
-            })
+            func(function ()
+                -- return "Command>\n\nArguments>\n\nTL;DR>\n\nKeywords>\n\nAlias>\n\nDescription>\nScene01>\nScene02>\nScene03>\n\nRelated>\n\nReference>\n\nLastModified> "
+                return "Command>Arguments>TL;DR>Keywords>Alias>Description>Scene01>Scene02>Scene03>Related>Reference>LastModified> "
+            end, {})
+        })
     }
 })
 
