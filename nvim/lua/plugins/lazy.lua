@@ -33,6 +33,10 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'neoclide/coc.nvim',
+        branch = 'release'
+    },
+    {
         'VonHeikemen/fine-cmdline.nvim',
         dependencies = {
             {
