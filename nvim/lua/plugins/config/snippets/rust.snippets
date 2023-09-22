@@ -8,6 +8,14 @@ snippet _8 metadata
 	 * Description:     ---
 	 */
 
+snippet _8temp template
+	use std::error::Error;
+
+	fn main() -> Result<(), Box<dyn Error>> {
+	    {{_cursor_}}
+	    Ok(())
+	}
+
 snippet _8io_stdin
 	let mut value = String::new();
 	io::stdin().read_line(&mut value).expect("Failed to read line");

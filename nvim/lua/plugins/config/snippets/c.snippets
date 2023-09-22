@@ -21,11 +21,12 @@ snippet _8callback
 	}
 
 snippet _8multithread
-	/**
+	/*
 		スレッドで処理する関数
 		
 	*/
 	void *thread_func(void* arg) {
+		// you have to prepare codes for another thread
 		int id = (int)arg;
 		for (int i=0; i<5; i++) {
 			printf("id = %d, i = %d\n", id, i);
