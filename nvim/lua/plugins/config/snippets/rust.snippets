@@ -120,3 +120,21 @@ snippet _8const
 
 snippet _8basic_literal2string
 	let s = String::from("8ucchiman");
+
+snippet _8:basic:input01
+	use std::io;
+	let mut input = String::new();
+	match io::stdin().read_line(&mut input) {
+		Ok(n) => {
+			println!("{n} bytes read");
+			println!("{input}");
+		}
+		Err(error) => println!("error: {error}"),
+	}
+
+snippet _8:basic:input02
+	use std::io;
+	let mut guess = String::new();
+	io::stdin().read_line(&mut guess).expect("failed to readline");
+
+#snippet _8:basic:split_string
