@@ -17,3 +17,22 @@ snippet _8
 		Reference:    8ucchiman.jp
 		Description:  ---
 	*/
+
+
+snippet _8:temp template
+	using System;
+	
+	namespace SAMPLE{
+	    class SAMPLE01{
+	        static void Main(string[] argv){
+	            System.Console.WriteLine("Hello World");
+	            {{_cursor_}}
+	        }
+	    }
+	}
+
+snippet _8:preprocessor
+	// https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/preprocessor-directives
+	#if true
+	#else
+	#endif
