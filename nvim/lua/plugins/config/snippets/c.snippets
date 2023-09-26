@@ -7,6 +7,37 @@ snippet _8 metadata
 	 * Reference: 	 8ucchiman.jp
 	 */
 
+snippet _8:temp template
+	#include <stdio.h>
+	#define MACRO
+
+	#ifdef MACRO
+	int main(int argc, char* argv[]) {
+
+		return 0;
+	}
+	#endif
+
+snippet _8:func template func
+	/** @brief This is a function.
+	Description...
+
+	@code
+		sample
+	@endcode
+
+	@param
+	@param
+	@param
+
+	@see @ref Reference
+	*/
+	int tmp_func(void);
+
+	int tmp_func(void) {
+		return 1;
+	}
+
 snippet _8callback
 
 	/** @brief Converts an image from one color space to another.
