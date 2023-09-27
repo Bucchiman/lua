@@ -26,7 +26,6 @@ snippet _8:temp template
 	    class SAMPLE01{
 	        static void Main(string[] argv){
 	            System.Console.WriteLine("Hello World");
-	            {{_cursor_}}
 	        }
 	    }
 	}
@@ -38,3 +37,35 @@ snippet _8:preprocessor
 	#else
 
 	#endif
+
+
+snippet _8:DelegateSample01 delegate tutorial
+	using System;
+
+	delegate void SomeDelegate(int a);
+
+	class DelegateTest {
+		static void Main() {
+			SomeDelegate a = new SomeDelegate(A);
+			a(256);
+		}
+
+		static void A (int n) {
+			Console.WriteLine("{0} is called", n);
+		}
+	}
+
+
+snippet _8:ActionSample action tutorial
+	using System;
+
+	class ActionTest {
+		static void Main() {
+			Action<int> someaction = func01;
+			someaction(10);
+		}
+
+		static void func01 (int num) {
+			Console.WriteLine("{0} is num", num);
+		}
+	}
