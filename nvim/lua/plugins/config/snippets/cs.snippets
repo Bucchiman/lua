@@ -1,0 +1,75 @@
+# 
+# FileName:     cs
+# Author:       8ucchiman
+# CreatedDate:  2023-09-19 13:53:00
+# LastModified: 2023-02-26 13:30:39 +0900
+# Reference:    8ucchiman.jp
+# Description:  ---
+# 
+
+
+snippet _8:metadata metadata
+	/*
+	 * FileName:     file
+	 * Author:       8ucchiman
+	 * CreatedDate:  2023-09-19 13:53:00
+	 * LastModified: 2023-02-26 13:30:39 +0900
+	 * Reference:    8ucchiman.jp
+	 * Description:  ---
+	 */
+
+
+snippet _8:temp template
+	using System;
+	
+	namespace SAMPLE{
+	    class SAMPLE01{
+	        static void Main(string[] argv){
+	            System.Console.WriteLine("Hello World");
+	        }
+	    }
+	}
+
+snippet _8:preprocessor
+	// https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/preprocessor-directives
+	#if true
+
+	#else
+
+	#endif
+
+
+snippet _8:DelegateSample01 delegate tutorial
+	using System;
+
+	delegate void SomeDelegate(int a);
+
+	class DelegateTest {
+		static void Main() {
+			SomeDelegate a = new SomeDelegate(A);
+			a(256);
+		}
+
+		static void A (int n) {
+			Console.WriteLine("{0} is called", n);
+		}
+	}
+
+
+snippet _8:ActionSample action tutorial
+	using System;
+
+	class ActionTest {
+		static void Main() {
+			Action<int> someaction = func01;
+			someaction(10);
+		}
+
+		static void func01 (int num) {
+			Console.WriteLine("{0} is num", num);
+		}
+	}
+
+snippet _8:basic:array array
+	int[] array = {2, 10, 4, 20};
+

@@ -33,6 +33,21 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'neoclide/coc.nvim',
+        branch = 'release'
+    },
+    {
+        'VonHeikemen/fine-cmdline.nvim',
+        dependencies = {
+            {
+                'MunifTanjim/nui.nvim'
+            }
+        }
+    },
+    {
+        'jamestthompson3/nvim-remote-containers'
+    },
+    {
         'chipsenkbeil/distant.nvim', 
         branch = 'v0.3',
         config = function()

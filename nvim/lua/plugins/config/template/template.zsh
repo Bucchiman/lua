@@ -43,7 +43,7 @@ function func_lst () {
 # }
 ########################################
 
-typset -A SUBMODULES
+typeset -A SUBMODULES
 function set_variables () {
     #
     #
@@ -78,7 +78,7 @@ function default () {
 
 #######################################
 function main01 () {
-    set_viriables
+    set_variable
     if [[ $@ == "" ]]; then
         default
     else

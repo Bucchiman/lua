@@ -22,6 +22,9 @@ local dynamicn = ls.dynamic_node
 
 local date = function() return {os.date('%Y-%m-%d %X')} end
 
+function _(text)
+    return tostring(text):gsub("^\t+", ""):gsub("\n\t+$", ""):gsub("(\n)\t+", "%1")
+end
 
 ls.add_snippets(nil, {
     all = {
@@ -38,8 +41,18 @@ ls.add_snippets(nil, {
             dscr = "Too Long; Don't Read",
         },{
             func(function ()
-                    return "TL;DR"
-                end, {})
+                return "TL;DR"
+            end, {})
+        }),
+        snip({
+            trig = "oneline_temp",
+            namr = "",
+            dscr = "template for the onelines repo"
+        },{
+            func(function ()
+                -- return "Command>\n\nArguments>\n\nTL;DR>\n\nKeywords>\n\nAlias>\n\nDescription>\nScene01>\nScene02>\nScene03>\n\nRelated>\n\nReference>\n\nLastModified> "
+                return "Command>Arguments>TL;DR>Keywords>Alias>Description>Scene01>Scene02>Scene03>Related>Reference>LastModified> "
+            end, {})
         })
     }
 })
