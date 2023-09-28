@@ -37,5 +37,12 @@ snippet _8:temp template
 snippet _8:atomic
 		.globl	main
 	main:
-		add $1, %rax
+		add \$1, %rax
         ret
+
+snippet _8:add addの説明(x86_64)
+	add $1, %rax ; %raxに1をadd
+
+
+snippet _8:mov movの説明(x86_64)
+	mov $1, %rax

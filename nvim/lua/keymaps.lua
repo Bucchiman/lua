@@ -30,6 +30,13 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<ESC><ESC>", ":nohlsearch<CR>", opts)
 keymap("n", "sh", ":split<Return><C-w>w", opts)
 keymap("n", "sv", ":vsplit<Return><C-w>w", opts)
+
+
+keymap("n", "<S-A-k>", ":resize -2<CR>", opts)
+keymap("n", "<S-A-j>", ":resize +2<CR>", opts)
+keymap("n", "<S-A-l>", ":vertical resize -2<CR>", opts)
+keymap("n", "<S-A-h>", ":vertical resize +2<CR>", opts)
+
 -- S-v Shift-v
 keymap("n", "<C-a>", "gg<S-v>G", opts)
 -- Do not yank with x

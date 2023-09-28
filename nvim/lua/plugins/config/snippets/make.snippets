@@ -35,6 +35,8 @@ snippet _8template template_variables
 	clean:
 		rm -rf $(OUTDIR)
 
+snippet _8PHONY template_PHONY
+	.PHONY: clean run debug
 
 snippet _8macro:$@ target (target: prerequisites)
 	$@
