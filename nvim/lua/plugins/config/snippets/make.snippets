@@ -29,7 +29,7 @@ snippet _8template template_variables
 		$(CC) $(CFLAGS) -o $@ $^
 
 	$(OUTDIR)/%.o:%.c
-		@if [ ! -e `dirname $@` ]; then mkdir -p `dirname $@`; fi
+		@if [ ! -e \`dirname $@\` ]; then mkdir -p \`dirname $@\`; fi
 		$(CC) $(CFLAGS) -o $@ -c $<
 
 	clean:
