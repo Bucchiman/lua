@@ -43,3 +43,16 @@ snippet _8:mac:temp template for macos
 		svc     #0x80		// Call kernel to terminate the program
 	
 	helloworld:      .ascii  "Hello World!\n"
+
+
+snippet _8:prologue
+	// rbp: ベースレジスタと呼ばれるオフセットの基準となるアドレスが記憶されたレジスタ
+	push rbp
+	mov rbp, rsp
+
+snippet _8:epilogue
+	pop rbp
+	ret
+
+snippet _8:intel_syntax 右の値を使って左の値を更新
+	// 右の値を使って左の値を更新
