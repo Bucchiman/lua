@@ -1,0 +1,1 @@
+/Users/8ucchiman/.config/local/lua/local.lua

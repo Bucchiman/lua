@@ -12,11 +12,11 @@ snippet _8temp template
 	use std::error::Error;
 
 	fn main() -> Result<(), Box<dyn Error>> {
-	    {{_cursor_}}
+	    
 	    Ok(())
 	}
 
-snippet _8io_stdin
+snippet _8io_stdin Stringの標準入力
 	let mut value = String::new();
 	io::stdin().read_line(&mut value).expect("Failed to read line");
 
@@ -31,13 +31,20 @@ snippet _8std_cmp
 		}
 	}
 
-snippet _8while_stdin
-	let guess: u32 = match guess.trim().parse() {
-		Ok(num) => num,
-		Err(_) => continue,
-	};
+snippet _8while_stdin 整数の入力ループ
+	# ref: https://doc.rust-jp.rs/book-ja-pdf/book.pdf
+	loop {
+		io::stdin().read_line(&mut guess)
+				   .expect("Failed to read line");
+		let guess: u32 = match guess.trim().parse() {
+			Ok(num) => num,
+			Err(_) => continue,
+		};
+		// println!("This is {}", guess);
+	}
 
 snippet _8string2digits
+	let strval = String::new();
 	strval.trim().parse().expect("Please type a number!");
 
 snippet _8struct

@@ -9,11 +9,9 @@
 --
 
 
---vim.api.nvim_command('set runtimepath^=/home/bucchiman/.config/snippets/codes/lua/nvim')
 local home_dir = os.getenv('HOME')
 local current_dir = vim.fn.getcwd()
---vim.api.nvim_command('set runtimepath^='..current_dir)
---vim.api.nvim_command('set runtimepath^=/home/8ucchiman/common/snippets/codes/lua/nvim/lua')
+
 --local cfg_dir = home_dir..'/.config/snippets/codes/lua/nvim'
 --print(cfg_dir)
 --vim.api.nvim_command('set runtimepath^='..cfg_dir)
@@ -26,12 +24,15 @@ require("keymaps")
 require("plugins.lazy")
 require("tools.settings")
 local experiments = require("experiments")
+if vim.fn.filereadable(vim.fn.expand("$HOME/.config/local/local.lua")) then
+    vim.opt.runtimepath:append('$HOME/.config/local')
+    require("local")
+end
 
--- if vim.fn.filereadable(vim.fn.expand("$HOME/.config/local/init.lua")) then
---     -- print("file exists")
---     local local_config = require(vim.fn.expand("local.init"))
--- end
-
+if vim.fn.filereadable(vim.fn.expand("/tmp/8ucchiman/nvim")) then
+    vim.opt.runtimepath:append('/tmp/8ucchiman')
+    require("sample")
+end
 
 -- Insert timestamp after 'LastModified: '
 --function! LastModified()
@@ -53,11 +54,3 @@ local experiments = require("experiments")
 --     end
 -- })
 
--- Helper function for transparency formatting
-local alpha = function()
-  return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
-end
--- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
-vim.g.neovide_transparency = 0.0
-vim.g.transparency = 0.8
-vim.g.neovide_background_color = "#0f1117" .. alpha()

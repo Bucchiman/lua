@@ -10,6 +10,15 @@ snippet _8 metadata
 	-- Description:  ---
 	--
 
+snippet _8:neovim:runtimepath runtimepath追加
+	# https://nanasi.jp/articles/howto/config/runtimepath.html
+	vim.api.nvim_command("runtimepath+=/path/to")    -- 後ろに追加
+	vim.api.nvim_command("runtimepath^=/path/to")    -- 前に追加
+	vim.opt.runtimepath:append('$HOME/.config/local')
+
+snippet _8:neovim:shell_command neovim上でシェルコマンド実行
+	os.execute("cp " .. stack_path .. " " .. file_path)
+
 
 snippet fun
 	function ${1:name}(${2:params})
@@ -19,8 +28,8 @@ snippet fun
 snippet upcase
 	local ${1:var} = '${1/.*/\U\0/g}'
 
-snippet choices
-	print('My favorite language is: ${1|JavaScript,Lua,Rust|}')
+#snippet choices
+#	print('My favorite language is: ${1|JavaScript,Lua,Rust|}')
 
 snippet date
 	Current date is `strftime('%c')`
