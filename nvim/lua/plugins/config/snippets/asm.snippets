@@ -34,6 +34,11 @@ snippet _8:temp template
 	    int 80h
 
 
+snippet _8:atomic
+		.globl	main
+	main:
+		add \$1, %rax
+        ret
 
 snippet _8:add addの説明(x86_64)
 	add $1, %rax ; %raxに1をadd
@@ -41,3 +46,29 @@ snippet _8:add addの説明(x86_64)
 
 snippet _8:mov movの説明(x86_64)
 	mov $1, %rax
+
+
+snippet _8:sub subの説明(x86_64)
+	sub %r8, %rax
+
+
+snippet _8:imul imulの説明(x86_64)
+	imul %r8, %rax
+
+snippet _8:and andの説明(x86_64)
+	and %r8, %rax
+
+snippet _8:or orの説明(x86_64)
+	or %r8, %rax
+
+
+snippet _8:load loadの説明(x86_64)
+	; https://tanakamura.github.io/pllp/docs/asm_language.html
+	mov (%rax),  $rdx
+	mov 15, %rax
+
+
+snippet _8:store storeの説明(x86_64)
+	; https://tanakamura.github.io/pllp/docs/asm_language.html
+	mov %rdx, (%rax)
+	mov %rax, 15
