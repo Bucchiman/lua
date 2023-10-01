@@ -140,14 +140,14 @@ require("lazy").setup({
     {
         'nvim-telescope/telescope-media-files.nvim'
     },
-    {
-        'edluffy/hologram.nvim',
-        config = function()
-            require("hologram").setup ({
-                auto_display = true
-            })
-        end
-    },
+    -- {
+    --     'edluffy/hologram.nvim',
+    --     config = function()
+    --         require("hologram").setup ({
+    --             auto_display = true
+    --         })
+    --     end
+    -- },
     {
         'glepnir/dashboard-nvim',
         event = 'VimEnter',
