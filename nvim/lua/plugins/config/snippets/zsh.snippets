@@ -56,6 +56,14 @@ snippet _8:readline
 		#...
 	done< <(cat txt_info/val.txt)
 
+snippet _8:if:contains_in_array 配列に文字列が含まれているか確認
+	# https://qiita.com/mollifier/items/f897b3fddd2d10369333
+	local projects=( $HOME/Bucchiman/project01 $HOME/Bucchiman/project02 $HOME/Bucchiman/project03 )
+	local target_project="$HOME/Bucchiman/project03"
+	if [[ ${projects[(I)$target_project]} ]]; then
+		echo contains
+	fi
+
 snippet _8:if:str
 	# https://tanakatarou.tech/1699/
 	if [[ $file == "hoge" ]]; then

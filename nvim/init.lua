@@ -21,13 +21,12 @@ local current_dir = vim.fn.getcwd()
 require("base")
 require("options")
 require("keymaps")
-require("plugins.lazy")
-require("tools.settings")
-local experiments = require("experiments")
+
 function file_exists(name)
    local f=io.open(name, "r")
    if f~=nil then io.close(f) return true else return false end
 end
+
 
 -- if vim.fn.filereadable("$HOME/.config/local/lua/local.lua") then
 if file_exists("$HOME/.config/local/lua/local.lua") then
@@ -40,6 +39,13 @@ if file_exists("/tmp/8ucchiman/nvim/sample.lua") then
     vim.opt.runtimepath:append('/tmp/8ucchiman')
     require("sample")
 end
+
+
+require("plugins.lazy")
+require("tools.settings")
+local experiments = require("experiments")
+
+
 
 -- Insert timestamp after 'LastModified: '
 --function! LastModified()
