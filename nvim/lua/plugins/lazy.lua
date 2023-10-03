@@ -33,6 +33,9 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'equalsraf/neovim-gui-shim'
+    },
+    {
         'nosduco/remote-sshfs.nvim',
         dependencies = {
             {'nvim-telescope/telescope.nvim'}
