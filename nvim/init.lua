@@ -30,7 +30,7 @@ function file_exists(name)
 end
 
 -- if vim.fn.filereadable("$HOME/.config/local/lua/local.lua") then
-if file_exists("$HOME/.config/local/lua/local.lua") then
+if file_exists(home_dir .. "/.config/local/lua/local.lua") then
     vim.opt.runtimepath:append('$HOME/.config/local')
     require("local")
 end
