@@ -33,6 +33,12 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'ldelossa/gh.nvim',
+        dependencies = {
+            {'ldelossa/litee.nvim'}
+        }
+    },
+    {
         'equalsraf/neovim-gui-shim'
     },
     {
