@@ -31,6 +31,19 @@ keymap("n", "<ESC><ESC>", ":nohlsearch<CR>", opts)
 keymap("n", "sh", ":split<Return><C-w>w", opts)
 keymap("n", "sv", ":vsplit<Return><C-w>w", opts)
 
+-- https://stackoverflow.com/questions/9102126/lua-return-directory-path-from-path
+getPath=function(str,sep)
+    sep=sep or'/'
+    return str:match("(.*"..sep..")")
+end
+
+function reflect_nvimtree ()
+    local absolute_path = vim.api.nvim_buf_get_name(0)
+end
+
+
+
+
 
 keymap("n", "<S-A-k>", ":resize -2<CR>", opts)
 keymap("n", "<S-A-j>", ":resize +2<CR>", opts)
@@ -72,6 +85,18 @@ keymap("t", "<ESC>", '<C-\\><C-n>', opts)
 
 keymap("n", "<C-p>", ":bprev<CR>", opts)
 keymap("n", "<C-n>", ":bnext<CR>", opts)
+
+keymap("c", "<C-p>", "<Up>", opts)
+keymap("c", "<C-n>", "<Down>", opts)
+keymap("c", "<C-e>", "<End>", opts)
+keymap("c", "<C-a>", "<Home>", opts)
+keymap("c", "<C-b>", "<Left>", opts)
+keymap("c", "<C-f>", "<Right>", opts)
+keymap("c", "<C-d>", "<Del>", opts)
+-- keymap("c", "<C-k>", function()
+--     string.sub(vim.fn.getcmdline(), 0, vim.fn.getcmdpos()-1)
+-- end, opts)
+
 -- keymap("n", "<C-t>", ":Files<CR>", opts)
 -- keymap("n", ";", ":Buffers<CR>", opts)
 

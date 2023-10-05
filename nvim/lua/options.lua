@@ -17,6 +17,7 @@ local options = {
     encoding = "utf-8",
     fileencoding = "utf-8",
     title = true,
+    autochdir = true,
     backup = false,
     clipboard = "unnamedplus",
     cmdheight = 2,

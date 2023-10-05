@@ -1,1 +1,1 @@
-/Users/8ucchiman/.config/local/lua/local.lua
+/home/yk.iwabuchi/.config/local/lua/local.lua

@@ -25,6 +25,11 @@ snippet _8:file_exists ファイルが存在するか確認
 	   if f~=nil then io.close(f) return true else return false end
 	end
 
+snippet _8:basic:get_dirname
+	function get_dirname (target_path)
+		return os.execute("dirname " .. target_path)
+	end
+
 snippet fun
 	function ${1:name}(${2:params})
 		${0:$VISUAL}
