@@ -309,3 +309,12 @@ snippet _8getdir
 	    sep=sep or'/'
 	    return str:match("(.*"..sep..")")
 	end
+
+snippet _8:for_pairs:
+	-- https://opensource.com/article/22/11/iterate-over-tables-lua
+	local myarray = {}
+	myarray.baz = "happy"
+	myarray.qux = "halloween"
+	for k, v in pairs(myarray) do
+		print(k, v)
+	end

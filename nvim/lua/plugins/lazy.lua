@@ -44,6 +44,12 @@ require("lazy").setup({
         end,
     },
     {
+        'ldelossa/gh.nvim',
+        dependencies = {
+            {'ldelossa/litee.nvim'}
+        }
+    },
+    {
         'equalsraf/neovim-gui-shim'
     },
     {

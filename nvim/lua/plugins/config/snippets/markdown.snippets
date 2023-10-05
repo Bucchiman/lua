@@ -4,19 +4,172 @@ snippet _8 metadata
 	 Author:        8ucchiman
 	 CreatedDate:   2023-07-27 13:18:25
 	 LastModified:  2023-01-25 10:56:12 +0900
-	 Reference:     8ucchiman.jp
+	 Reference:     https://qiita.com/Qiita/items/c686397e4a0f4f11683d
 	 Description:   ---
 	-->
 
 
-snippet _8fold
+snippet _8details 折りたたみ
 	<details>
 		<summary> hoge </summary>
 		<div>
 		</div>
 	</details>
 
-snippet _8
+snippet _8:overview リンク付きoverview
 	- [1. はじめに](1-はじめに)
 
 	# 1. はじめに
+
+snippet _8:toDo toDoリスト
+	# Goal
+	'lua x love 投稿'
+
+	## toDo
+	- final goal 自分の半生をマップ化
+	- this time goal mapとキャラを動かす
+	- toDo character作成  (自分、10代、幼少期、母、父、兄、ワンチャン、Nujabes)
+	- toDo map作成
+	- toDo 
+
+
+snippet _8:table
+	| テスト | テスト | テスト |
+	| ------ | ------ | ------ |
+	| 1      | 2      | 3      |
+	| 4      | 5      | 6      |
+	| 7      | 8      | 9      |
+
+
+snippet _8:Weekly_toDo
+	# Goal
+	'lua x love 投稿'
+
+	# toDo
+	- final goal 自分の半生をマップ化
+	- this time goal mapとキャラを動かす
+	- toDo character作成  (自分、10代、幼少期、母、父、兄、ワンチャン、Nujabes)
+	- toDo map作成
+	- toDo 
+
+	# schedule
+	-  Monday
+	|  
+	|             - toDo 週末のゴール決め(Done)
+	|                 -> 1. zennでfzf (月曜日) -> Done
+	|                    2. zennでlua x love投稿
+	|                    3. machine learning(support vector machine)
+	|
+	|                                                                 - 仕事
+	|                                                                     - EagerMOT x YOLOStereo3D (Thetaのバグ修正)
+	-  Tuesday                                                            - EagerMOT x CenterPoint
+	|                                                                     - CenterPointの出力に関して(DeepFusionMOTは2D BBも必要)
+	|             - characterを作る Done -> ネスの再現
+	|
+	|
+	|
+	|
+	|
+	-  Wednesday
+	|             - マップ作り -> mother2 tileset取得
+	|                             layerで背景が分かれていることがわかった Done
+	|
+	|
+	|
+	|
+	-  Thursday
+	|
+	|             -> love x lua 機能の切り分け
+	|
+	|
+	|
+	|
+	|
+	|
+	|
+	-  Friday
+	|
+	|             - 電子工作
+	|             - support vector machine
+	|             - コンペの見直し
+	|
+	|
+	|
+	|
+	|
+	|
+	-  Saturday
+	|
+	|             - CUDAプログラム
+	|             - Machine learning(練習)
+	|             - ルーチーン改善
+	|
+	|
+	|
+	|
+	|
+	-  Sunday
+	|
+	|             - Machine Learning(練習)
+	|             - 来週の作戦
+	|             - 今週のフィードバック
+	|
+	|
+	|
+	|
+	|
+	|
+	|
+	|
+	|
+	|
+	|
+	v
+
+	# FeedBack
+
+
+snippet _8:strikethrough 訂正線
+	<!--https://note.com/engneer_hino/n/n29cad8858de4-->
+	~~訂正~~
+
+
+snippet _8:diff diff
+	\`\`\`diff_c
+		#include <studio.h>
+
+		int main() {
+		-	printf("Hello");
+		+	printf("World");
+			return 0;
+		}
+	\`\`\`
+
+snippet _8:note 補足説明
+	<!--https://qiita.com/Qiita/items/c686397e4a0f4f11683d-->
+	:::note info
+	インフォメーション
+	infoは省略可能です。
+	:::
+
+	:::note warn
+	警告
+	○○に注意してください。
+	:::
+
+	:::note alert
+	より強い警告
+	○○しないでください。
+	:::
+
+snippet _8:commentout コメントアウト
+	<!-- hello world -->
+
+snippet _8:checkbox チェックボックス
+	- [] toDo1
+	- [x] toDo2
+
+snippet _8:plantuml ダイアグラム(plantuml)
+	\`\`\`plantuml
+		Bob->alice : Hello!
+	\`\`\`
