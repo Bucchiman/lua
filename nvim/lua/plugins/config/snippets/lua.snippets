@@ -19,6 +19,9 @@ snippet _8:neovim:runtimepath runtimepath追加
 snippet _8:neovim:shell_command neovim上でシェルコマンド実行
 	os.execute("cp " .. stack_path .. " " .. file_path)
 
+snippet _8:neovim:set_keymap
+	vim.api.nvim_set_keymap("n", "<C-t>", ":ToggleTerm<CR>", {noremap=true, silent=true})
+
 snippet _8:file_exists ファイルが存在するか確認
 	function file_exists(name)
 	   local f=io.open(name, "r")
