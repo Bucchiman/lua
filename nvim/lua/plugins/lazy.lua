@@ -33,10 +33,30 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        "harrisoncramer/gitlab.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "stevearc/dressing.nvim", -- Recommended but not required. Better UI for pickers.
+            enabled = true,
+        },
+        build = function () require("gitlab.server").build(true) end, -- Builds the Go binary
+        config = function()
+            require("gitlab").setup() -- Uses delta reviewer by default
+        end,
+    },
+    {
+        'echasnovski/mini.nvim', version = '*'
+    },
+    {
         "kdheepak/lazygit.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim"
+        },
+        keys = {
+            {"<C-g><C-g>", "<cmd>LazyGit<cr>", desc="Open LazyGit"}
         }
+
     },
     {
         'Rasukarusan/nvim-select-multi-line',
@@ -112,24 +132,24 @@ require("lazy").setup({
             }
         end
     },
-    {
-        "folke/noice.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- add any options here
-        },
-        dependencies = {
-            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-            "MunifTanjim/nui.nvim",
-            -- OPTIONAL:
-            --   `nvim-notify` is only needed, if you want to use the notification view.
-            --   If not available, we use `mini` as the fallback
-            "rcarriga/nvim-notify",
-        },
-        config = function ()
-            require("plugins.config.noice")
-        end
-    },
+    -- {
+    --     "folke/noice.nvim",
+    --     event = "VeryLazy",
+    --     opts = {
+    --       -- add any options here
+    --     },
+    --     dependencies = {
+    --         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    --         "MunifTanjim/nui.nvim",
+    --         -- OPTIONAL:
+    --         --   `nvim-notify` is only needed, if you want to use the notification view.
+    --         --   If not available, we use `mini` as the fallback
+    --         "rcarriga/nvim-notify",
+    --     },
+    --     config = function ()
+    --         require("plugins.config.noice")
+    --     end
+    -- },
     {
         'neoclide/coc.nvim',
         branch = 'release'
@@ -185,7 +205,10 @@ require("lazy").setup({
         {
             'akinsho/toggleterm.nvim',
             version = "*",
-            config = true
+            config = true,
+            keys = {
+                {"<C-s><C-t>", ":ToggleTerm<cr>", desc="terminal on/off"}
+            }
         }
 
     },
@@ -322,6 +345,9 @@ require("lazy").setup({
         },
         after = {
             'glepnir/template.nvim',
+        },
+        keys = {
+            {"<C-s><C-n>", ":NvimTreeToggle<cr>", desc="nvim tree on/off"}
         },
         config = function()
             require("nvim-tree").setup({
@@ -474,6 +500,9 @@ require("lazy").setup({
         init = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
+        end,
+        config = function ()
+            require("plugins.config.which-key")
         end,
         opts = {
             -- your configuration comes hereby
