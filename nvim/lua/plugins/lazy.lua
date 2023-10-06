@@ -36,7 +36,11 @@ require("lazy").setup({
         "kdheepak/lazygit.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim"
+        },
+        keys = {
+            {"<C-g><C-g>", "<cmd>LazyGit<cr>", desc="Open LazyGit"}
         }
+
     },
     {
         'Rasukarusan/nvim-select-multi-line',
@@ -112,24 +116,24 @@ require("lazy").setup({
             }
         end
     },
-    {
-        "folke/noice.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- add any options here
-        },
-        dependencies = {
-            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-            "MunifTanjim/nui.nvim",
-            -- OPTIONAL:
-            --   `nvim-notify` is only needed, if you want to use the notification view.
-            --   If not available, we use `mini` as the fallback
-            "rcarriga/nvim-notify",
-        },
-        config = function ()
-            require("plugins.config.noice")
-        end
-    },
+    -- {
+    --     "folke/noice.nvim",
+    --     event = "VeryLazy",
+    --     opts = {
+    --       -- add any options here
+    --     },
+    --     dependencies = {
+    --         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    --         "MunifTanjim/nui.nvim",
+    --         -- OPTIONAL:
+    --         --   `nvim-notify` is only needed, if you want to use the notification view.
+    --         --   If not available, we use `mini` as the fallback
+    --         "rcarriga/nvim-notify",
+    --     },
+    --     config = function ()
+    --         require("plugins.config.noice")
+    --     end
+    -- },
     {
         'neoclide/coc.nvim',
         branch = 'release'
@@ -185,7 +189,10 @@ require("lazy").setup({
         {
             'akinsho/toggleterm.nvim',
             version = "*",
-            config = true
+            config = true,
+            keys = {
+                {"<C-t>", ":ToggleTerm<cr>", desc="terminal on/off"}
+            }
         }
 
     },
@@ -474,6 +481,9 @@ require("lazy").setup({
         init = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
+        end,
+        config = function ()
+            require("plugins.config.which-key")
         end,
         opts = {
             -- your configuration comes hereby
