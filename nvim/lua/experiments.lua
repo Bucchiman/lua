@@ -107,7 +107,7 @@ local function complex(real, imaginary)
 end
 
 -- バッファの数
-vim.cmd('echo len(filter(range(1, bufnr("$")), "buflisted(v:val)"))')
+-- vim.cmd('echo len(filter(range(1, bufnr("$")), "buflisted(v:val)"))')
 
 --vim.cmd('buffers')
 --vim.cmd([[
@@ -137,6 +137,8 @@ vim.cmd('echo len(filter(range(1, bufnr("$")), "buflisted(v:val)"))')
 
 vim.cmd("set runtimepath+=$HOME/common/development/schedule.nvim")
 vim.cmd('source $HOME/common/development/schedule.nvim/plugin/schedule.lua')
+
+vim.cmd('nnoremap <Space>v :call sml#mode_on()<CR>')
 
 return M
 
