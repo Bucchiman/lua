@@ -81,18 +81,19 @@ keymap("v", "<C-p>", '"0p', opts)
 
 -- ターミナルモード
 keymap("t", "<ESC><ESC>", '<C-\\><C-n>', opts)
+keymap("t", "jj", '<C-\\><C-n>', opts)
 
 
 keymap("n", "<C-p>", ":bprev<CR>", opts)
 keymap("n", "<C-n>", ":bnext<CR>", opts)
 
-keymap("c", "<C-p>", "<Up>", opts)
-keymap("c", "<C-n>", "<Down>", opts)
-keymap("c", "<C-e>", "<End>", opts)
-keymap("c", "<C-a>", "<Home>", opts)
-keymap("c", "<C-b>", "<Left>", opts)
-keymap("c", "<C-f>", "<Right>", opts)
-keymap("c", "<C-d>", "<Del>", opts)
+-- keymap("c", "<C-p>", "<Up>", opts)
+-- keymap("c", "<C-n>", "<Down>", opts)
+-- keymap("c", "<C-e>", "<End>", opts)
+-- keymap("c", "<C-a>", "<Home>", opts)
+-- keymap("c", "<C-b>", "<Left>", opts)
+-- keymap("c", "<C-f>", "<Right>", opts)
+-- keymap("c", "<C-d>", "<Del>", opts)
 -- keymap("c", "<C-k>", function()
 --     string.sub(vim.fn.getcmdline(), 0, vim.fn.getcmdpos()-1)
 -- end, opts)

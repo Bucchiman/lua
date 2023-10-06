@@ -33,6 +33,22 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        "harrisoncramer/gitlab.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "stevearc/dressing.nvim", -- Recommended but not required. Better UI for pickers.
+            enabled = true,
+        },
+        build = function () require("gitlab.server").build(true) end, -- Builds the Go binary
+        config = function()
+            require("gitlab").setup() -- Uses delta reviewer by default
+        end,
+    },
+    {
+        'echasnovski/mini.nvim', version = '*'
+    },
+    {
         "kdheepak/lazygit.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim"
@@ -191,7 +207,7 @@ require("lazy").setup({
             version = "*",
             config = true,
             keys = {
-                {"<C-t>", ":ToggleTerm<cr>", desc="terminal on/off"}
+                {"<C-s><C-t>", ":ToggleTerm<cr>", desc="terminal on/off"}
             }
         }
 
@@ -329,6 +345,9 @@ require("lazy").setup({
         },
         after = {
             'glepnir/template.nvim',
+        },
+        keys = {
+            {"<C-s><C-n>", ":NvimTreeToggle<cr>", desc="nvim tree on/off"}
         },
         config = function()
             require("nvim-tree").setup({
