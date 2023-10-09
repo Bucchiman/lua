@@ -52,6 +52,26 @@ require("lazy").setup({
         end,
     },
     {
+        "kdheepak/lazygit.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim"
+        }
+    },
+    {
+        'Rasukarusan/nvim-select-multi-line',
+    },
+    -- {
+    --     "folke/styler.nvim",
+    --     config = function()
+    --         require("styler").setup({
+    --             themes = {
+    --                 markdown = { colorscheme = "gruvbox" },
+    --                 help = { colorscheme = "catppuccin-mocha", background = "dark" },
+    --             },
+    --         })
+    --     end,
+    -- },
+    {
         'ldelossa/gh.nvim',
         dependencies = {
             {'ldelossa/litee.nvim'}
