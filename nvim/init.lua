@@ -13,6 +13,7 @@ local home_dir = os.getenv('HOME')
 local current_dir = vim.fn.getcwd()
 local nvim_qt_dir = os.getenv('NVIM_QT_RUNTIME_PATH')
 
+
 --local cfg_dir = home_dir..'/.config/snippets/codes/lua/nvim'
 --print(cfg_dir)
 --vim.api.nvim_command('set runtimepath^='..cfg_dir)
@@ -28,7 +29,6 @@ function file_exists(name)
    if f~=nil then io.close(f) return true else return false end
 end
 
-print(nvim_qt_dir)
 -- vim.opt.runtimpath:append(nvim_qt_dir)
 
 -- if vim.fn.filereadable("$HOME/.config/local/lua/local.lua") then
