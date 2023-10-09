@@ -26,39 +26,97 @@ end
 vim.opt.rtp:prepend(lazypath)
 -----------------------------------------------------------
 
-
-local img_previewer = vim.fn.executable("ueberzug") == 1 and { "ueberzug", "layer" } or { "viu", "-b" }
-
 local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
-        "harrisoncramer/gitlab.nvim",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "stevearc/dressing.nvim", -- Recommended but not required. Better UI for pickers.
-            enabled = true,
-        },
-        build = function () require("gitlab.server").build(true) end, -- Builds the Go binary
-        config = function()
-            require("gitlab").setup() -- Uses delta reviewer by default
+        'rmagatti/auto-session',
+        branch = "fix-telescope-dependency",
+        dependencies = {'nvim-telescope/telescope.nvim'},
+        config = function ()
+
+            require("auto-session").setup {
+                log_level = vim.log.levels.ERROR,
+                auto_session_suppress_dirs = { "~/Projects", "~/Downloads", "/" },
+                -- auto_session_use_git_branch = false,
+
+                -- auto_session_enable_last_session = false,
+            
+                -- ⚠️ This will only work if Telescope.nvim is installed
+                -- The following are already the default values, no need to provide them if these are already the settings you want.
+                -- session_lens = {
+                --     -- If load_on_setup is set to false, one needs to eventually call `require("auto-session").setup_session_lens()` if they want to use session-lens.
+                --     buftypes_to_ignore = {}, -- list of buffer types what should not be deleted from current session
+                --     load_on_setup = false,
+                --     theme_conf = { border = true },
+                --     previewer = false,
+                -- },
+                cwd_change_handling = {
+                    restore_upcoming_session = true,
+                    pre_cwd_changed_hook = nil,
+                    -- pre_cwd_changed_hook = function ()
+                    --     
+                    -- end,
+                    post_cwd_changed_hook = function ()
+                        local nvim_tree = require("nvim-tree")
+                        nvim_tree.change_dir(vim.fn.getcwd())
+                    end
+                }
+            }
         end,
-    },
-    {
-        'echasnovski/mini.nvim', version = '*'
-    },
-    {
-        "kdheepak/lazygit.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim"
-        },
         keys = {
-            {"<C-g><C-g>", "<cmd>LazyGit<cr>", desc="Open LazyGit"}
+            {"<C-s><C-s>", "<cmd>Autosession search<cr>", desc="Show Session"}
+        }
+    },
+
+    -- {
+    --     'junegunn/fzf.vim'
+    -- },
+    {
+        -- sessions
+        'mhinz/vim-startify',
+        keys = {
+            {"<C-s><C-b>", "<cmd>Startify<cr>", desc="Open Buffers"}
         }
 
     },
     {
+        -- git
+        {
+            -- glabコマンド
+            "harrisoncramer/gitlab.nvim",
+            dependencies = {
+                "MunifTanjim/nui.nvim",
+                "nvim-lua/plenary.nvim",
+                "stevearc/dressing.nvim", -- Recommended but not required. Better UI for pickers.
+                enabled = true,
+            },
+            build = function () require("gitlab.server").build(true) end, -- Builds the Go binary
+            config = function()
+                require("gitlab").setup() -- Uses delta reviewer by default
+            end,
+        },
+        {
+            -- lazygit
+            "kdheepak/lazygit.nvim",
+            dependencies = {
+                "nvim-lua/plenary.nvim"
+            },
+            keys = {
+                {"<C-g><C-g>", "<cmd>LazyGit<cr>", desc="Open LazyGit"}
+            }
+
+        },
+        {
+            -- ghコマンド
+            'ldelossa/gh.nvim',
+            dependencies = {
+                {'ldelossa/litee.nvim'}
+            }
+        },
+    },
+    {
+        -- 各行をコピー
         'Rasukarusan/nvim-select-multi-line',
     },
     -- {
@@ -72,12 +130,6 @@ require("lazy").setup({
     --         })
     --     end,
     -- },
-    {
-        'ldelossa/gh.nvim',
-        dependencies = {
-            {'ldelossa/litee.nvim'}
-        }
-    },
     {
         'equalsraf/neovim-gui-shim'
     },
@@ -132,24 +184,24 @@ require("lazy").setup({
             }
         end
     },
-    -- {
-    --     "folke/noice.nvim",
-    --     event = "VeryLazy",
-    --     opts = {
-    --       -- add any options here
-    --     },
-    --     dependencies = {
-    --         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    --         "MunifTanjim/nui.nvim",
-    --         -- OPTIONAL:
-    --         --   `nvim-notify` is only needed, if you want to use the notification view.
-    --         --   If not available, we use `mini` as the fallback
-    --         "rcarriga/nvim-notify",
-    --     },
-    --     config = function ()
-    --         require("plugins.config.noice")
-    --     end
-    -- },
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- add any options here
+        },
+        dependencies = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            "rcarriga/nvim-notify",
+        },
+        config = function ()
+            require("plugins.config.noice")
+        end
+    },
     {
         'neoclide/coc.nvim',
         branch = 'release'
@@ -189,18 +241,18 @@ require("lazy").setup({
         lazy = false,
         priority = 1001,
     },
-    {
-        'romgrk/barbar.nvim',
-        dependencies = {
-            'lewis6991/gitsigns.nvim',
-            'nvim-tree/nvim-web-devicons'
-        },
-        init = function () vim.g.barbar_auto_setup = false end,
-        opts= {
+    -- {
+    --     'romgrk/barbar.nvim',
+    --     dependencies = {
+    --         'lewis6991/gitsigns.nvim',
+    --         'nvim-tree/nvim-web-devicons'
+    --     },
+    --     init = function () vim.g.barbar_auto_setup = false end,
+    --     opts= {
 
-        },
-        version = '^1.0.0'
-    },
+    --     },
+    --     version = '^1.0.0'
+    -- },
     {
         {
             'akinsho/toggleterm.nvim',
@@ -251,16 +303,16 @@ require("lazy").setup({
     --         })
     --     end
     -- },
-    {
-        'glepnir/dashboard-nvim',
-        event = 'VimEnter',
-        config = function()
-            require('dashboard').setup ({
-            -- config
-            })
-        end,
-        dependencies = { {'nvim-tree/nvim-web-devicons'}}
-    },
+    -- {
+    --     'glepnir/dashboard-nvim',
+    --     event = 'VimEnter',
+    --     config = function()
+    --         require('dashboard').setup ({
+    --         -- config
+    --         })
+    --     end,
+    --     dependencies = { {'nvim-tree/nvim-web-devicons'}}
+    -- },
     {
         'akinsho/bufferline.nvim',
         version = "*",
@@ -347,7 +399,7 @@ require("lazy").setup({
             'glepnir/template.nvim',
         },
         keys = {
-            {"<C-s><C-n>", ":NvimTreeToggle<cr>", desc="nvim tree on/off"}
+            {"<C-s><C-n>", "<cmd>NvimTreeToggle<cr>", desc="nvim tree on/off"}
         },
         config = function()
             require("nvim-tree").setup({
@@ -368,21 +420,20 @@ require("lazy").setup({
         "ibhagwan/fzf-lua",
         dependencies = {"nvim-tree/nvim-web-devicons"},
         config = function()
-            require("plugins.config.fzf")
             require("fzf-lua").setup({
-                previewers = {
-                    builtin = {
-                        ueberzug_scaler = "cover",
-                        extensions = {
-                        ["gif"] = img_previewer,
-                        ["png"] = img_previewer,
-                        ["jpg"] = img_previewer,
-                        ["jpeg"] = img_previewer,
-                        },
-                    },
-                },
+                require("plugins.config.fzf_lua")
             })
-        end
+        end,
+        keys = {
+            {"<C-s><C-p>", function ()
+                require("fzf-lua").files({
+                    prompt = "Snippets> ",
+                    cmd = "ls",
+                    cwd = "$HOME/.config/snippets"
+                })
+            end,
+            desc = "Snippets"}
+        }
     },
     {
         'glepnir/template.nvim',
@@ -405,7 +456,7 @@ require("lazy").setup({
     },
     {
         "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
+        build = "<cmd>TSUpdate",
         config = function ()
             local configs = require("nvim-treesitter.configs").setup({
                 ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
@@ -513,5 +564,11 @@ require("lazy").setup({
 })
 
 require("plugins.config.template")
+
+
 require('telescope').load_extension('media_files')
 require('telescope').load_extension('remote-sshfs')
+-- require("telescope").load_extension("session-lens")
+-- vim.keymap.set("n", "<C-s><C-b>", require("auto-session.session-lens").search_session, {
+--   noremap = true,
+-- })

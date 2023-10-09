@@ -140,5 +140,6 @@ vim.cmd('source $HOME/common/development/schedule.nvim/plugin/schedule.lua')
 
 vim.cmd('nnoremap <Space>v :call sml#mode_on()<CR>')
 
+
 return M
 

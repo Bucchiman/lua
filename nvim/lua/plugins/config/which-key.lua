@@ -66,12 +66,10 @@ wk.register({
         f = {"<cmd>lua require('telescope.builtin').find_files()<cr>", "File Search"},
         g = {"<cmd>lua require('telescope.builtin').live_grep()<cr>", "Grep"},
         h = {"<cmd>lua require('telescope.builtin').help_tags()<cr>", "Help Tags"},
-        g = {"<cmd>lua require('telescope.builtin').git_status()<cr>", "Git status"},
+        s = {"<cmd>lua require('telescope.builtin').git_status()<cr>", "Git status"},
    },
-
     l = {
         name = "+Luafzf",
         b = {"<cmd>lua require('fzf-lua').buffers()<cr>", "Buffers"}
     }
-
 }, { prefix = "<leader>" })

@@ -49,6 +49,13 @@ keymap("n", "<S-A-k>", ":resize -2<CR>", opts)
 keymap("n", "<S-A-j>", ":resize +2<CR>", opts)
 keymap("n", "<S-A-l>", ":vertical resize -2<CR>", opts)
 keymap("n", "<S-A-h>", ":vertical resize +2<CR>", opts)
+
+-- on mac
+keymap("n", "<S-M-k>", ":resize -2<CR>", opts)
+keymap("n", "<S-M-j>", ":resize +2<CR>", opts)
+keymap("n", "<S-M-l>", ":vertical resize -2<CR>", opts)
+keymap("n", "<S-M-h>", ":vertical resize +2<CR>", opts)
+
 -- keymap("n", "<C-t>", ":terminal<CR>", opts)
 
 -- S-v Shift-v
