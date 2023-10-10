@@ -59,6 +59,22 @@ wk.register({
                 t = { "<cmd>GHToggleThread<cr>", "Toggle" },
             },
         },
+        l = {
+            name = "GitLab",
+            r  = { "<cmd> lua require('gitlab').review()<cr>", "Review" },
+            s  = { "<cmd> lua require('gitlab').summary()<cr>", "Summary" },
+            A  = { "<cmd> lua require('gitlab').approve()<cr>", "Approve" },
+            R  = { "<cmd> lua require('gitlab').revoke()<cr>", "Revoke" },
+            c  = { "<cmd> lua require('gitlab').create_comment()<cr>", "Create Comment" },
+            n  = { "<cmd> lua require('gitlab').create_note()<cr>", "Create Note" },
+            d  = { "<cmd> lua require('gitlab').toggle_discussions()<cr>", "Toggle Discussions" },
+            aa = { "<cmd> lua require('gitlab').add_assignee()<cr>", "Add Assignee" },
+            ad = { "<cmd> lua require('gitlab').delete_assignee()<cr>", "Delete Assignee"},
+            ra = { "<cmd> lua require('gitlab').add_reviewer()<cr>", "Add Reviewer"},
+            rd = { "<cmd> lua require('gitlab').delete_reviewer()<cr>", "Delete Reviewer"},
+            p = { "<cmd> lua require('gitlab').pipeline()<cr>", "Pipeline"},
+            o = { "<cmd> lua require('gitlab').open_in_browser()<cr>", "Open in Browser"},
+        }
     },
     t = {
         name = "+Telescope",
