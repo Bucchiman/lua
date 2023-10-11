@@ -60,7 +60,7 @@ wk.register({
             },
         },
         l = {
-            name = "GitLab",
+            name = "+GitLab",
             r  = { "<cmd> lua require('gitlab').review()<cr>", "Review" },
             s  = { "<cmd> lua require('gitlab').summary()<cr>", "Summary" },
             A  = { "<cmd> lua require('gitlab').approve()<cr>", "Approve" },
@@ -74,6 +74,10 @@ wk.register({
             rd = { "<cmd> lua require('gitlab').delete_reviewer()<cr>", "Delete Reviewer"},
             p = { "<cmd> lua require('gitlab').pipeline()<cr>", "Pipeline"},
             o = { "<cmd> lua require('gitlab').open_in_browser()<cr>", "Open in Browser"},
+        },
+        o = {
+            name = "+Octo",
+
         }
     },
     t = {
