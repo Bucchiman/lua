@@ -72,14 +72,14 @@ require("lazy").setup({
     -- {
     --     'junegunn/fzf.vim'
     -- },
-    {
-        -- sessions
-        'mhinz/vim-startify',
-        keys = {
-            {"<C-s><C-b>", "<cmd>Startify<cr>", desc="Open Buffers"}
-        }
+    -- {
+    --     -- sessions
+    --     'mhinz/vim-startify',
+    --     keys = {
+    --         {"<C-s><C-b>", "<cmd>Startify<cr>", desc="Open Buffers"}
+    --     }
 
-    },
+    -- },
     {
         -- git
         {
@@ -362,8 +362,10 @@ require("lazy").setup({
                 }
               },
             }
-        end
-
+        end,
+        keys = {
+            {"<C-s><C-b>", "<cmd>lua require('telescope.builtin').buffers()<cr>", desc="show buffers"}
+        }
     },
     {
         "theHamsta/nvim-dap-virtual-text"
