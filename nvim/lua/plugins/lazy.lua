@@ -30,6 +30,22 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        "X3eRo0/dired.nvim",
+        dependencies = "MunifTanjim/nui.nvim",
+        config = function()
+            require("dired").setup {
+                path_separator = "/",
+                show_banner = false,
+                show_hidden = true,
+                show_dot_dirs = true,
+                show_colors = true,
+            }
+        end,
+        keys = {
+            {"<C-s><C-d>", "<cmd>Dired<cr>", desc="Dired version"}
+        },
+    },
+    {
         'rmagatti/auto-session',
         branch = "fix-telescope-dependency",
         dependencies = {'nvim-telescope/telescope.nvim'},
