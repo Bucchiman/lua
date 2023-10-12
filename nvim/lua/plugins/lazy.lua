@@ -46,6 +46,7 @@ require("lazy").setup({
         config = function ()
 
             require("auto-session").setup {
+                auto_session_enable = true,
                 log_level = vim.log.levels.ERROR,
                 auto_session_suppress_dirs = { "~", "~/Projects", "~/Downloads", "/" },
                 -- auto_session_use_git_branch = false,
@@ -130,7 +131,11 @@ require("lazy").setup({
             'ldelossa/gh.nvim',
             dependencies = {
                 {'ldelossa/litee.nvim'}
-            }
+            },
+            config = function ()
+                require('litee.lib').setup()
+                require('litee.gh').setup()
+            end
         },
     },
     {
