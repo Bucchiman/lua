@@ -30,6 +30,13 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        "iamcco/markdown-preview.nvim",
+        build = "cd app && npm install",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" } end,
+        ft = { "markdown" },
+    },
+    {
         -- calendar
         "itchyny/calendar.vim"
     },
@@ -83,14 +90,14 @@ require("lazy").setup({
     -- {
     --     'junegunn/fzf.vim'
     -- },
-    {
-        -- sessions
-        'mhinz/vim-startify',
-        keys = {
-            {"<C-s><C-b>", "<cmd>Startify<cr>", desc="Open Buffers"}
-        }
+    -- {
+    --     -- sessions
+    --     'mhinz/vim-startify',
+    --     keys = {
+    --         {"<C-s><C-b>", "<cmd>Startify<cr>", desc="Open Buffers"}
+    --     }
 
-    },
+    -- },
     {
         -- git
         {
@@ -148,6 +155,9 @@ require("lazy").setup({
         'nosduco/remote-sshfs.nvim',
         dependencies = {
             {'nvim-telescope/telescope.nvim'}
+        },
+        keys = {
+            {"<C-s><C-b>", "<cmd>Telescope buffers<cr>", desc="buffer list"}
         },
         config = function ()
             require('remote-sshfs').setup{
@@ -438,23 +448,27 @@ require("lazy").setup({
         keys = {
             {
                 "<C-s><C-p>", function ()
-                    require("fzf-lua").files({
-                        prompt = "Snippets> ",
-                        cmd = "ls",
-                        cwd = "$HOME/.config/snippets"
-                    })
+                    require("plugins.config.fzf_lua").snippets()
                 end,
                 desc = "Snippets"
             },
+            -- {
+            --     "<C-s><C-m>", function ()
+            --         require("plugins.config.fzf_lua").codestation()
+            --     end,
+            --     desc = "Codes",
+            -- },
             {
-                "<C-s><C-c>", function ()
-                    require("fzf-lua").files({
-                        prompt = "Codes> ",
-                        cmd = "ls",
-                        cwd = "$HOME/.config/lib/codes"
-                    })
+                "<C-s><C-o>", function ()
+                    require("plugins.config.fzf_lua").onelines()
                 end,
-                desc = "Codes",
+                desc = "Onelines"
+            },
+            {
+                "<C-s><C-r>", function ()
+                    require("plugins.config.fzf_lua").readme()
+                end,
+                desc = "README"
             },
         }
     },
@@ -479,7 +493,9 @@ require("lazy").setup({
     },
     {
         "nvim-treesitter/nvim-treesitter",
-        build = "<cmd>TSUpdate",
+        -- init = function ()
+        --     vim.cmd("TSUpdate")
+        -- end,
         config = function ()
             local configs = require("nvim-treesitter.configs").setup({
                 ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },

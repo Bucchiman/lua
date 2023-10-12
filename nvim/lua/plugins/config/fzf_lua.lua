@@ -70,14 +70,63 @@ function M.git_history(opts)
     require("fzf-lua").git_commits(opts)
 end
 
-function M.dotstation(opts)
-    require("fzf-lua").files({ cwd = "$HOME/.config/lib/codes" })
+function M.codestation(opts)
+    require("fzf-lua").files({
+        prompt = "Code> ",
+        cmd = "ls",
+        cwd = "$HOME/.config/lib/codes"
+        })
+
 end
 
--- function M.snippets()
---     require("fzf-lua").files({
---         prompt = "Snippet> ",
---         cmd = "ls",
---         cwd = "$HOME/.config/snippets"
---         })
--- end
+function M.snippets()
+    require("fzf-lua").files({
+        prompt = "Snippet> ",
+        cmd = "ls",
+        cwd = "$HOME/.config/snippets"
+        })
+end
+
+---
+-- Function to retrieve console output
+-- 
+function os.capture(cmd, raw)
+    local handle = assert(io.popen(cmd, 'r'))
+    local output = assert(handle:read('*a'))
+    
+    handle:close()
+    
+    if raw then 
+        return output 
+    end
+   
+    output = string.gsub(
+        string.gsub(
+            string.gsub(output, '^%s+', ''), 
+            '%s+$', 
+            ''
+        ), 
+        '[\n\r]+',
+        ' '
+    )
+   
+   return output
+end
+
+function M.onelines()
+    -- print(os.capture('$(/usr/bin/find $HOME/.config/lib/onelines -type f | fzf --height 100% --preview "bat --color=always {}")'))
+    print(os.capture('/usr/bin/find $HOME/.config/lib/onelines -type f | fzf'))
+end
+
+function M.readme()
+    require("fzf-lua").files({
+        prompt = "README> ",
+        cmd = "ls",
+        cwd = "$HOME/.config/lib/readme"
+        })
+
+end
+
+
+
+return M
