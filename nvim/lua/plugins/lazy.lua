@@ -30,14 +30,17 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        -- calendar
+        "itchyny/calendar.vim"
+    },
+    {
         'rmagatti/auto-session',
-        branch = "fix-telescope-dependency",
         dependencies = {'nvim-telescope/telescope.nvim'},
         config = function ()
 
             require("auto-session").setup {
                 log_level = vim.log.levels.ERROR,
-                auto_session_suppress_dirs = { "~/Projects", "~/Downloads", "/" },
+                auto_session_suppress_dirs = { "~", "~/Projects", "~/Downloads", "/" },
                 -- auto_session_use_git_branch = false,
 
                 -- auto_session_enable_last_session = false,
@@ -61,7 +64,15 @@ require("lazy").setup({
                         local nvim_tree = require("nvim-tree")
                         nvim_tree.change_dir(vim.fn.getcwd())
                     end
-                }
+                },
+                post_restore_cmds = {
+                    function ()
+                        local nvim_tree = require("nvim-tree")
+                        nvim_tree.change_dir(vim.fn.getcwd())
+                    end,
+                    "NvimTreeOpen"
+                },
+                -- pre_restore_cmds = {}
             }
         end,
         keys = {
@@ -425,14 +436,26 @@ require("lazy").setup({
             })
         end,
         keys = {
-            {"<C-s><C-p>", function ()
-                require("fzf-lua").files({
-                    prompt = "Snippets> ",
-                    cmd = "ls",
-                    cwd = "$HOME/.config/snippets"
-                })
-            end,
-            desc = "Snippets"}
+            {
+                "<C-s><C-p>", function ()
+                    require("fzf-lua").files({
+                        prompt = "Snippets> ",
+                        cmd = "ls",
+                        cwd = "$HOME/.config/snippets"
+                    })
+                end,
+                desc = "Snippets"
+            },
+            {
+                "<C-s><C-c>", function ()
+                    require("fzf-lua").files({
+                        prompt = "Codes> ",
+                        cmd = "ls",
+                        cwd = "$HOME/.config/lib/codes"
+                    })
+                end,
+                desc = "Codes",
+            },
         }
     },
     {
