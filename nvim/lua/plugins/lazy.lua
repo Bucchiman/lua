@@ -425,14 +425,17 @@ require("lazy").setup({
             })
         end,
         keys = {
-            {"<C-s><C-p>", function ()
-                require("fzf-lua").files({
-                    prompt = "Snippets> ",
-                    cmd = "ls",
-                    cwd = "$HOME/.config/snippets"
-                })
-            end,
-            desc = "Snippets"}
+            {
+                "<C-s><C-p>", function()
+                    require("plugins.config.fzf_lua").snippets()
+                end,
+                desc = "Snippets"
+            },
+            {
+                "<C-s><C-c>", function ()
+                    require("plugins.config.fzf_lua").cmdline()
+                end
+            }
         }
     },
     {

@@ -47,9 +47,18 @@ M = {
             ["jpeg"] = img_previewer,
             },
         },
-    }
+    },
+    grep = {
+        actions = {
+            ["ctrl-y"] = function(selected)
+                for _, e in ipairs(selected) do
+                    local file = require'fzf-lua'.path.entry_to_file(e)
+                    vim.cmd("tabnew " .. file.path)
+                end
+            end,
+        },
+    },
 }
-
 
 
 
@@ -74,10 +83,21 @@ function M.dotstation(opts)
     require("fzf-lua").files({ cwd = "$HOME/.config/lib/codes" })
 end
 
--- function M.snippets()
---     require("fzf-lua").files({
---         prompt = "Snippet> ",
---         cmd = "ls",
---         cwd = "$HOME/.config/snippets"
---         })
--- end
+function M.cmdline(opts)
+    opts.prompt = opts.prompt or "CmdLine fzf> "
+    opts.input_prompt = opts.input_prompt or "Search For> "
+    local file = require('fzf-lua.path').entry_to_file("$HOME/.config/nvim/cmdline")
+    print("8ucchiman " .. file.path)
+    -- require("fzf-lua")
+end
+
+function M.snippets()
+    require("fzf-lua").files({
+        prompt = "Snippet> ",
+        cmd = "ls",
+        cwd = "$HOME/.config/snippets"
+        })
+end
+
+
+return M
