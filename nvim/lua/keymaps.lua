@@ -88,7 +88,7 @@ keymap("v", "<C-p>", '"0p', opts)
 
 -- ターミナルモード
 keymap("t", "<ESC><ESC>", '<C-\\><C-n>', opts)
-keymap("t", "jj", '<C-\\><C-n>', opts)
+keymap("t", "<S-j><S-j>", '<C-\\><C-n>', opts)
 
 
 keymap("n", "<C-p>", ":bprev<CR>", opts)

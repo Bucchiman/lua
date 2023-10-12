@@ -388,8 +388,10 @@ require("lazy").setup({
                 }
               },
             }
-        end
-
+        end,
+        keys = {
+            {"<C-s><C-b>", "<cmd>lua require('telescope.builtin').buffers()<cr>", desc="show buffers"}
+        }
     },
     {
         "theHamsta/nvim-dap-virtual-text"
