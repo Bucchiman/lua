@@ -113,12 +113,13 @@ wk.register({
         end,
         "Onelines"
     },
-    ["<C-r>"] ={
+    ["<C-r>"] = {
         function ()
             require("plugins.config.fzf_lua").readme()
         end,
         "README"
     },
+    ["<C-i>"] = {"<cmd>GHOpenIssue", "github issue"}
 }, { prefix = '<C-s>'})
 
 wk.register({
