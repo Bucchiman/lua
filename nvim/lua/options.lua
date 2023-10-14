@@ -76,4 +76,4 @@ local term_opts = { silent = true }
 
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
-
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

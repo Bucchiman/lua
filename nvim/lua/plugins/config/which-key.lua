@@ -96,11 +96,11 @@ wk.register({
 
 
 wk.register({
-    ["<C-n>"] = {"<cmd>Dired<cr>", "Dired version"},
+    -- ["<C-n>"] = {"<cmd>Dired<cr>", "Dired version"},
     ["<C-s>"] = {"<cmd>Autosession search<cr>", "Show Session"},
     ["<C-b>"] = {"<cmd>Telescope buffers<cr>", "buffer list"},
     ["<C-t>"] = {"<cmd>ToggleTerm<cr>", "terminal on/off"},
-    -- ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
+    ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
     ["<C-p>"] = {
         function ()
             require("plugins.config.fzf_lua").snippets()
@@ -124,3 +124,8 @@ wk.register({
 wk.register({
     ["<C-g>"] = {"<cmd>LazyGit<cr>", "Open LazyGit"}
 }, { prefix = '<C-g>'})
+
+
+wk.register({
+    p = {'<cmd>lua require("nabla").popup()<cr>', "mathematics preview"}
+}, { prefix = "<space>" })
