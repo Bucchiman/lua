@@ -483,11 +483,7 @@ require("lazy").setup({
             'TemProject'
         },
         config = function()
-            require("template").setup({
-                temp_dir = "$HOME/.config/template",
-                author = "8ucchiman",
-                email = "8ucchiman@gmail.com",
-            })
+            require("plugins.config.template")
         end
     },
     "nvim-lua/plenary.nvim",
@@ -606,7 +602,7 @@ require("lazy").setup({
     }
 })
 
-require("plugins.config.template")
+-- require("plugins.config.template")
 
 -- require("telescope").load_extension("session-lens")
 -- vim.keymap.set("n", "<C-s><C-b>", require("auto-session.session-lens").search_session, {
