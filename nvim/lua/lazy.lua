@@ -33,6 +33,7 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        -- cmd completion
         'gelguy/wilder.nvim',
         config = function()
             require("wilder").setup({
@@ -41,6 +42,7 @@ require("lazy").setup({
         end,
     },
     {
+        -- style of buffer
         "folke/styler.nvim",
         config = function()
             require("styler").setup({
@@ -52,26 +54,7 @@ require("lazy").setup({
         end,
     },
     {
-        "kdheepak/lazygit.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim"
-        }
-    },
-    {
-        'Rasukarusan/nvim-select-multi-line',
-    },
-    -- {
-    --     "folke/styler.nvim",
-    --     config = function()
-    --         require("styler").setup({
-    --             themes = {
-    --                 markdown = { colorscheme = "gruvbox" },
-    --                 help = { colorscheme = "catppuccin-mocha", background = "dark" },
-    --             },
-    --         })
-    --     end,
-    -- },
-    {
+        -- gh
         'ldelossa/gh.nvim',
         dependencies = {
             {'ldelossa/litee.nvim'}
