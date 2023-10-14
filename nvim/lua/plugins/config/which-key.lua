@@ -87,9 +87,40 @@ wk.register({
         g = {"<cmd>lua require('telescope.builtin').live_grep()<cr>", "Grep"},
         h = {"<cmd>lua require('telescope.builtin').help_tags()<cr>", "Help Tags"},
         s = {"<cmd>lua require('telescope.builtin').git_status()<cr>", "Git status"},
-   },
+    },
     l = {
         name = "+Luafzf",
         b = {"<cmd>lua require('fzf-lua').buffers()<cr>", "Buffers"}
-    }
-}, { prefix = "<leader>" })
+    },
+}, { prefix = '<leader>' })
+
+
+wk.register({
+    ["<C-n>"] = {"<cmd>Dired<cr>", "Dired version"},
+    ["<C-s>"] = {"<cmd>Autosession search<cr>", "Show Session"},
+    ["<C-b>"] = {"<cmd>Telescope buffers<cr>", "buffer list"},
+    ["<C-t>"] = {"<cmd>ToggleTerm<cr>", "terminal on/off"},
+    -- ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
+    ["<C-p>"] = {
+        function ()
+            require("plugins.config.fzf_lua").snippets()
+        end,
+        "Snippets"
+    },
+    ["<C-o>"] = {
+        function ()
+            require("plugins.config.fzf_lua").onelines()
+        end,
+        "Onelines"
+    },
+    ["<C-r>"] ={
+        function ()
+            require("plugins.config.fzf_lua").readme()
+        end,
+        "README"
+    },
+}, { prefix = '<C-s>'})
+
+wk.register({
+    ["<C-g>"] = {"<cmd>LazyGit<cr>", "Open LazyGit"}
+}, { prefix = '<C-g>'})

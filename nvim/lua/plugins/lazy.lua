@@ -42,7 +42,7 @@ require("lazy").setup({
     },
     {
         "X3eRo0/dired.nvim",
-        dependencies = "MunifTanjim/nui.nvim",
+        dependencies = {"MunifTanjim/nui.nvim"},
         config = function()
             require("dired").setup {
                 path_separator = "/",
@@ -52,15 +52,11 @@ require("lazy").setup({
                 show_colors = true,
             }
         end,
-        keys = {
-            {"<C-s><C-d>", "<cmd>Dired<cr>", desc="Dired version"}
-        },
     },
     {
         'rmagatti/auto-session',
         dependencies = {'nvim-telescope/telescope.nvim'},
         config = function ()
-
             require("auto-session").setup {
                 auto_session_enable = true,
                 log_level = vim.log.levels.ERROR,
@@ -99,9 +95,6 @@ require("lazy").setup({
                 -- pre_restore_cmds = {}
             }
         end,
-        keys = {
-            {"<C-s><C-s>", "<cmd>Autosession search<cr>", desc="Show Session"}
-        }
     },
 
     -- {
@@ -137,10 +130,6 @@ require("lazy").setup({
             dependencies = {
                 "nvim-lua/plenary.nvim"
             },
-            keys = {
-                {"<C-g><C-g>", "<cmd>LazyGit<cr>", desc="Open LazyGit"}
-            }
-
         },
         {
             -- ghコマンド
@@ -176,9 +165,6 @@ require("lazy").setup({
         'nosduco/remote-sshfs.nvim',
         dependencies = {
             {'nvim-telescope/telescope.nvim'}
-        },
-        keys = {
-            {"<C-s><C-b>", "<cmd>Telescope buffers<cr>", desc="buffer list"}
         },
         config = function ()
             require('remote-sshfs').setup{
@@ -299,10 +285,11 @@ require("lazy").setup({
         {
             'akinsho/toggleterm.nvim',
             version = "*",
-            config = true,
-            keys = {
-                {"<C-s><C-t>", ":ToggleTerm<cr>", desc="terminal on/off"}
-            }
+            config = function ()
+                require("toggleterm").setup({
+                    autochdir = true
+                })
+            end
         }
 
     },
@@ -393,21 +380,10 @@ require("lazy").setup({
             "nvim-lua/plenary.nvim",
         },
         config = function ()
-            require'telescope'.setup {
-              extensions = {
-                media_files = {
-                  -- filetypes whitelist
-                  -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-                  filetypes = {"png", "webp", "jpg", "jpeg"},
-                  -- find command (defaults to `fd`)
-                  find_cmd = "rg"
-                }
-              },
-            }
+            require('telescope').setup(
+                require("plugins.config.telescope")
+            )
         end,
-        keys = {
-            {"<C-s><C-b>", "<cmd>lua require('telescope.builtin').buffers()<cr>", desc="show buffers"}
-        }
     },
     {
         "theHamsta/nvim-dap-virtual-text"
@@ -442,9 +418,6 @@ require("lazy").setup({
         after = {
             'glepnir/template.nvim',
         },
-        keys = {
-            {"<C-s><C-n>", "<cmd>NvimTreeToggle<cr>", desc="nvim tree on/off"}
-        },
         config = function()
             require("nvim-tree").setup({
                 sort_by = "case_sensitive",
@@ -468,32 +441,6 @@ require("lazy").setup({
                 require("plugins.config.fzf_lua")
             })
         end,
-        keys = {
-            {
-                "<C-s><C-p>", function ()
-                    require("plugins.config.fzf_lua").snippets()
-                end,
-                desc = "Snippets"
-            },
-            -- {
-            --     "<C-s><C-m>", function ()
-            --         require("plugins.config.fzf_lua").codestation()
-            --     end,
-            --     desc = "Codes",
-            -- },
-            {
-                "<C-s><C-o>", function ()
-                    require("plugins.config.fzf_lua").onelines()
-                end,
-                desc = "Onelines"
-            },
-            {
-                "<C-s><C-r>", function ()
-                    require("plugins.config.fzf_lua").readme()
-                end,
-                desc = "README"
-            },
-        }
     },
     {
         'glepnir/template.nvim',
@@ -628,8 +575,6 @@ require("lazy").setup({
 require("plugins.config.template")
 
 
-require('telescope').load_extension('media_files')
-require('telescope').load_extension('remote-sshfs')
 -- require("telescope").load_extension("session-lens")
 -- vim.keymap.set("n", "<C-s><C-b>", require("auto-session.session-lens").search_session, {
 --   noremap = true,
