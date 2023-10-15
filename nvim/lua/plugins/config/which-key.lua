@@ -101,7 +101,7 @@ wk.register({
     ["d"] = {"<cmd>Autosession delete<cr>", "Delete Session"},
     ["<C-b>"] = {"<cmd>Telescope buffers<cr>", "buffer list"},
     ["<C-t>"] = {"<cmd>ToggleTerm<cr>", "terminal on/off"},
-    ["<C-n>"] = {"<cmd>Dired<cr>", "open Dired"},
+    ["<C-n>"] = {"<cmd>Neotree<cr>", "open Neotree"},
     -- ["<C-n>"] = {"<cmd>Dired<cr>", "open Dired"},
     -- ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
     ["<C-p>"] = {
@@ -125,7 +125,13 @@ wk.register({
 }, { prefix = '<C-s>'})
 
 wk.register({
-    ["<C-g>"] = {"<cmd>LazyGit<cr>", "Open LazyGit"}
+    ["<C-g>"] = {"<cmd>LazyGit<cr>", "Open LazyGit"},
+    ["<C-i>"] = {
+        name = "+issue",
+        c = {"<cmd>Octo issue create<cr>", "Create Issue"},
+        l = {"<cmd>Octo issue list<cr>", "List Issue"}
+    },
+    ["<C-l>"] = {"<cmd>Octo issue list<cr>", "List Issue"}
 }, { prefix = '<C-g>'})
 
 

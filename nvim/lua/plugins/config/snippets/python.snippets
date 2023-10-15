@@ -131,3 +131,11 @@ snippet _8:opencv:video_capture ビデオ撮影
  		k = cv.waitKey(5) & 0xFF
 		if k == 27:
 			break
+
+
+snippet _8:opencv:img_show 画像表示
+	def show_image(img: np.array):
+	    cv2.imshow('dst', img)
+	    if cv2.waitKey(0) & 0xff == 27:
+	        cv2.destroyAllWindows()
+
