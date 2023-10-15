@@ -140,6 +140,20 @@ vim.cmd('source $HOME/common/development/schedule.nvim/plugin/schedule.lua')
 
 vim.cmd('nnoremap <Space>v :call sml#mode_on()<CR>')
 
+-- https://zenn.dev/vim_jp/articles/sync-cwd-zsh-on-vim
+-- 第一引数の `bufnr` には、シェルを開いている :terminal のバッファ番号が入っている。
+-- function! Tapi_getcwd(bufnr, ...) abort
+--   -- Vim のカレントディレクトリの取得。
+--   let cwd = call('getcwd', a:000)
+-- 
+--   -- `bufnr` で示される :terminal のバッファに紐づいているチャネルを取得。
+--   let channel = term_getjob(a:bufnr)->job_getchannel()
+-- 
+--   -- 取得したチャネルを使って、標準入力に Vim のカレントディレクトリのパスを書き込み。
+--   -- ここで書き込んだデータが `synccwd` コマンド内の `read cwd` コマンドで読み出される。
+--   call ch_sendraw(channel, cwd . "\n")
+-- endfunction
+
 
 return M
 

@@ -96,11 +96,14 @@ wk.register({
 
 
 wk.register({
-    -- ["<C-n>"] = {"<cmd>Dired<cr>", "Dired version"},
+    ["<C-k>"] = {"<cmd>cd %:h<cr>", "cwd change"},
     ["<C-s>"] = {"<cmd>Autosession search<cr>", "Show Session"},
+    ["d"] = {"<cmd>Autosession delete<cr>", "Delete Session"},
     ["<C-b>"] = {"<cmd>Telescope buffers<cr>", "buffer list"},
     ["<C-t>"] = {"<cmd>ToggleTerm<cr>", "terminal on/off"},
-    ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
+    ["<C-n>"] = {"<cmd>Neotree<cr>", "open Neotree"},
+    -- ["<C-n>"] = {"<cmd>Dired<cr>", "open Dired"},
+    -- ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
     ["<C-p>"] = {
         function ()
             require("plugins.config.fzf_lua").snippets()
@@ -123,10 +126,20 @@ wk.register({
 }, { prefix = '<C-s>'})
 
 wk.register({
-    ["<C-g>"] = {"<cmd>LazyGit<cr>", "Open LazyGit"}
+    ["<C-g>"] = {"<cmd>LazyGit<cr>", "Open LazyGit"},
+    ["<C-i>"] = {
+        name = "+issue",
+        c = {"<cmd>Octo issue create<cr>", "Create Issue"},
+        l = {"<cmd>Octo issue list<cr>", "List Issue"}
+    },
+    ["<C-l>"] = {"<cmd>Octo issue list<cr>", "List Issue"}
 }, { prefix = '<C-g>'})
 
 
 wk.register({
-    p = {'<cmd>lua require("nabla").popup()<cr>', "mathematics preview"}
+    ["<space>"] = {'<cmd>e %<cr>', "for enable syntax hightlight"},
+    t = {'<cmd>lua require("nabla").popup()<cr>', "Preview mathematics"},
+    p = {'<cmd>MarkdownPreviewToggle<cr>', "Preview readme"},
+    r = {'<cmd>term python %<cr>', "Run python code"}
+
 }, { prefix = "<space>" })
