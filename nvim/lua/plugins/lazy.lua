@@ -65,6 +65,7 @@ require("lazy").setup({
     'jbyuki/nabla.nvim',
     {
         "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         build = "cd app && npm install",
         init = function()
             vim.g.mkdp_filetypes = { "markdown" } end,
@@ -443,30 +444,30 @@ require("lazy").setup({
             vim.cmd.colorscheme "iceberg"
         end
     },
-    {
-        'nvim-tree/nvim-tree.lua',
-        version = "*",
-        dependencies = {
-            'nvim-tree/nvim-web-devicons',
-        },
-        after = {
-            'glepnir/template.nvim',
-        },
-        config = function()
-            require("nvim-tree").setup({
-                sort_by = "case_sensitive",
-                view = {
-                  width = 30,
-                },
-                renderer = {
-                  group_empty = true,
-                },
-                filters = {
-                  dotfiles = true,
-                },
-            })
-        end,
-    },
+    -- {
+    --     'nvim-tree/nvim-tree.lua',
+    --     version = "*",
+    --     dependencies = {
+    --         'nvim-tree/nvim-web-devicons',
+    --     },
+    --     after = {
+    --         'glepnir/template.nvim',
+    --     },
+    --     config = function()
+    --         require("nvim-tree").setup({
+    --             sort_by = "case_sensitive",
+    --             view = {
+    --               width = 30,
+    --             },
+    --             renderer = {
+    --               group_empty = true,
+    --             },
+    --             filters = {
+    --               dotfiles = true,
+    --             },
+    --         })
+    --     end,
+    -- },
     {
         "ibhagwan/fzf-lua",
         dependencies = {"nvim-tree/nvim-web-devicons"},

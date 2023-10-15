@@ -109,3 +109,25 @@ snippet _8timer_decorator
 	@timer
 	def add(x, y):
 	    return x + y
+
+
+snippet _8:opencv:bgr2hsv bgr to hsv
+	#
+	# https://docs.opencv.org/4.8.0/df/d9d/tutorial_py_colorspaces.html
+	#
+	import cv2 as cv
+	hsv_img = cv.cvtColor(img, cv.COLOR_BGR2HSV)
+
+snippet _8:opencv:video_capture ビデオ撮影
+	#
+	# https://docs.opencv.org/4.8.0/df/d9d/tutorial_py_colorspaces.html
+	#
+	import cv2 as cv
+	cap = cv.VideoCapture(0)
+	while 1:
+		_, frame = cap.read()
+
+		cv.imshow('frame', frame)
+ 		k = cv.waitKey(5) & 0xFF
+		if k == 27:
+			break

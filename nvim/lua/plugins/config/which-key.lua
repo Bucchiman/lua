@@ -97,6 +97,7 @@ wk.register({
 
 wk.register({
     -- ["<C-n>"] = {"<cmd>Dired<cr>", "Dired version"},
+    ["<C-k>"] = {"<cmd>cd %:h<cr>", "cwd change"},
     ["<C-s>"] = {"<cmd>Autosession search<cr>", "Show Session"},
     ["<C-b>"] = {"<cmd>Telescope buffers<cr>", "buffer list"},
     ["<C-t>"] = {"<cmd>ToggleTerm<cr>", "terminal on/off"},
@@ -127,5 +128,8 @@ wk.register({
 
 
 wk.register({
-    p = {'<cmd>lua require("nabla").popup()<cr>', "mathematics preview"}
+    t = {'<cmd>lua require("nabla").popup()<cr>', "Preview mathematics"},
+    p = {'<cmd>MarkdownPreviewToggle<cr>', "Preview readme"},
+    r = {'<cmd>term python %<cr>', "Run python code"}
+
 }, { prefix = "<space>" })
