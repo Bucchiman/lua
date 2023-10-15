@@ -96,12 +96,13 @@ wk.register({
 
 
 wk.register({
-    -- ["<C-n>"] = {"<cmd>Dired<cr>", "Dired version"},
     ["<C-k>"] = {"<cmd>cd %:h<cr>", "cwd change"},
     ["<C-s>"] = {"<cmd>Autosession search<cr>", "Show Session"},
+    ["d"] = {"<cmd>Autosession delete<cr>", "Delete Session"},
     ["<C-b>"] = {"<cmd>Telescope buffers<cr>", "buffer list"},
     ["<C-t>"] = {"<cmd>ToggleTerm<cr>", "terminal on/off"},
     ["<C-n>"] = {"<cmd>Dired<cr>", "open Dired"},
+    -- ["<C-n>"] = {"<cmd>Dired<cr>", "open Dired"},
     -- ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
     ["<C-p>"] = {
         function ()
@@ -129,6 +130,7 @@ wk.register({
 
 
 wk.register({
+    ["<space>"] = {'<cmd>e %<cr>', "for enable syntax hightlight"},
     t = {'<cmd>lua require("nabla").popup()<cr>', "Preview mathematics"},
     p = {'<cmd>MarkdownPreviewToggle<cr>', "Preview readme"},
     r = {'<cmd>term python %<cr>', "Run python code"}
