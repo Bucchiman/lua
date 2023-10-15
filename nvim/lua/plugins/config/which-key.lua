@@ -101,7 +101,8 @@ wk.register({
     ["<C-s>"] = {"<cmd>Autosession search<cr>", "Show Session"},
     ["<C-b>"] = {"<cmd>Telescope buffers<cr>", "buffer list"},
     ["<C-t>"] = {"<cmd>ToggleTerm<cr>", "terminal on/off"},
-    ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
+    ["<C-n>"] = {"<cmd>Dired<cr>", "open Dired"},
+    -- ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
     ["<C-p>"] = {
         function ()
             require("plugins.config.fzf_lua").snippets()
