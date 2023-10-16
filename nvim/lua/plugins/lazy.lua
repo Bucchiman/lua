@@ -57,6 +57,10 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'mrjones2014/dash.nvim',
+        build = 'make install',
+    },
+    {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         requires = { 

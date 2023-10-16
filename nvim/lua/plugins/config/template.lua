@@ -21,7 +21,7 @@ require("template").setup({
 local file = vim.fn.expand("%")
 
 vim.api.nvim_create_autocmd(
-    {"BufNewFile", "BufReadPre"},
+    {"BufNewFile"},
     {
         pattern = {
             "*.c",
@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd(
 
 
 vim.api.nvim_create_autocmd(
-    {"BufNewFile", "BufReadPre"},
+    {"BufNewFile"},
     {
         pattern = {
             "plugin.lua"
