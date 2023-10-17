@@ -10,6 +10,28 @@ snippet _8 metadata
 	# Description:  ---
 	#
 
+snippet _8:temp template
+	import os
+	import sys
+	# import utils
+	# from utils import get_ml_args, get_dl_args, get_logger
+	# import numpy as np
+	# import pandas as pd
+	
+	
+	def main():
+	    # args = utils.get_args()
+	    # method = getattr(utils, args.method)
+	    {{_cursor_}}
+	    pass
+	
+	
+	if __name__ == "__main__":
+	    main()
+
+
+
+
 snippet _8argparse
 	def get_args():
 		"""
@@ -139,3 +161,26 @@ snippet _8:opencv:img_show 画像表示
 	    if cv2.waitKey(0) & 0xff == 27:
 	        cv2.destroyAllWindows()
 
+
+snippet _8:decorator:sample how to decorate
+	def deco(func):
+		"""
+			https://qiita.com/mtb_beta/items/d257519b018b8cd0cc2e
+		"""
+		def wrapper(*args, **kwargs):
+			# toDo
+			# print("wrapper area")
+			results = func(*args, **kwargs)
+			return results
+		return wrapper
+
+	@deco
+	def run():
+		# toDo
+
+	run()
+
+snippet _8:sysargv casual arguments
+	import sys
+
+	print(sys.argv[0])   # python main.py hoge -> hoge

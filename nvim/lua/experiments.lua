@@ -71,11 +71,15 @@ autocmd({"BufEnter", "BufWinEnter"}, {
 
 
 autocmd({"BufEnter", "BufWinEnter"}, {
-    pattern = {"*.lua"},
+    pattern = {"*.jpg"},
     callback = function ()
-        print(vim.opt.guifont._value)
-        vim.opt.guifont = string.gsub(vim.opt.guifont._value, ":h(%d+)", string.format(":h%d", 1))
-        print(vim.opt.guifont._value)
+        vim.opt.guifont = string.gsub(vim.opt.guifont._value, ":h(%d+)", string.format(":h%d", 5))
+    end,
+})
+autocmd({"BufLeave", "BufWinLeave"}, {
+    pattern = {"*.jpg"},
+    callback = function ()
+        vim.opt.guifont = string.gsub(vim.opt.guifont._value, ":h(%d+)", string.format(":h%d", 17))
     end,
 })
 
