@@ -57,6 +57,10 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'mrjones2014/dash.nvim',
+        build = 'make install',
+    },
+    {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         requires = { 
@@ -794,11 +798,7 @@ require("lazy").setup({
             'TemProject'
         },
         config = function()
-            require("template").setup({
-                temp_dir = "$HOME/.config/template",
-                author = "8ucchiman",
-                email = "8ucchiman@gmail.com",
-            })
+            require("plugins.config.template")
         end
     },
     "nvim-lua/plenary.nvim",
@@ -917,6 +917,6 @@ require("lazy").setup({
     }
 })
 
-require("plugins.config.template")
+-- require("plugins.config.template")
 
 
