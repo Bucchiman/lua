@@ -68,6 +68,25 @@ autocmd({"BufEnter", "BufWinEnter"}, {
     pattern = {"*.c", "*.h"},
     command = "echo 'Entering a C or C++ file'",
 })
+
+
+autocmd({"BufEnter", "BufWinEnter"}, {
+    pattern = {"*.lua"},
+    callback = function ()
+        print(vim.opt.guifont._value)
+        vim.opt.guifont = string.gsub(vim.opt.guifont._value, ":h(%d+)", string.format(":h%d", 1))
+        print(vim.opt.guifont._value)
+    end,
+})
+
+
+-- autocmd({"BufEnter", "BufWinEnter"}, {
+--     pattern = {"*.lua"},
+--     callback = function ()
+--         print("8ucchiman was here")
+--     end
+-- })
+
 -- 起動後に文字列を出力
 --autocmd("VimEnter", {
 --    command = "echo '8ucchiman was here!'",
@@ -140,7 +159,7 @@ vim.cmd('source $HOME/common/development/schedule.nvim/plugin/schedule.lua')
 
 vim.cmd('nnoremap <Space>v :call sml#mode_on()<CR>')
 
--- https://zenn.dev/vim_jp/articles/sync-cwd-zsh-on-vim
+-- 
 -- 第一引数の `bufnr` には、シェルを開いている :terminal のバッファ番号が入っている。
 -- function! Tapi_getcwd(bufnr, ...) abort
 --   -- Vim のカレントディレクトリの取得。

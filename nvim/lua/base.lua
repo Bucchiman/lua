@@ -29,17 +29,7 @@ vim.api.nvim_create_autocmd({"BufEnter"}, {
     group = "WorkingDirectory",
 })
 
-vim.api.nvim_create_autocmd({"BufEnter"}, {
-    pattern = {"*.lua"},
-    callback = function ()
-        print("8ucchiman was here")
-        vim.opt.guifont = { "Source Code Pro", ":h1" }
-    end,
-})
-
 vim.opt.formatoptions:append { 'r' }
-
-
 -- local terminal_buffer = vim.api.nvim_create_buf(false, true)
 -- vim.api.nvim_buf_call(terminal_buffer, function ()
 --     vim.cmd("terminal")
