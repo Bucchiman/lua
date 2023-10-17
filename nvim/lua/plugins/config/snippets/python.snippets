@@ -10,6 +10,28 @@ snippet _8 metadata
 	# Description:  ---
 	#
 
+snippet _8:temp template
+	import os
+	import sys
+	# import utils
+	# from utils import get_ml_args, get_dl_args, get_logger
+	# import numpy as np
+	# import pandas as pd
+	
+	
+	def main():
+	    # args = utils.get_args()
+	    # method = getattr(utils, args.method)
+	    {{_cursor_}}
+	    pass
+	
+	
+	if __name__ == "__main__":
+	    main()
+
+
+
+
 snippet _8argparse
 	def get_args():
 		"""
@@ -158,4 +180,7 @@ snippet _8:decorator:sample how to decorate
 
 	run()
 
+snippet _8:sysargv casual arguments
+	import sys
 
+	print(sys.argv[0])   # python main.py hoge -> hoge
