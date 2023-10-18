@@ -70,26 +70,20 @@ autocmd({"BufEnter", "BufWinEnter"}, {
 })
 
 
-autocmd({"BufEnter", "BufWinEnter"}, {
-    pattern = {"*.jpg"},
-    callback = function ()
-        vim.opt.guifont = string.gsub(vim.opt.guifont._value, ":h(%d+)", string.format(":h%d", 5))
-    end,
-})
-autocmd({"BufLeave", "BufWinLeave"}, {
-    pattern = {"*.jpg"},
-    callback = function ()
-        vim.opt.guifont = string.gsub(vim.opt.guifont._value, ":h(%d+)", string.format(":h%d", 17))
-    end,
-})
-
-
 -- autocmd({"BufEnter", "BufWinEnter"}, {
---     pattern = {"*.lua"},
+--     pattern = {"*.jpg"},
 --     callback = function ()
---         print("8ucchiman was here")
---     end
+--         vim.opt.guifont = string.gsub(vim.opt.guifont._value, ":h(%d+)", string.format(":h%d", 5))
+--     end,
 -- })
+-- autocmd({"BufLeave", "BufWinLeave"}, {
+--     pattern = {"*.jpg"},
+--     callback = function ()
+--         vim.opt.guifont = string.gsub(vim.opt.guifont._value, ":h(%d+)", string.format(":h%d", 17))
+--     end,
+-- })
+
+
 
 -- 起動後に文字列を出力
 --autocmd("VimEnter", {
