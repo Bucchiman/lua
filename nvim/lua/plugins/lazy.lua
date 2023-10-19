@@ -332,7 +332,15 @@ require("lazy").setup({
                 mappings = {
                     ["bd"] = "buffer_delete",
                     ["<bs>"] = "navigate_up",
-                    ["."] = "set_root",
+                    -- ["."] = "set_root",
+                    ["."] = function(state)
+		                local current_node = state.tree:get_node()		-- this is the current node
+		                local path = current_node:get_id()				-- this gives you the path
+
+		                require("neo-tree.sources.filesystem.commands").set_root(state)		-- call the default set_root
+		                -- do whatever you want to do here
+		                vim.cmd("cd " .. path)
+	                end,
                     ["o"] = { "show_help", nowait=false, config = { title = "Order by", prefix_key = "o" }},
                     ["oc"] = { "order_by_created", nowait = false },
                     ["od"] = { "order_by_diagnostics", nowait = false },
@@ -362,7 +370,12 @@ require("lazy").setup({
               ["os"] = { "order_by_size", nowait = false },
               ["ot"] = { "order_by_type", nowait = false },
             }
-          },
+        }
+    }
+          })
+      vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
+  end
+},
               {
         'gelguy/wilder.nvim',
         config = function()
@@ -382,16 +395,6 @@ require("lazy").setup({
             })
         end,
     },
-    {
-        "kdheepak/lazygit.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim"
-        }
-      })
-
-      vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
-    end
-},
     -- {
     --     "nvim-neo-tree/neo-tree.nvim",
     --     branch = "v3.x",

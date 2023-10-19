@@ -19,20 +19,6 @@
 -- local keymap = vim.api.nvim_set_keymap
 -- 
 -- 
--- keymap('n', '<leader>e', "<cmd>lua require('fzf-lua').files()<CR>", opts)
--- keymap('n', '<leader>g', "<cmd>lua require('fzf-lua').git_status()<CR>", opts)
--- keymap('n', '<leader>b', "<cmd>lua require('fzf-lua').git_branches()<CR>", opts)
--- keymap('n', '<leader>p', "<cmd>lua require('fzf-lua').grep()<CR>", opts)
--- keymap('n', '<leader>/', "<cmd>lua require('fzf-lua').blines()<CR>", opts)
--- 
--- keymap('n', '<leader>r', "<cmd>lua require('fzf-lua').lsp_references()<CR>", opts)
--- keymap('n', '<leader>d', "<cmd>lua require('fzf-lua').lsp_definitions()<CR>", opts)
--- keymap('n', '<leader>D', "<cmd>lua require('fzf-lua').lsp_declarations()<CR>", opts)
--- keymap('n', '<leader>i', "<cmd>lua require('fzf-lua').lsp_implementations()<CR>", opts)
--- keymap('n', '<leader>s', "<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>", opts)
--- keymap('n', '<leader>t', "<cmd>lua require('fzf-lua').lsp_typedefs()<CR>", opts)
--- keymap('n', '<leader>l', "<cmd>lua require('fzf-lua').diagnostics_document()<CR>", opts)
-
 
 local img_previewer = vim.fn.executable("ueberzug") == 1 and { "ueberzug", "layer" } or { "viu", "-b" }
 
