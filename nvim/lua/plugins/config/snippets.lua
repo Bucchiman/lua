@@ -20,6 +20,7 @@ local func = ls.function_node
 local choice = ls.choice_node
 local dynamicn = ls.dynamic_node
 
+
 local date = function() return {os.date('%Y-%m-%d %X')} end
 
 function _(text)
@@ -57,4 +58,8 @@ ls.add_snippets(nil, {
     }
 })
 
-require("luasnip.loaders.from_snipmate").load()
+-- require("luasnip.loaders.from_snipmate").load()
+require("luasnip.loaders.from_snipmate").load({
+    paths = {"$HOME/.config/local"}
+})
+
