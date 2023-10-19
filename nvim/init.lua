@@ -22,6 +22,7 @@ function file_exists(name)
    if f~=nil then io.close(f) return true else return false end
 end
 
+
 -- if vim.fn.filereadable("$HOME/.config/local/lua/local.lua") then
 if file_exists(home_dir .. "/.config/local/lua/local.lua") then
     vim.opt.runtimepath:append('$HOME/.config/local')

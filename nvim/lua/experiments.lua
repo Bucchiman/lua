@@ -152,8 +152,15 @@ end
 --print(vim.api.nvim_buf_get_name(1))
 --print(tostring(vim.api.nvim_get_current_line()))
 
-vim.cmd("set runtimepath+=$HOME/common/development/schedule.nvim")
-vim.cmd('source $HOME/common/development/schedule.nvim/plugin/schedule.lua')
+function file_exists(name)
+   local f=io.open(name, "r")
+   if f~=nil then io.close(f) return true else return false end
+end
+
+if file_exists("$HOME/common/development/schedule.nvim") then
+    vim.cmd("set runtimepath+=$HOME/common/development/schedule.nvim")
+    vim.cmd('source $HOME/common/development/schedule.nvim/plugin/schedule.lua')
+end
 
 vim.cmd('nnoremap <Space>v :call sml#mode_on()<CR>')
 

@@ -362,7 +362,30 @@ require("lazy").setup({
               ["os"] = { "order_by_size", nowait = false },
               ["ot"] = { "order_by_type", nowait = false },
             }
-          }
+          },
+              {
+        'gelguy/wilder.nvim',
+        config = function()
+            require("wilder").setup({
+                modes = {':', '/', '?'}
+            })
+        end,
+    },
+    {
+        "folke/styler.nvim",
+        config = function()
+            require("styler").setup({
+                themes = {
+                    markdown = { colorscheme = "gruvbox" },
+                    help = { colorscheme = "catppuccin-mocha", background = "dark" },
+                },
+            })
+        end,
+    },
+    {
+        "kdheepak/lazygit.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim"
         }
       })
 
