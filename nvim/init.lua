@@ -40,8 +40,6 @@ require("plugins.lazy")
 require("tools.settings")
 local experiments = require("experiments")
 
-
-
 -- Insert timestamp after 'LastModified: '
 --function! LastModified()
 --    if &modified

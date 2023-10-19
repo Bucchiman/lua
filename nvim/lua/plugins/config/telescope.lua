@@ -14,7 +14,7 @@ M = {}
 
 require('telescope').load_extension('media_files')
 require('telescope').load_extension('remote-sshfs')
-require("telescope").load_extension('find_template')
+-- require("telescope").load_extension('find_template')
 
 M.extensions = {
     media_files = {

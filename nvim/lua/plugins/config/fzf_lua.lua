@@ -1,6 +1,6 @@
 #!/usr/bin/env lua
 --
--- FileName:     fzf
+-- FileName:     fzf_lua
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-06 23:57:24
