@@ -10,15 +10,24 @@ snippet _8 metadata
 	# Description:  ---
 	#
 
-snippet _8temp template
+snippet _8:temp template
+	import os
+	import sys
+	# import utils
+	# from utils import get_ml_args, get_dl_args, get_logger
+	# import numpy as np
+	# import pandas as pd
+	
+	
 	def main():
-		"""
-			main code
-		"""
-		pass
-
+	    # args = utils.get_args()
+	    # method = getattr(utils, args.method)
+	    {{_cursor_}}
+	    pass
+	
+	
 	if __name__ == "__main__":
-		main()
+	    main()
 
 snippet _8argparse
 	def get_args():
@@ -119,3 +128,56 @@ snippet _8timer_decorator
 	@timer
 	def add(x, y):
 	    return x + y
+
+
+snippet _8:opencv:bgr2hsv bgr to hsv
+	#
+	# https://docs.opencv.org/4.8.0/df/d9d/tutorial_py_colorspaces.html
+	#
+	import cv2 as cv
+	hsv_img = cv.cvtColor(img, cv.COLOR_BGR2HSV)
+
+snippet _8:opencv:video_capture ビデオ撮影
+	#
+	# https://docs.opencv.org/4.8.0/df/d9d/tutorial_py_colorspaces.html
+	#
+	import cv2 as cv
+	cap = cv.VideoCapture(0)
+	while 1:
+		_, frame = cap.read()
+
+		cv.imshow('frame', frame)
+ 		k = cv.waitKey(5) & 0xFF
+		if k == 27:
+			break
+
+
+snippet _8:opencv:img_show 画像表示
+	def show_image(img: np.array):
+	    cv2.imshow('dst', img)
+	    if cv2.waitKey(0) & 0xff == 27:
+	        cv2.destroyAllWindows()
+
+
+snippet _8:decorator:sample how to decorate
+	def deco(func):
+		"""
+			https://qiita.com/mtb_beta/items/d257519b018b8cd0cc2e
+		"""
+		def wrapper(*args, **kwargs):
+			# toDo
+			# print("wrapper area")
+			results = func(*args, **kwargs)
+			return results
+		return wrapper
+
+	@deco
+	def run():
+		# toDo
+
+	run()
+
+snippet _8:sysargv casual arguments
+	import sys
+
+	print(sys.argv[0])   # python main.py hoge -> hoge

@@ -1,3 +1,4 @@
+
 snippet _8 metadate
 	#
 	# FileName:     Makefile
@@ -7,6 +8,7 @@ snippet _8 metadate
 	# Reference: 	https://qiita.com/chibi929/items/b8c5f36434d5d3fbfa4a
 	# Description:	---
 	#
+
 
 snippet _8template template_variables
 	# https://nao-bamboo.hatenablog.com/entry/2015/09/11/175832
@@ -36,7 +38,15 @@ snippet _8template template_variables
 		rm -rf $(OUTDIR)
 
 snippet _8PHONY template_PHONY
-	.PHONY: clean run debug
+	.PHONY: build clean run debug
+
+	run:
+
+	build:
+
+	debug:
+
+	clean:
 
 snippet _8macro:$@ target (target: prerequisites)
 	$@

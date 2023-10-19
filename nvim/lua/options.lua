@@ -54,10 +54,10 @@ local options = {
     background = "dark",
     scrolloff = 8,
     sidescrolloff = 8,
-    guifont = "mononoki Nerd Font:h12",
+    guifont = "Mononoki Nerd Font:h17",
     splitbelow = false, -- オンのとき、ウィンドウを横分割すると新しいウィンドウはカレントウィンドウの下に開かれる
     splitright = false, -- オンのとき、ウィンドウを縦分割すると新しいウィンドウはカレントウィンドウの右に開かれる
-    inccommand = "split"
+    inccommand = "split",
 }
 
 vim.opt.shortmess:append("c")
@@ -73,3 +73,7 @@ vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
 
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
+
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+vim.o.sessionoptions="buffers"

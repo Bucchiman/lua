@@ -9,9 +9,8 @@ snippet _8 metadata
 	# Description:  ---
 	#
 
+
 snippet _8:temp template
-	set -ex        # 途中のエラーで実行中断
-	
 	function func_lst () {
 	    echo "***********************************"
 	    echo "The following function is prepared."
@@ -79,7 +78,7 @@ snippet _8:temp template
 	
 	#######################################
 	function main01 () {
-	    set_variable
+	    set_variables
 	    if [[ $@ == "" ]]; then
 	        default
 	    else

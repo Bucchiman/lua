@@ -44,11 +44,18 @@ end
 
 
 
-
+keymap("n", "<S-d><S-d>", "<cmd>bd!<cr>", opts)
 keymap("n", "<S-A-k>", ":resize -2<CR>", opts)
 keymap("n", "<S-A-j>", ":resize +2<CR>", opts)
 keymap("n", "<S-A-l>", ":vertical resize -2<CR>", opts)
 keymap("n", "<S-A-h>", ":vertical resize +2<CR>", opts)
+
+-- on mac
+keymap("n", "<C-D-k>", ":resize -2<CR>", opts)
+keymap("n", "<C-D-j>", ":resize +2<CR>", opts)
+keymap("n", "<C-D-l>", ":vertical resize -2<CR>", opts)
+keymap("n", "<C-D-h>", ":vertical resize +2<CR>", opts)
+
 -- keymap("n", "<C-t>", ":terminal<CR>", opts)
 
 -- S-v Shift-v
@@ -81,18 +88,19 @@ keymap("v", "<C-p>", '"0p', opts)
 
 -- ターミナルモード
 keymap("t", "<ESC><ESC>", '<C-\\><C-n>', opts)
+keymap("t", "<S-j><S-j>", '<C-\\><C-n>', opts)
 
 
 keymap("n", "<C-p>", ":bprev<CR>", opts)
 keymap("n", "<C-n>", ":bnext<CR>", opts)
 
-keymap("c", "<C-p>", "<Up>", opts)
-keymap("c", "<C-n>", "<Down>", opts)
-keymap("c", "<C-e>", "<End>", opts)
-keymap("c", "<C-a>", "<Home>", opts)
-keymap("c", "<C-b>", "<Left>", opts)
-keymap("c", "<C-f>", "<Right>", opts)
-keymap("c", "<C-d>", "<Del>", opts)
+-- keymap("c", "<C-p>", "<Up>", opts)
+-- keymap("c", "<C-n>", "<Down>", opts)
+-- keymap("c", "<C-e>", "<End>", opts)
+-- keymap("c", "<C-a>", "<Home>", opts)
+-- keymap("c", "<C-b>", "<Left>", opts)
+-- keymap("c", "<C-f>", "<Right>", opts)
+-- keymap("c", "<C-d>", "<Del>", opts)
 -- keymap("c", "<C-k>", function()
 --     string.sub(vim.fn.getcmdline(), 0, vim.fn.getcmdpos()-1)
 -- end, opts)
