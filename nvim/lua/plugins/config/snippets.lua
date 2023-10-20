@@ -58,8 +58,9 @@ ls.add_snippets(nil, {
     }
 })
 
--- require("luasnip.loaders.from_snipmate").load()
 require("luasnip.loaders.from_snipmate").load({
-    paths = {"$HOME/.config/local"}
+    paths = {
+        "~/.config/local/snippets",
+        "~/.config/snippets"
+    }
 })
-
