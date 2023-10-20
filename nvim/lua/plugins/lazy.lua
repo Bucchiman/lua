@@ -462,36 +462,29 @@ require("lazy").setup({
     --     end,
     -- },
     {
+        -- Update: 2023-10-20 11:48:29
+        -- Description: conflicts between auto-session and neo-tree
+        --              fix this by issue https://github.com/nvim-neo-tree/neo-tree.nvim/issues/400
         'rmagatti/auto-session',
         dependencies = {'nvim-telescope/telescope.nvim'},
         config = function ()
             require("auto-session").setup {
-                auto_session_enable = true,
+                auto_session_create_enabled = false,
+                auto_session_enabled = true,
+                auto_session_restore_enabled = true,
+                auto_session_use_git_branch = true,
                 log_level = vim.log.levels.ERROR,
+                bypass_session_save_file_types = {"neo-tree"},
                 auto_session_suppress_dirs = { "~", "~/Projects", "~/Downloads", "/" },
-                -- auto_session_use_git_branch = false,
-
-                cwd_change_handling = {
-                    restore_upcoming_session = true,
-                    pre_cwd_changed_hook = nil,
-                    -- pre_cwd_changed_hook = function ()
-                    --     
-                    -- end,
-                    post_cwd_changed_hook = function ()
-                        vim.cmd("Neotree " .. vim.fn.getcwd())
-                        -- vim.cmd("Dired")
-                        -- local nvim_tree = require("nvim-tree")
-                        -- nvim_tree.change_dir(vim.fn.getcwd())
+                pre_save_cmd = { function ()
+                    require 'neo-tree.sources.manager'.close_all()
+                    vim.notify('closed all')
                     end
                 },
-                -- post_restore_cmds = {
-                --     function ()
-                --         local nvim_tree = require("nvim-tree")
-                --         nvim_tree.change_dir(vim.fn.getcwd())
-                --     end,
-                --     "NvimTreeOpen"
-                -- },
-                -- pre_restore_cmds = {}
+                post_restore_cmds = { function ()
+                    vim.notify('opening neotree')
+                    require 'neo-tree.sources.manager'.show('filesystem')
+                end},
             }
         end,
     },
