@@ -439,7 +439,7 @@ require("lazy").setup({
                 log_level = vim.log.levels.ERROR,
                 bypass_session_save_file_types = {"neo-tree"},
                 auto_session_suppress_dirs = { "~", "~/Projects", "~/Downloads", "/" },
-                pre_save_cmd = { function ()
+                pre_save_cmds = { function ()
                     require 'neo-tree.sources.manager'.close_all()
                     vim.notify('closed all')
                     end
