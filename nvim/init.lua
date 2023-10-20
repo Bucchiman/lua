@@ -35,7 +35,6 @@ if file_exists("/tmp/8ucchiman/nvim/sample.lua") then
     require("sample")
 end
 
-
 require("plugins.lazy")
 require("tools.settings")
 local experiments = require("experiments")

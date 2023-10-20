@@ -98,7 +98,8 @@ wk.register({
 wk.register({
     ["<C-k>"] = {"<cmd>cd %:h<cr>", "cwd change"},
     -- ["<C-s>"] = {"<cmd>Autosession search<cr>", "Show Session"},
-    ["<C-s>"] = {"<cmd>Telescope projects<cr>", "Show projects"},
+    ["<C-s>"] = {"<cmd>Telescope possession list<cr>", "Show Session"},
+    -- ["<C-s>"] = {"<cmd>Telescope projects<cr>", "Show projects"},
     -- ["d"] = {"<cmd>Autosession delete<cr>", "Delete Session"},
     ["<C-b>"] = {"<cmd>Telescope buffers<cr>", "buffer list"},
     ["<C-t>"] = {"<cmd>ToggleTerm<cr>", "terminal on/off"},
@@ -142,5 +143,4 @@ wk.register({
     t = {'<cmd>lua require("nabla").popup()<cr>', "Preview mathematics"},
     p = {'<cmd>MarkdownPreviewToggle<cr>', "Preview readme"},
     r = {'<cmd>term python %<cr>', "Run python code"}
-
 }, { prefix = "<space>" })
