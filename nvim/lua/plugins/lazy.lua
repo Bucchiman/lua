@@ -69,7 +69,7 @@ require("lazy").setup({
                 prompt_no_cr = false,
                 autosave = {
                     current = true,  -- or fun(name): boolean
-                    tmp = true,  -- or fun(): boolean
+                    tmp = false,  -- or fun(): boolean
                     tmp_name = 'tmp', -- or fun(): string
                     on_load = true,
                     on_quit = true,
