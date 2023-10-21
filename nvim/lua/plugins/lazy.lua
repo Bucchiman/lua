@@ -57,6 +57,12 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        'stevearc/oil.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+    {
         'Bucchiman/hotprojects.nvim'
     },
     {
@@ -448,17 +454,17 @@ require("lazy").setup({
     --   vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
     -- end
     -- },
-    --{
-    --    'gelguy/wilder.nvim',
-    --    build = function ()
-    --        vim.cmd("UpdateRemotePlugins")
-    --    end,
-    --    config = function()
-    --        require("wilder").setup({
-    --            modes = {':', '/', '?'}
-    --        })
-    --    end,
-    --},
+    {
+        'gelguy/wilder.nvim',
+        build = function ()
+            vim.cmd("UpdateRemotePlugins")
+        end,
+        config = function()
+            require("wilder").setup({
+                modes = {':', '/', '?'}
+            })
+        end,
+    },
     {
         "folke/styler.nvim",
         config = function()
@@ -853,38 +859,38 @@ require("lazy").setup({
             vim.cmd.colorscheme "iceberg"
         end
     },
-    {
-        'nvim-tree/nvim-tree.lua',
-        version = "*",
-        dependencies = {
-            'nvim-tree/nvim-web-devicons',
-        },
-        config = function()
-            require("nvim-tree").setup({
-                actions = {
-                    open_file = {
-                        quit_on_open = true
-                    }
-                },
-                sync_root_with_cwd = true,
-                respect_buf_cwd = true,
-                update_focused_file = {
-                    enable = true,
-                    update_root = true
-                },
-                sort_by = "case_sensitive",
-                view = {
-                  width = 30,
-                },
-                renderer = {
-                  group_empty = true,
-                },
-                filters = {
-                  dotfiles = true,
-                },
-            })
-        end,
-    },
+    -- {
+    --     'nvim-tree/nvim-tree.lua',
+    --     version = "*",
+    --     dependencies = {
+    --         'nvim-tree/nvim-web-devicons',
+    --     },
+    --     config = function()
+    --         require("nvim-tree").setup({
+    --             actions = {
+    --                 open_file = {
+    --                     quit_on_open = true
+    --                 }
+    --             },
+    --             sync_root_with_cwd = true,
+    --             respect_buf_cwd = true,
+    --             update_focused_file = {
+    --                 enable = true,
+    --                 update_root = true
+    --             },
+    --             sort_by = "case_sensitive",
+    --             view = {
+    --               width = 30,
+    --             },
+    --             renderer = {
+    --               group_empty = true,
+    --             },
+    --             filters = {
+    --               dotfiles = true,
+    --             },
+    --         })
+    --     end,
+    -- },
     -- {
     --     -- nvim-tree: not working
     --     "ahmedkhalf/project.nvim",

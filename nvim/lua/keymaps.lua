@@ -41,13 +41,14 @@ function reflect_nvimtree ()
     local absolute_path = vim.api.nvim_buf_get_name(0)
 end
 
-home_dir = os.getenv("HOME")
 
 vim.keymap.set("n", "<C-s><C-a>", function ()
+    local home_dir = os.getenv("HOME")
     local f = assert(io.open(home_dir .. "/.config/local/hotstation", "a+"))
     local cwd = vim.fn.getcwd()
     for line in f:lines() do
-        if string.gmatch(line, "^".. cwd .."$") then
+        if cwd == string.gmatch(line, "^".. cwd .."$") then
+            vim.notify("exists hotproject ...")
             f:close()
             return
         end

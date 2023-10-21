@@ -94,10 +94,9 @@ wk.register({
     },
 }, { prefix = '<leader>' })
 
-
 wk.register({
     ["<C-k>"] = {"<cmd>cd %:h<cr>", "cwd change"},
-    ["<C-s>"] = {'<cmd>lua require("telescope").extensions.hotprojects.show_hotproject()<cr>', "Show projects"},
+    ["<C-e>"] = {'<cmd>lua require("telescope").extensions.hotprojects.show_hotproject()<cr>', "Show projects"},
     -- ["<C-s>"] = {"<cmd>Autosession search<cr>", "Show Session"},
     -- ["<C-s>"] = {"<cmd>Telescope possession list<cr>", "Show Session"},
     -- ["<C-s>"] = {"<cmd>Telescope projects<cr>", "Show projects"},
@@ -106,7 +105,8 @@ wk.register({
     ["<C-t>"] = {"<cmd>ToggleTerm<cr>", "terminal on/off"},
     -- ["<C-n>"] = {"<cmd>Neotree<cr>", "open Neotree"},
     -- ["<C-n>"] = {"<cmd>Dired<cr>", "open Dired"},
-    ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
+    -- ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
+    ["<C-n>"] = {"<cmd>Oil<cr>", "Open parent directory"},
     ["<C-p>"] = {
         function ()
             require("plugins.config.fzf_lua").snippets()
