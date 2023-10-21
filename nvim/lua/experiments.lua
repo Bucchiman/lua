@@ -179,5 +179,6 @@ vim.cmd('nnoremap <Space>v :call sml#mode_on()<CR>')
 -- endfunction
 
 
-return M
 
+
+return M
