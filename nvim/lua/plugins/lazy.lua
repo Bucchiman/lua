@@ -25,31 +25,31 @@ vim.opt.rtp:prepend(lazypath)
 --#endregion
 -----------------------------------------------------------
 
---#region
---  Reference: https://github.com/rktjmp/hotpot.nvim
--- Bootstap hotpot into lazy plugin dir if it does not exist yet.
-local hotpotpath = vim.fn.stdpath("data") .. "/lazy/hotpot.nvim"
-if not vim.loop.fs_stat(hotpotpath) then
-  vim.notify("Bootstrapping hotpot.nvim...", vim.log.levels.INFO)
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "--single-branch",
-    -- You may with to pin a known version tag with `--branch=vX.Y.Z`
-    "--branch=v0.9.6",
-    "https://github.com/rktjmp/hotpot.nvim.git",
-    hotpotpath,
-  })
-end
-vim.opt.rtp:prepend(hotpotpath)
-require("hotpot")
-
--- include hotpot as a plugin so lazy will update it
-
--- include the rest of your config
-
---#endregion
+-- --#region
+-- --  Reference: https://github.com/rktjmp/hotpot.nvim
+-- -- Bootstap hotpot into lazy plugin dir if it does not exist yet.
+-- local hotpotpath = vim.fn.stdpath("data") .. "/lazy/hotpot.nvim"
+-- if not vim.loop.fs_stat(hotpotpath) then
+--   vim.notify("Bootstrapping hotpot.nvim...", vim.log.levels.INFO)
+--   vim.fn.system({
+--     "git",
+--     "clone",
+--     "--filter=blob:none",
+--     "--single-branch",
+--     -- You may with to pin a known version tag with `--branch=vX.Y.Z`
+--     "--branch=v0.9.6",
+--     "https://github.com/rktjmp/hotpot.nvim.git",
+--     hotpotpath,
+--   })
+-- end
+-- vim.opt.rtp:prepend(hotpotpath)
+-- require("hotpot")
+-- 
+-- -- include hotpot as a plugin so lazy will update it
+-- 
+-- -- include the rest of your config
+-- 
+-- --#endregion
 -----------------------------------------------------------
 
 
@@ -470,12 +470,12 @@ require("lazy").setup({
             })
         end,
     },
-    {
-        "rktjmp/hotpot.nvim",
-        config = function ()
-            require("hotpot").setup({"rktjmp/hotpot.nvim"})
-        end
-    },
+--     {
+--         "rktjmp/hotpot.nvim",
+--         config = function ()
+--             require("hotpot").setup({"rktjmp/hotpot.nvim"})
+--         end
+--     },
     'jbyuki/nabla.nvim',
     {
         "iamcco/markdown-preview.nvim",

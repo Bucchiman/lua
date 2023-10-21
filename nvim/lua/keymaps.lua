@@ -41,7 +41,22 @@ function reflect_nvimtree ()
     local absolute_path = vim.api.nvim_buf_get_name(0)
 end
 
+home_dir = os.getenv("HOME")
 
+vim.keymap.set("n", "<C-s><C-a>", function ()
+    local f = assert(io.open(home_dir .. "/.config/local/hotstation", "a+"))
+    local cwd = vim.fn.getcwd()
+    for line in f:lines() do
+        if string.gmatch(line, "^".. cwd .."$") then
+            f:close()
+            return
+        end
+    end
+    vim.notify("adding a project ...")
+    f:write(cwd .. "\n")
+    f:close()
+    -- end
+end)
 
 
 keymap("n", "<S-d><S-d>", "<cmd>bd!<cr>", opts)
