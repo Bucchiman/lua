@@ -107,7 +107,7 @@ wk.register({
     -- ["<C-n>"] = {"<cmd>Dired<cr>", "open Dired"},
     -- ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
     ["<C-n>"] = {"<cmd>Oil<cr>", "Open parent directory"},
-    ["<C-r>"] = {"<cmd>IronRepl<cr>", "Repl open"},
+    ["<C-q>"] = {"<cmd>IronRepl<cr>", "Repl open"},
     ["<C-p>"] = {
         function ()
             require("plugins.config.fzf_lua").snippets()
@@ -120,7 +120,7 @@ wk.register({
         end,
         "Onelines"
     },
-    ["<C-r>"] = {
+    ["<C-m>"] = {
         function ()
             require("plugins.config.fzf_lua").readme()
         end,
