@@ -178,4 +178,6 @@ vim.cmd('nnoremap <Space>v :call sml#mode_on()<CR>')
 --   call ch_sendraw(channel, cwd . "\n")
 -- endfunction
 
+vim.cmd([[ autocmd DirChanged * lua vim.schedule_wrap(require('oil').open)(vim.v.event.cwd) ]])
+
 return M

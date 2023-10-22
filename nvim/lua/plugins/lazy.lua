@@ -57,15 +57,31 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
-        'stevearc/oil.nvim',
-        opts = {},
-        -- Optional dependencies
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        view_options = {
-            is_always_hidden = function(name, bufnr)
-                return false
-            end,
-        }
+        "Vigemus/iron.nvim",
+        config = function ()
+            require("iron.core").setup(
+                require("plugins.config.iron")
+            )
+        end
+    },
+    {
+      'stevearc/oil.nvim',
+      opts = {},
+      -- Optional dependencies
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function ()
+            require("oil").setup({
+                columns = {
+                    "icon",
+                    "permissions",
+                    "size",
+                    "mtime",
+                },
+                view_options = {
+                    show_hidden = true,
+                }
+            })
+        end
     },
     {
         'Bucchiman/hotprojects.nvim'
