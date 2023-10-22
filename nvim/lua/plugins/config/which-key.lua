@@ -96,9 +96,9 @@ wk.register({
 
 wk.register({
     ["<C-k>"] = {"<cmd>cd %:h<cr>", "cwd change"},
-    ["<C-e>"] = {'<cmd>lua require("telescope").extensions.hotprojects.show_hotproject()<cr>', "Show projects"},
+    ["<C-8>"] = {'<cmd>lua require("telescope").extensions.hotprojects.show_hotproject()<cr>', "Show projects"},
     -- ["<C-s>"] = {"<cmd>Autosession search<cr>", "Show Session"},
-    -- ["<C-s>"] = {"<cmd>Telescope possession list<cr>", "Show Session"},
+    ["<C-e>"] = {"<cmd>Telescope possession list<cr>", "Show Session"},
     -- ["<C-s>"] = {"<cmd>Telescope projects<cr>", "Show projects"},
     -- ["d"] = {"<cmd>Autosession delete<cr>", "Delete Session"},
     ["<C-b>"] = {"<cmd>Telescope buffers<cr>", "buffer list"},
