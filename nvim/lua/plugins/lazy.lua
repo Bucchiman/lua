@@ -61,6 +61,11 @@ require("lazy").setup({
         opts = {},
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
+        view_options = {
+            is_always_hidden = function(name, bufnr)
+                return false
+            end,
+        }
     },
     {
         'Bucchiman/hotprojects.nvim'

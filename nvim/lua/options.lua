@@ -17,7 +17,7 @@ local options = {
     encoding = "utf-8",
     fileencoding = "utf-8",
     title = true,
-    autochdir = true,
+    -- autochdir = true,
     backup = false,
     clipboard = "unnamedplus",
     cmdheight = 2,
@@ -74,6 +74,6 @@ vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
 vim.o.sessionoptions="buffers"

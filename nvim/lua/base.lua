@@ -18,9 +18,6 @@ vim.api.nvim_create_autocmd(
     }
 )
 
--- vim.g.ft_ignore_pat = '\\.\\(Z\\|gz\\|bz2\\|zip\\|tgz\\)$'
--- vim.g.ft_ignore_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\)$'
-
  -- vim.api.nvim_create_augroup("WorkingDirectory", { clear = true })
  -- vim.api.nvim_create_autocmd({"BufEnter"}, {
  --     pattern = {"*.*"}, 
