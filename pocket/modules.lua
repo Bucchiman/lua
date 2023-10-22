@@ -18,6 +18,9 @@ local M = {}
 local win, buf
 local position = 0
 
+
+M.hello_8ucchiman = "8ucchiman was here!!"
+
 M.open_window = function ()
     buf = vim.api.nvim_create_buf(false, true)
     local border_buf = vim.api.nvim_create_buf(false, true)   -- 空のバッファを作成

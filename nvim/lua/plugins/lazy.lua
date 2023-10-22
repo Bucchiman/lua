@@ -55,6 +55,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local venv = os.getenv("VIRTUAL_ENV")
 
+
 require("lazy").setup({
     {
         "Vigemus/iron.nvim",

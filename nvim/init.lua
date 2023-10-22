@@ -35,7 +35,7 @@ require("keymaps")
 -- end
 
 require("plugins.lazy")
-require("tools.settings")
+-- require("tools.settings")
 local experiments = require("experiments")
 
 -- Insert timestamp after 'LastModified: '
