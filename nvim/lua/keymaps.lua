@@ -42,18 +42,18 @@ function reflect_nvimtree ()
 end
 
 
-vim.keymap.set("n", "<C-s><C-a>", function ()
+vim.keymap.set("n", "<C-x><C-a>", function ()
     local home_dir = os.getenv("HOME")
     local f = assert(io.open(home_dir .. "/.config/local/hotstation", "a+"))
-    local cwd = vim.fn.getcwd()
+    local cwd = vim.fn.expand('%:p:h')
     for line in f:lines() do
-        if cwd == string.gmatch(line, "^".. cwd .."$") then
+        if cwd == string.gmatch(line, "^" .. cwd .. "$") then
             vim.notify("exists hotproject ...")
             f:close()
             return
         end
     end
-    vim.notify("adding a project ...")
+    vim.notify("adding a project, " .. cwd .. " ...")
     f:write(cwd .. "\n")
     f:close()
     -- end
@@ -101,6 +101,8 @@ keymap("v", "v", "$h", opts)
 -- 0番レジスタを使いやすくした
 keymap("v", "<C-p>", '"0p', opts)
 
+-- run python
+-- nnoremap <C-R> :sp <CR> :term python % <CR>
 
 -- ターミナルモード
 keymap("t", "<ESC><ESC>", '<C-\\><C-n>', opts)

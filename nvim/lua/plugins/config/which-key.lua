@@ -108,6 +108,8 @@ wk.register({
     -- ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
     ["<C-n>"] = {"<cmd>Oil<cr>", "Open parent directory"},
     ["<C-q>"] = {"<cmd>IronRepl<cr>", "Repl open"},
+    ["<C-r>"] = {'<cmd>term python %<cr>', "Run python code"},
+
     ["<C-p>"] = {
         function ()
             require("plugins.config.fzf_lua").snippets()
@@ -144,5 +146,4 @@ wk.register({
     ["<space>"] = {'<cmd>e %<cr>', "for enable syntax hightlight"},
     t = {'<cmd>lua require("nabla").popup()<cr>', "Preview mathematics"},
     p = {'<cmd>MarkdownPreviewToggle<cr>', "Preview readme"},
-    r = {'<cmd>term python %<cr>', "Run python code"}
 }, { prefix = "<space>" })

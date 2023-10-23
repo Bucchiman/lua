@@ -80,7 +80,10 @@ require("lazy").setup({
                 },
                 view_options = {
                     show_hidden = true,
-                }
+                },
+                keymaps = {
+                    ["<C-v>"] = "actions.select_vsplit",
+                },
             })
         end
     },
