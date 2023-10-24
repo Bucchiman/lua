@@ -129,4 +129,8 @@ M.GetFileExtension = function (url)
   return url:match("^.+(%..+)$")
 end
 
+M.StringDel = function (str, pattern)
+    return string.gsub(str, pattern, "")
+end
+
 return M

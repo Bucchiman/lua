@@ -216,3 +216,26 @@ snippet _8:array
 
 snippet _8:command_with/without
 	type -t if; echo $?
+
+
+snippet _8:fzf_search fzf
+	local -a MODULES=( a b c );
+	local target=$(printf '%s\n' "${MODULES[@]}" | fzf --height 100% )
+
+snippet _8:string2array
+	array=(${(f)variable})
+
+
+snippet _8:array_new_line_print
+	#
+	# Reference: https://qiita.com/ttakuya50/items/085bea9176006016e593
+	#
+	# sample3[0]="hello"
+	# sample3[1]="world"
+	# sample3[2]="Hi!!"
+
+	# #改行
+	# IFS=$'\n'
+
+	# echo "${sample3[*]}"
+	local -a MODULES=( a b c ); printf '%s\n' "${MODULES[@]}"
