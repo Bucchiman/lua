@@ -121,4 +121,12 @@ M.move_cursor = function ()
     vim.api.nvim_win_set_cursor(win, {new_pos, 0})
 end
 
+M.GetFileName = function (url)
+  return url:match("^.+/(.+)$")
+end
+
+M.GetFileExtension = function (url)
+  return url:match("^.+(%..+)$")
+end
+print("8ucchiman was here!!!")
 return M

@@ -107,28 +107,18 @@ wk.register({
     -- ["<C-n>"] = {"<cmd>Dired<cr>", "open Dired"},
     -- ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
     ["<C-n>"] = {"<cmd>Oil<cr>", "Open parent directory"},
-    ["<C-q>"] = {"<cmd>IronRepl<cr>", "Repl open"},
-    ["<C-r>"] = {'<cmd>term python %<cr>', "Run python code"},
 
-    ["<C-p>"] = {
-        function ()
-            require("plugins.config.fzf_lua").snippets()
-        end,
-        "Snippets"
-    },
-    ["<C-o>"] = {
-        function ()
-            require("plugins.config.fzf_lua").onelines()
-        end,
-        "Onelines"
-    },
-    ["<C-m>"] = {
-        function ()
-            require("plugins.config.fzf_lua").readme()
-        end,
-        "README"
-    },
-    ["<C-i>"] = {"<cmd>GHOpenIssue", "github issue"}
+    ["<C-p>"] = { function () require("plugins.config.fzf_lua").snippets() end, "Snippets" },
+    ["<C-o>"] = { function () require("plugins.config.fzf_lua").onelines() end, "Onelines" },
+    ["<C-m>"] = { function () require("plugins.config.fzf_lua").readme() end, "README" },
+    ["<C-i>"] = {"<cmd>GHOpenIssue", "github issue"},
+    ["<C-r>"] = {
+        name = "Repl",
+        ["<C-t>"] = {"<cmd>IronRepl<cr>", "ReplToggle"},
+        ["<C-r>"] = { function () require("iron.core").send_file() end, "Run script file" },
+        ["<C-l>"] = { function () require("iron.core").send_line() end, "Run line" },
+        ["<C-q>"] = { function () require("iron.core").remove_mark() end, "Rmove mark"},
+    }
 }, { prefix = '<C-s>'})
 
 wk.register({
@@ -147,3 +137,18 @@ wk.register({
     t = {'<cmd>lua require("nabla").popup()<cr>', "Preview mathematics"},
     p = {'<cmd>MarkdownPreviewToggle<cr>', "Preview readme"},
 }, { prefix = "<space>" })
+
+
+-- local iron = require("iron.core")
+-- local view = require("iron.view")
+-- wk.register({
+--     ["<C-t>"] = {"<cmd>IronRepl<cr>", "ReplToggle"},
+--     ["<C-r>"] = { function () iron.send_file() end, "Run script file" },
+--     ["<C-l>"] = { function () iron.send_line() end, "Run line" },
+--     -- ["<C-v>"] = { function () iron.visual_send() end, "Run a part of visual selection"},
+--     ["<C-d>"] = { function () iron.remove_mark() end, "Rmove mark"},
+-- }, { prefix = "<C-r>"})
+wk.register({
+    ["<C-r>"] = { function () require("iron.core").visual_send() end, "Run a part of visual selection"},
+}, { prefix = "", mode = "v" })
+

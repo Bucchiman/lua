@@ -33,13 +33,12 @@ M = {
     --         w_offset = 50,
     --         h_offset = "10%"
     --     }
-repl_open_cmd = view.offset{
-  width = 60,
-  height = 20,
-  w_offset = view.helpers.flip(1),
-  h_offset = view.helpers.proportion(0.9)
-}
-
+    repl_open_cmd = view.offset{
+        width = 60,
+        height = 20,
+        w_offset = view.helpers.flip(1),
+        h_offset = view.helpers.proportion(0.9)
+    }
   },
   -- Iron doesn't set keymaps by default anymore.
   -- You can set them here or manually add keymaps to the functions in iron.core
@@ -58,21 +57,24 @@ repl_open_cmd = view.offset{
     exit = "<space>sq",
     clear = "<space>cl",
   },
+
   -- If the highlight is on, you can change how it looks
   -- For the available options, check nvim_set_hl
   highlight = {
-    italic = true
+        bold = true,
+        fg = "#FF9999"
   },
   ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
 
 }
 
 
--- iron also has a list of commands, see :h iron-commands for all available commands
-vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
-vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
-vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
-vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
+-- -- iron also has a list of commands, see :h iron-commands for all available commands
+-- moves to which-key.lua
+-- vim.keymap.set('n', '<C-r><C-r>', '<cmd>IronRepl<cr>')
+-- vim.keymap.set('n', '<C-r>r', '<cmd>IronRestart<cr>')
+-- vim.keymap.set('n', '<C-r>rf', '<cmd>IronFocus<cr>')
+-- vim.keymap.set('n', '<C-r>rh', '<cmd>IronHide<cr>')
 
 
 return M
