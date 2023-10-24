@@ -128,5 +128,5 @@ end
 M.GetFileExtension = function (url)
   return url:match("^.+(%..+)$")
 end
-print("8ucchiman was here!!!")
+
 return M

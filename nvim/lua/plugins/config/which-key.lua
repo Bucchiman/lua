@@ -117,7 +117,7 @@ wk.register({
         t = {"<cmd>IronRepl<cr>", "ReplToggle"},
         r = { function () require("iron.core").send_file() end, "Run script file" },
         l = { function () require("iron.core").send_line() end, "Run line" },
-        q = { function () require("iron.core").remove_mark() end, "Rmove mark"},
+        -- q = { function () require("iron.core").remove_mark() end, "Rmove mark"},
     }
 }, { prefix = '<C-s>'})
 
