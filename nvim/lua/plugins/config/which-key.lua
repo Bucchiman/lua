@@ -114,10 +114,10 @@ wk.register({
     ["<C-i>"] = {"<cmd>GHOpenIssue", "github issue"},
     ["<C-r>"] = {
         name = "Repl",
-        ["<C-t>"] = {"<cmd>IronRepl<cr>", "ReplToggle"},
-        ["<C-r>"] = { function () require("iron.core").send_file() end, "Run script file" },
-        ["<C-l>"] = { function () require("iron.core").send_line() end, "Run line" },
-        ["<C-q>"] = { function () require("iron.core").remove_mark() end, "Rmove mark"},
+        t = {"<cmd>IronRepl<cr>", "ReplToggle"},
+        r = { function () require("iron.core").send_file() end, "Run script file" },
+        l = { function () require("iron.core").send_line() end, "Run line" },
+        q = { function () require("iron.core").remove_mark() end, "Rmove mark"},
     }
 }, { prefix = '<C-s>'})
 
