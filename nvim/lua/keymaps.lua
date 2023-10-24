@@ -42,7 +42,7 @@ function reflect_nvimtree ()
 end
 
 
-vim.keymap.set("n", "<C-x><C-a>", function ()
+vim.keymap.set("n", "<C-s><C-a>", function ()
     local home_dir = os.getenv("HOME")
     local f = assert(io.open(home_dir .. "/.config/local/hotstation", "a+"))
     local cwd = vim.fn.expand('%:p:h')
