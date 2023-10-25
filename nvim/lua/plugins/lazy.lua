@@ -57,6 +57,12 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 
 require("lazy").setup({
+    -- {
+    --     "natecraddock/workspaces.nvim",
+    --     config = function ()
+    --         require("workspaces").setup()
+    --     end
+    -- },
     {
         "Vigemus/iron.nvim",
         config = function ()

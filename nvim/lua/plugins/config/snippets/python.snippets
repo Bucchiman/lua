@@ -181,3 +181,38 @@ snippet _8:sysargv casual arguments
 	import sys
 
 	print(sys.argv[0])   # python main.py hoge -> hoge
+
+snippet _G:FPS setting fps
+	"""
+    	report FPS for a process
+
+    	class: FPS
+    	    Arguments:
+    	        fps: 5
+    	        msg: "fps label"
+    	    FPS.tick()
+    	        
+
+    	output:
+    	    0 1693398288.7831407
+    	    1 1693398289.2840245
+    	    2 1693398289.7843204
+    	    3 1693398290.2849793
+    	    [   2 fps] fps label4 1693398290.7868018
+    	    5 1693398291.2874384
+    	    6 1693398291.788087
+    	    7 1693398292.2887347
+    	    8 1693398292.7893777
+    	    [   2 fps] fps label9 1693398293.2908878
+	"""
+    from gutils_time import FPS # XXX: 
+    from time import sleep
+
+    fps = FPS(5, msg="fps label") # report every 5 ticks
+    for i in range(10):
+        fps.tick() # XXX: 
+        print(i, time())
+        sleep(0.5)
+
+
+snippet 
