@@ -164,6 +164,8 @@ end
 
 vim.cmd('nnoremap <Space>v :call sml#mode_on()<CR>')
 
+
+
 -- 
 -- 第一引数の `bufnr` には、シェルを開いている :terminal のバッファ番号が入っている。
 -- function! Tapi_getcwd(bufnr, ...) abort

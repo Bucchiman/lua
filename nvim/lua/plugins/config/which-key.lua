@@ -96,6 +96,7 @@ wk.register({
 }, { prefix = '<leader>' })
 
 wk.register({
+    ["<C-l>"] = {"<cmd>NoiceLog<cr>", "Noice Log"},
     ["<C-k>"] = {"<cmd>cd %:h<cr>", "cwd change"},
     ["<C-j>"] = {"<cmd>Telescope hotprojects show_hotproject<cr>", "Show projects"},
     -- ["<C-s>"] = {"<cmd>Autosession search<cr>", "Show Session"},

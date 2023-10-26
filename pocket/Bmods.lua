@@ -21,7 +21,9 @@ local position = 0
 
 M.hello_8ucchiman = "8ucchiman was here!!"
 
-M.open_window = function ()
+
+M.open_window = function (position)
+    
     buf = vim.api.nvim_create_buf(false, true)
     local border_buf = vim.api.nvim_create_buf(false, true)   -- 空のバッファを作成
 
@@ -30,6 +32,7 @@ M.open_window = function ()
 
     local width = vim.api.nvim_get_option("columns")
     local height = vim.api.nvim_get_option("lines")
+
 
     local win_height = math.ceil(height * 0.8 - 4)
     local win_width = math.ceil(width * 0.8)
@@ -73,6 +76,8 @@ M.open_window = function ()
 end
 
 
+
+
 M.center = function(str)
     local width = vim.api.nvim_win_get_width(0)
     local shift = math.floor(width / 2) - math.floor(string.len(str) / 2)
@@ -110,16 +115,24 @@ M.close_window = function ()
     vim.api.nvim_win_close(win, true)
 end
 
+
+--- open_file explodes text.
+-- It is a specialized splitting operation on a string.
+-- @param
+-- @return a table of substrings
+-- @example M.open_file()
 M.open_file = function ()
     local str = vim.api.nvim_get_current_line()
     M.close_window()
     vim.api.nvim_command('edit '..str)
 end
 
+
 M.move_cursor = function ()
     local new_pos = math.max(4, vim.api.nvim_win_get_cursor(win)[1] - 1)
     vim.api.nvim_win_set_cursor(win, {new_pos, 0})
 end
+
 
 M.GetFileName = function (url)
   return url:match("^.+/(.+)$")

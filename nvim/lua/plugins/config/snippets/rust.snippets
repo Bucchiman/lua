@@ -145,3 +145,97 @@ snippet _8:basic:input02
 	io::stdin().read_line(&mut guess).expect("failed to readline");
 
 #snippet _8:basic:split_string
+
+snippet _8:sample_function
+	/// 
+	/// # Description
+	/// 
+	/// 
+	/// 
+	/// # Panics(?)
+	///
+	/// Panics if the OS fails to create a thread; use [`Builder::spawn`]
+	/// to recover from such errors.
+	///
+	/// # Examples
+	///
+	/// Creating a thread.
+	///
+	/// ```
+	/// use std::thread;
+	///
+	/// let handler = thread::spawn(|| {
+	///     // thread code
+	/// });
+	///
+	/// handler.join().unwrap();
+	/// ```
+	///
+	/// As mentioned in the module documentation, threads are usually made to
+	/// communicate using [`channels`], here is how it usually looks.
+	///
+	/// This example also shows how to use `move`, in order to give ownership
+	/// of values to a thread.
+	///
+	/// ```
+	/// use std::thread;
+	/// use std::sync::mpsc::channel;
+	///
+	/// let (tx, rx) = channel();
+	///
+	/// let sender = thread::spawn(move || {
+	///     tx.send("Hello, thread".to_owned())
+	///         .expect("Unable to send on channel");
+	/// });
+	///
+	/// let receiver = thread::spawn(move || {
+	///     let value = rx.recv().expect("Unable to receive from channel");
+	///     println!("{value}");
+	/// });
+	///
+	/// sender.join().expect("The sender thread has panicked");
+	/// receiver.join().expect("The receiver thread has panicked");
+	/// ```
+	///
+	/// A thread can also return a value through its [`JoinHandle`], you can use
+	/// this to make asynchronous computations (futures might be more appropriate
+	/// though).
+	///
+	/// ```
+	/// use std::thread;
+	///
+	/// let computation = thread::spawn(|| {
+	///     // Some expensive computation.
+	///     42
+	/// });
+	///
+	/// let result = computation.join().unwrap();
+	/// println!("{result}");
+	/// ```
+	///
+	/// [`channels`]: crate::sync::mpsc
+	/// [`join`]: JoinHandle::join
+	/// [`Err`]: crate::result::Result::Err
+	pub fn hoge() {
+	    println!("8ucchiman was here");
+	}
+
+
+snippet _8:sample_light_function
+	/// Returns a person with the name given them
+	///
+	/// # Arguments
+	///
+	/// * `name` - A string slice that holds the name of the person
+	///
+	/// # Examples
+	///
+	/// ```
+	/// // You can have rust code between fences inside the comments
+	/// // If you pass --test to `rustdoc`, it will even test it for you!
+	/// use doc::Person;
+	/// let person = Person::new("name");
+	/// ```
+	pub fn hoge () {
+		println!("8ucchiman was here!");
+	}
