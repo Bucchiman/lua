@@ -57,6 +57,13 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 
 require("lazy").setup({
+    {
+        'https://codeberg.org/esensar/nvim-dev-container',
+        dependencies = 'nvim-treesitter/nvim-treesitter',
+        config = function ()
+            require("devcontainer").setup({})
+        end
+    },
     -- {
     --     "natecraddock/workspaces.nvim",
     --     config = function ()
