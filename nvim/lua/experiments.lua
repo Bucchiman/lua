@@ -166,9 +166,7 @@ end
 
 vim.cmd('nnoremap <Space>v :call sml#mode_on()<CR>')
 
-vim.keymap.set("n", "<C-s><leader>",
-    M.getPaste()
-)
+vim.keymap.set("n", "<C-s><leader>", function () Bmods.getPaste() end)
 
 -- 
 -- 第一引数の `bufnr` には、シェルを開いている :terminal のバッファ番号が入っている。
