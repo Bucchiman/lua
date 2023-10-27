@@ -12,6 +12,8 @@
 -- vim.api.nvim_command('set runtimepath^=.')
 
 
+Bmods = require("Bmods")
+
 
 local Window = {}
 
@@ -164,7 +166,9 @@ end
 
 vim.cmd('nnoremap <Space>v :call sml#mode_on()<CR>')
 
-
+vim.keymap.set("n", "<C-s><leader>",
+    M.getPaste()
+)
 
 -- 
 -- 第一引数の `bufnr` には、シェルを開いている :terminal のバッファ番号が入っている。

@@ -146,4 +146,26 @@ M.StringDel = function (str, pattern)
     return string.gsub(str, pattern, "")
 end
 
+
+
+--- getPaste explodes text.
+-- It is a specialized splitting operation on a string.
+-- @param text the string
+-- @return a table of substrings
+-- @Reference   https://www.reddit.com/r/neovim/comments/vu9atg/how_do_i_get_the_text_selected_in_visual_mode/
+M.getPaste = function ()
+    local vstart = vim.fn.getpos("'<")
+
+    local vend = vim.fn.getpos("'>")
+
+    local line_start = vstart[2]
+    local line_end = vend[2]
+
+    -- or use api.nvim_buf_get_lines
+    local lines = vim.fn.getline(line_start,line_end)
+end
+
+
+
+
 return M
