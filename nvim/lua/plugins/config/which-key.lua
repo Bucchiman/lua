@@ -122,7 +122,9 @@ wk.register({
             local _extension = Bmods.GetFileExtension(_file_path)
             local _file_name = Bmods.StringDel(_file, _extension)
             print(_file, _file_name, _extension)
-            if ((_file_name == _file) or _extension == ".sh" or _extension == ".zsh") then
+            if (( _file == "Bmods" )) then
+                vim.cmd("terminal % .")
+            elseif ((_file_name == _file) or _extension == ".sh" or _extension == ".zsh") then
                 vim.cmd("terminal %")
             elseif (_extension == ".lua") then
                 vim.cmd("terminal lua %")

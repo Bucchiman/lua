@@ -11,15 +11,6 @@ snippet _8 metadata
 
 
 snippet _8:temp template
-	function func_lst () {
-	    echo "***********************************"
-	    echo "The following function is prepared."
-	    echo "***********************************"
-	    cat $0 | awk '/^function/ {printf "| %s\n", $2}'
-	    echo "***********************************"
-	}
-	
-	
 	########################################
 	# while getopts :i:c:g OPT
 	# do
@@ -42,6 +33,15 @@ snippet _8:temp template
 	#     
 	# }
 	########################################
+
+	function run () {
+	}
+
+	function build () {
+	}
+
+	function init () {
+	}
 	
 	typeset -A SUBMODULES
 	function set_variables () {
@@ -53,14 +53,12 @@ snippet _8:temp template
 	    echo "* set_variables              *"
 	    echo "******************************"
 	    BASE_DIR=$PWD
+		BMODS_PATH=$HOME/Bmods
 	    SUBMODULES=(yolostereo3D https://github.com/Owen-Liuyuxuan/visualDet3D.git)
 	}
 	
-	
 	function setup_environment () {
 	}
-	
-	
 	
 	function default () {
 	    #
@@ -74,24 +72,32 @@ snippet _8:temp template
 	    echo "you can run this function without no arguments."
 	
 	}
-	
-	
 	#######################################
 	function main01 () {
 	    set_variables
+		source $BMODS_PATH
 	    if [[ $@ == "" ]]; then
-	        default
+	        #
+	        # source modules
+	        # $ source Bmods
+	        #
+			default
+	    elif [[ $@ == "." ]]; then
+	        # array_of_lines=("${(@f)$(my_command)}")
+	        # Reference: https://unix.stackexchange.com/questions/29724/how-to-properly-collect-an-array-of-lines-in-zsh
+	        # Reference: https://stackoverflow.com/questions/15691942/print-array-elements-on-separate-lines-in-bash
+	        # printf '%s\n' "${my_array[@]}"
+	        local target_func=`Bmods_function_lst`
+	        # echo $target_func
+	        eval ${target_func}
 	    else
 	        eval $@
 	    fi
-	
 	}
 	
-	ME=$0
+	ME=Bmods
 	main01 $@
 	#######################################
-	
-	
 	return
 
 snippet _8:getopts
@@ -239,3 +245,5 @@ snippet _8:array_new_line_print
 
 	# echo "${sample3[*]}"
 	local -a MODULES=( a b c ); printf '%s\n' "${MODULES[@]}"
+
+
