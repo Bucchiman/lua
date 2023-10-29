@@ -120,12 +120,15 @@ wk.register({
             local _file_path = vim.api.nvim_buf_get_name(0)
             local _file = Bmods.GetFileName(_file_path)
             local _extension = Bmods.GetFileExtension(_file_path)
+            if _extension == nil then
+                _extension = ""
+            end
             local _file_name = Bmods.StringDel(_file, _extension)
             print(_file, _file_name, _extension)
-            if (( _file == "Bmods" )) then
-                vim.cmd("terminal % .")
+            if (( _file == "Bmods" or _file == "Bmain" )) then
+                vim.cmd("terminal source $HOME/.zshrc; Bmain")
             elseif ((_file_name == _file) or _extension == ".sh" or _extension == ".zsh") then
-                vim.cmd("terminal %")
+                vim.cmd("terminal zsh %")
             elseif (_extension == ".lua") then
                 vim.cmd("terminal lua %")
             elseif (_extension == ".rs") then

@@ -258,4 +258,6 @@ snippet _8:array_new_line_print
 	# echo "${sample3[*]}"
 	local -a MODULES=( a b c ); printf '%s\n' "${MODULES[@]}"
 
+snippet _8:associative_array:value for value
+	for value in ${(v)associative_array}
 
