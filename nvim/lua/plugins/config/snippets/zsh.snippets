@@ -261,3 +261,12 @@ snippet _8:array_new_line_print
 snippet _8:associative_array:value for value
 	for value in ${(v)associative_array}
 
+snippet _8:heredoc_file heredoc create file
+	#
+	# Reference: https://stackoverflow.com/questions/2953081/how-can-i-write-a-heredoc-to-a-file-in-bash-script
+	#
+	#
+	cat <<eos > [file]
+	These contents will be written to the file.
+	        This line is indented.
+	eos
