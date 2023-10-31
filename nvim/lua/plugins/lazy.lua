@@ -58,6 +58,27 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+      "ellisonleao/carbon-now.nvim",
+      lazy = true,
+      cmd = "CarbonNow",
+      ---@param opts cn.ConfigSchema
+      -- opts = { [[ your custom config here ]] }
+    },
+    -- image preview
+    -- {
+    --     'https://github.com/adelarsq/image_preview.nvim',
+    --     event = 'VeryLazy',
+    --     config = function()
+    --         require("image_preview").setup()
+    --     end
+    -- },
+    -- {
+    --     'mbpowers/nvimager'
+    -- },
+    -- {
+    --     'sunjon/extmark-toy.nvim'
+    -- },
+    {
         'https://codeberg.org/esensar/nvim-dev-container',
         dependencies = 'nvim-treesitter/nvim-treesitter',
         config = function ()
