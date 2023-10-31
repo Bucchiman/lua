@@ -96,7 +96,7 @@ wk.register({
 }, { prefix = '<leader>' })
 
 wk.register({
-    ["<C-l>"] = {"<cmd>NoiceLog<cr>", "Noice Log"},
+    ["<C-l>"] = {"<cmd>Telescope live_grep<cr>", "String Search in files"},
     ["<C-k>"] = {"<cmd>cd %:h<cr>", "cwd change"},
     ["<C-j>"] = {"<cmd>Telescope hotprojects show_hotproject<cr>", "Show projects"},
     -- ["<C-s>"] = {"<cmd>Autosession search<cr>", "Show Session"},
@@ -165,6 +165,7 @@ wk.register({
     ["<space>"] = {'<cmd>e %<cr>', "for enable syntax hightlight"},
     t = {'<cmd>lua require("nabla").popup()<cr>', "Preview mathematics"},
     p = {'<cmd>MarkdownPreviewToggle<cr>', "Preview readme"},
+    l = {"<cmd>NoiceLog<cr>", "Noice Log"},
 }, { prefix = "<space>" })
 
 

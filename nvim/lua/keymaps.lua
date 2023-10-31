@@ -60,7 +60,7 @@ vim.keymap.set("n", "<C-s><C-a>", function ()
 end)
 
 
-keymap("n", "<S-d><S-d>", "<cmd>bd!<cr>", opts)
+-- keymap("n", "<S-d><S-d>", "<cmd>bd!<cr>", opts)
 keymap("n", "<S-A-k>", ":resize -2<CR>", opts)
 keymap("n", "<S-A-j>", ":resize +2<CR>", opts)
 keymap("n", "<S-A-l>", ":vertical resize -2<CR>", opts)
