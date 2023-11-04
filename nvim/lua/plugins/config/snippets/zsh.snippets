@@ -45,66 +45,65 @@ snippet _8:temp template
 	#     
 	# }
 	########################################
-
+	
 	function run () {
 	}
-
+	
 	function build () {
 	}
-
+	
 	function init () {
 	}
 	
 	typeset -A SUBMODULES
 	function set_variables () {
-	    #
-	    #
-	    #
-	    #
-	    echo "******************************"
-	    echo "* set_variables              *"
-	    echo "******************************"
-	    BASE_DIR=$PWD
-		BMODS_PATH=$HOME/Bmods
-	    SUBMODULES=(yolostereo3D https://github.com/Owen-Liuyuxuan/visualDet3D.git)
+		#
+		#
+		#
+		#
+		echo "******************************"
+		echo "* set_variables              *"
+		echo "******************************"
+		BASE_DIR=$PWD
+		BMODS_PATH=\$HOME/Bmods
+		SUBMODULES=(yolostereo3D https://github.com/Owen-Liuyuxuan/visualDet3D.git)
 	}
 	
 	function setup_environment () {
 	}
 	
 	function default () {
-	    #
-	    # this is default setting
-	    # you can run this function without no arguments.
-	    #
-	    echo "******************************"
-	    echo "* default                    *"
-	    echo "******************************"
-	    echo "this is default setting"
-	    echo "you can run this function without no arguments."
-	
+		#
+		# this is default setting
+		# you can run this function without no arguments.
+		#
+		echo "******************************"
+		echo "* default                    *"
+		echo "******************************"
+		echo "this is default setting"
+		echo "you can run this function without no arguments."
 	}
 	#######################################
 	function main01 () {
-	    set_variables
+		set_variables
 		source $BMODS_PATH
-	    if [[ $@ == "" ]]; then
-	        #
-	        # source modules
-	        # $ source Bmods
-	        #
+		if [[ $@ == "" ]]; then
+			#
+			# source modules
+			# $ source Bmods
+			#
 			default
-	    elif [[ $@ == "." ]]; then
-	        # array_of_lines=("${(@f)$(my_command)}")
-	        # Reference: https://unix.stackexchange.com/questions/29724/how-to-properly-collect-an-array-of-lines-in-zsh
-	        # Reference: https://stackoverflow.com/questions/15691942/print-array-elements-on-separate-lines-in-bash
-	        # printf '%s\n' "${my_array[@]}"
-	        local target_func=`Bmods_function_lst`
-	        # echo $target_func
-	        eval ${target_func}
-	    else
-	        eval $@
-	    fi
+		elif [[ $@ == "." ]]; then
+			# array_of_lines=("${(@f)$(my_command)}")
+			# Reference: https://unix.stackexchange.com/questions/29724/how-to-properly-collect-an-array-of-lines-in-zsh
+			# Reference: https://stackoverflow.com/questions/15691942/print-array-elements-on-separate-lines-in-bash
+			# printf '%s\n' "${my_array[@]}"
+			local target_func=`Bmods_function_lst`
+			# echo $target_func
+			eval ${target_func}
+		else
+			eval $@
+		fi
 	}
 	
 	ME=Bmods
@@ -161,15 +160,15 @@ snippet _8:readline
 
 snippet _8:if:contains_in_array 配列に文字列が含まれているか確認
 	# https://qiita.com/mollifier/items/f897b3fddd2d10369333
-	local projects=( $HOME/Bucchiman/project01 $HOME/Bucchiman/project02 $HOME/Bucchiman/project03 )
-	local target_project="$HOME/Bucchiman/project03"
-	if [[ ${projects[(I)$target_project]} ]]; then
+	local projects=( \$HOME/Bucchiman/project01 $HOME/Bucchiman/project02 $HOME/Bucchiman/project03 )
+	local target_project="\$HOME/Bucchiman/project03"
+	if [[ \${projects[(I)$target_project]} ]]; then
 		echo contains
 	fi
 
 snippet _8:if:str
 	# https://tanakatarou.tech/1699/
-	if [[ $file == "hoge" ]]; then
+	if [[ \$file == "hoge" ]]; then
 		#...
 	fi
 
@@ -210,8 +209,8 @@ snippet _8:function:set_variables
 	typeset -A REPOS
 	
 	function set_variables () {
-	    BASE_DIR=$PWD
-	    GIT_DIR=$BASE_DIR/git
+	    BASE_DIR=\$PWD
+	    GIT_DIR=\$BASE_DIR/git
 	    REPOS=(jetson_containers https://github.com/dusty-nv/jetson-containers.git)
 	}
 
@@ -270,3 +269,108 @@ snippet _8:heredoc_file heredoc create file
 	These contents will be written to the file.
 	        This line is indented.
 	eos
+
+snippet _8:temp_Brun Brun
+	function Lchoose_project () {
+	    #
+	    # @Description      choose project of myworks
+	    # @params  
+	    # @Example          project=\`Lchoose_project\`
+	    # @Reference
+	    #
+	
+	    local project=\`ls_fzf \$BASE_DIR/projects\`
+	    echo \$project
+	}
+	
+	
+	function Lcreate_remote_repository () {
+	    typeset -a platforms
+	    platforms=(github gitlab)
+	    local target_platform=\`array_fzf "${platforms[*]}"\`
+	    echo -n "project name> "
+	    read project_name
+	    if [[ \$target_platform == "github" ]]; then
+	        repository_url="git@github.com:Bucchiman/\${project_name}.git"
+	        create_remote_repository github \$project_name
+	    else
+	        repository_url="git@gitlab.com:Bucchiman1/\${project_name}.git"
+	        create_remote_repository gitlab \$project_name
+	    fi
+	    # git submodule add \$repository_url ./projects/\$project_name
+	    cd projects; git submodule add \$repository_url \$project_name
+	}
+	
+	function Leval () {
+	    read casual_command
+	    eval \$casual_command
+	}
+	
+	
+	typeset -A SUBMODULES
+	function Lset_variables () {
+	    #
+	    #
+	    #
+	    #
+	    echo "******************************"
+	    echo "* set_variables              *"
+	    echo "******************************"
+	    BASE_DIR=\$HOME/mywork/
+	    BMODS_PATH=\$HOME/Bmods
+	    SUBMODULES=(yolostereo3D https://github.com/Owen-Liuyuxuan/visualDet3D.git)
+	}
+	
+	function Lupdate_submodules () {
+	    $(cd \$BASE_DIR; git submodule update --init --recursive)   # cloneした後submoduleをclone 
+	}
+	
+	
+	function setup_environment () {
+	}
+	
+	function default () {
+	    #
+	    # this is default setting
+	    # you can run this function without no arguments.
+	    #
+	    echo "******************************"
+	    echo "* default                    *"
+	    echo "******************************"
+	    echo "this is default setting"
+	    echo "you can run this function without no arguments."
+	
+	}
+	#######################################
+	
+	function main01 () {
+	    source \$HOME/Bmods
+	    Lset_variables
+	    if [[ $@ == "" ]]; then
+	        #
+	        # source modules
+	        # $ source Bmods
+	        #
+	        local target_func=\`choose_local_function \$BASE_DIR/Brun\`
+	        eval \$target_func
+	    elif [[ $@ == "." ]]; then
+	        # array_of_lines=("${(@f)$(my_command)}")
+	        # Reference: https://unix.stackexchange.com/questions/29724/how-to-properly-collect-an-array-of-lines-in-zsh
+	        # Reference: https://stackoverflow.com/questions/15691942/print-array-elements-on-separate-lines-in-bash
+	        # printf '%s\n' "${my_array[@]}"
+	        # local target_func=
+	        # echo 
+	        # eval 
+	    else
+	        eval $@
+	    fi
+	}
+	
+	ME=\$0
+	main01 $@
+	
+	#######################################
+	
+	
+	return
+

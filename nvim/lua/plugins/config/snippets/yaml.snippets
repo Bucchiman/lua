@@ -1,3 +1,16 @@
+snippet _8:metadata metadata
+	#@
+	#@ FileName:      file
+	#@ Author:        8ucchiman
+	#@ CreatedDate:   2023-11-01 18:51:19
+	#@ LastModified:  2023-02-15 18:10:56 +0900
+	#@ Reference:     8ucchiman.jp
+	#@ Description:   ---
+	#@
+
+
+
+snippet _8:temp template
 
 snippet _8:act_temp github action template
 	name: Test
@@ -29,9 +42,15 @@ snippet _8:act_temp github action template
 	          echo test, and deploy your project.
 
 snippet _8:action_sample
+	#
+	# Reference: https://docs.github.com/en/actions/quickstart
+	#
+	#
 	name: GitHub Actions Demo
 	run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-	on: [push]
+	on:
+		push:
+			  branches: [ dev ]
 	jobs:
 	  Explore-GitHub-Actions:
 	    runs-on: ubuntu-latest

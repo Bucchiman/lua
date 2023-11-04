@@ -58,6 +58,14 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        "ellisonleao/gruvbox.nvim",
+        priority=1000,
+        config=function ()
+            require("gruvbox").setup({
+                transparent_mode=true
+            })
+        end, opts = ...},
+    {
       "ellisonleao/carbon-now.nvim",
       lazy = true,
       cmd = "CarbonNow",
