@@ -14,6 +14,7 @@
 -- vim.api.nvim_command('set runtimepath^=.')
 
 
+
 local M = {}
 local win, buf
 local position = 0
@@ -21,9 +22,11 @@ local position = 0
 
 M.hello_8ucchiman = "8ucchiman was here!!"
 
-
+--- open window
+-- @param       position
+-- @return      open floating window
+-- @Reference   https://github.com/rafcamlet/nvim-whid/tree/master
 M.open_window = function (position)
-    
     buf = vim.api.nvim_create_buf(false, true)
     local border_buf = vim.api.nvim_create_buf(false, true)   -- 空のバッファを作成
 
@@ -71,14 +74,12 @@ M.open_window = function (position)
 
     vim.api.nvim_win_set_option(win, 'cursorline', true)    -- windowハンドルを指定してウィンドウオプションを指定
 
-    vim.api.nvim_buf_set_lines(buf, 0, -1, false, { M.center('Schedule'), '', ''})
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, { center('Schedule'), '', ''})
     vim.api.nvim_buf_add_highlight(buf, -1, 'ScheduleHeader', 0, 0, -1)
 end
 
 
-
-
-M.center = function(str)
+function center(str)
     local width = vim.api.nvim_win_get_width(0)
     local shift = math.floor(width / 2) - math.floor(string.len(str) / 2)
     return string.rep(' ', shift) .. str
@@ -134,10 +135,20 @@ M.move_cursor = function ()
 end
 
 
+--- GetFileName
+-- get file name from path
+-- @param       path
+-- @return      file name without extension
+-- @Reference   https://codereview.stackexchange.com/questions/90177/get-file-name-with-extension-and-get-only-extension
 M.GetFileName = function (url)
   return url:match("^.+/(.+)$")
 end
 
+--- GetFileExtension
+-- get extension of file from path
+-- @param       path
+-- @return      extension of file name without extension (with .)
+-- @Reference   https://codereview.stackexchange.com/questions/90177/get-file-name-with-extension-and-get-only-extension
 M.GetFileExtension = function (url)
   return url:match("^.+(%..+)$")
 end
@@ -166,6 +177,57 @@ M.getPaste = function ()
 end
 
 
+--- getPaste explodes text.
+-- It is a specialized splitting operation on a string.
+-- @param text the string
+-- @return a table of substrings
+-- @Reference   https://qiita.com/slin/items/874dbc3ca34ea83e90b7
+--              https://zenn.dev/kawarimidoll/articles/0f3fdfcd881f5c
+M._floating_window = function ()
+    local buf = vim.api.nvim_create_buf(false, false)
+    -- $1 buflisted: offの時':bnext'や':ls'の対象にならない
+    -- $2 scratch:      create a scratch buffer
+    vim.api.nvim_buf_set_lines(buf, 0, -1, true, {"test", "text"})
+    -- $1 buffer
+    -- $2,$3 start, end:    書き換える行数の始まりと終わり -1は末尾の下
+    -- $4 strict_indexing   onの場合行数指定がバッファの範囲外の時エラーになる
+    -- $5 バッファに書き込みたいテキストの配列
+
+    local opts = {
+        -- relative = 'win',
+        -- win = 0,
+        relative = 'editor',
+        width = 10,
+        height = 2,
+        col = 0,
+        row = 1,
+        anchor = 'NW',
+        style = 'minimal'
+        }
+    vim.api.nvim_open_win(buf, false, opts)
+    -- $1 buffer
+    -- $2 enter     オンの場合、開いたウィンドウにフォーカス
+    -- $3 config    table
+    --      {
+    --          relative = ['editor' | 'win' | 'cursor']    -- 表示場所
+    --          win =                                       -- relativeにwinを指定した場合のウィンドウIDを指定
+    --          anchor = ['NW' | 'NE' | 'SW' | 'SE']        -- ウィンドウの原点をどこにするか決定
+    --          height = 
+    --          width
+    --          row
+    --          col
+    --          focusable
+    --          external
+    --          style
+    --      }
+    vim.api.nvim_win_close(0, false)
+    -- $1 window
+    -- $2 force :close!
+end
+
+-- M.floating_window()
+
+-- M.open_window()
 
 
 return M
