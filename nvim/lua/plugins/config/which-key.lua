@@ -127,13 +127,13 @@ wk.register({
             print(_file, _file_name, _extension)
             if (( _file == "Bmods" or _file == "Bmain" )) then
                 vim.cmd("terminal source $HOME/.zshrc; Bmain")
-            elseif ((_file_name == _file) or _extension == ".sh" or _extension == ".zsh") then
+            elseif ((_file_name == _file) or _extension == "sh" or _extension == "zsh") then
                 vim.cmd("terminal zsh %")
-            elseif (_extension == ".lua") then
+            elseif (_extension == "lua") then
                 vim.cmd("terminal lua %")
-            elseif (_extension == ".rs") then
+            elseif (_extension == "rs") then
                 vim.cmd("terminal rustc %; ./" .. _file_name)
-            elseif (_extension == ".py") then
+            elseif (_extension == "py") then
                 vim.cmd("terminal python %")
             else
                 vim.notify("Could Not Run", vim.log.levels.ERROR)

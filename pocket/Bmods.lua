@@ -141,7 +141,7 @@ end
 -- @return      file name without extension
 -- @Reference   https://codereview.stackexchange.com/questions/90177/get-file-name-with-extension-and-get-only-extension
 M.GetFileName = function (url)
-  return url:match("^.+/(.+)$")
+    return url:match("^.+/(.+)$")
 end
 
 --- GetFileExtension
@@ -150,7 +150,8 @@ end
 -- @return      extension of file name without extension (with .)
 -- @Reference   https://codereview.stackexchange.com/questions/90177/get-file-name-with-extension-and-get-only-extension
 M.GetFileExtension = function (url)
-  return url:match("^.+(%..+)$")
+    local text = url:match("^.+(%..+)$")
+    return string.sub(text, 2, -1)
 end
 
 M.StringDel = function (str, pattern)
@@ -196,7 +197,7 @@ M._floating_window = function ()
     local opts = {
         -- relative = 'win',
         -- win = 0,
-        relative = 'editor',
+        relative = 'cursor',
         width = 10,
         height = 2,
         col = 0,
@@ -223,6 +224,148 @@ M._floating_window = function ()
     vim.api.nvim_win_close(0, false)
     -- $1 window
     -- $2 force :close!
+end
+
+
+-- --- 
+-- -- It is a specialized splitting operation on a string.
+-- -- @param text the string
+-- -- @return a table of substrings
+-- -- @Reference   https://vi.stackexchange.com/questions/8208/way-to-get-content-of-visual-selection
+-- function pos2byte(pos)
+--     return vim.fn.line2byte(pos[1]) + pos[2]
+-- end
+-- 
+-- function get_visual_text()
+--     local b1 = pos2byte(vim.fn.getpos("'<"))
+--     local b2 = pos2byte(vim.fn.getpos("'>"))
+--     local text = ''
+-- 
+--     while b1 < b2 do
+--         local l = vim.fn.byte2line(b1)
+--         local lb = vim.fn.line2byte(l)
+--         local line = vim.fn.strpart(vim.fn.getline(l), b1-lb-1)
+--         local text = text .. line
+--         local b1 = b1 + vim.fn.len(line)
+--     end
+--     return vim.fn.strpart(text, 0, vim.fn.len(text)-(b1-b2)+1)
+-- end
+
+
+-- @Reference   https://www.reddit.com/r/neovim/comments/oo97pq/how_to_get_the_visual_selection_range/
+local function get_visual_selection()
+    -- Yank current visual selection into the 'v' register
+    --
+    -- Note that this makes no effort to preserve this register
+    vim.cmd('noau normal! "vy"')
+
+    return vim.fn.getreg('v')
+end
+
+--- append tips
+-- 
+-- @param
+-- @return
+-- @Reference   
+M.append_tips = function ()
+    local extension2path = {
+        zsh = "shell",
+        sh = "shell",
+        lua = "lua",
+        c = "c",
+        cpp = "c++",
+        cs = "csharp",
+        rs = "rust",
+        py = "python",
+        s = "assembler"
+    }
+    local file_path = vim.api.nvim_buf_get_name(0)        -- get current buffer
+    local extension_name = M.GetFileExtension(file_path)
+    -- print(file_path)
+    local pocket_path = vim.fn.expand("$HOME/.config/pockets/")
+    local tips_path = pocket_path .. extension2path[extension_name] .. "/tips.md"
+    print(tips_path)
+    -- local text=get_visual_selection()
+
+    local buf = M.set_buffer(tips_path)
+
+    -- vim.api.nvim_buf_set_lines(buf, 0, -1, true, {})
+
+    local opts = {
+        -- relative = 'win',
+        -- win = 0,
+        relative = 'cursor',
+        width = 100,
+        height = 7,
+        col = 0,
+        row = 1,
+        anchor = 'NW',
+        style = 'minimal'
+        }
+    vim.api.nvim_open_win(buf, false, opts)
+    -- vim.api.nvim_win_close(0, false)
+end
+
+vim.keymap.set("v", "<C-i>", function ()
+    -- local file_path=vim.api.nvim_buf_get_name(0)        -- get current buffer
+    -- local text=get_visual_selection()
+    -- print(file_path)
+    M.append_tips()
+end)
+
+--- READ file
+-- 
+-- @param text the string
+-- @return a table of substrings
+-- @example   Bmods.READ("/tmp/8ucchiman/memo.txt")
+-- @Reference https://www.family-historian.co.uk/help/fh7-plugins/lua/readingandwritingfiles.html
+M.READ = function (path)
+    file = io.open(path, "r")
+    for line in file:lines() do
+        print(line)
+    end
+    file:close()
+end
+
+--- OVERWRITE file
+-- 
+-- @param path: a file path
+--        text: strings to write in a file
+-- @return      nil
+-- @Reference   https://www.family-historian.co.uk/help/fh7-plugins/lua/readingandwritingfiles.html 
+M.OVERWRITE = function (path, text)
+    file = io.open(path, "w")
+    file:write(text)
+    file:close()
+end
+
+--- WRITE file
+-- 
+-- @param path: a file path
+--        text: strings to write in a file
+-- @return      nil
+-- @example     Bmods.WRITE("/tmp/8ucchiman/memo.txt", "8ucchiman was here!")
+-- @Reference   https://www.family-historian.co.uk/help/fh7-plugins/lua/readingandwritingfiles.html 
+M.WRITE = function (path, text)
+    text = text .. "\n"
+    file = io.open(path, "a")
+    file:write(text)
+    file:close()
+end
+
+--- set_buffer
+-- 
+-- @param       path
+-- @return      buffer
+-- @Reference   https://www.reddit.com/r/neovim/comments/10idl7u/how_to_load_a_file_into_neovims_buffer_without/
+M.set_buffer = function (path)
+    -- local bufnr = vim.api.nvim_create_buf(true, false)
+    -- vim.api.nvim_buf_set_name(bufnr, path)
+    -- return bufnr
+    -- -- vim.api.nvim_buf_call(bufnr, vim.cmd.edit)
+    local bufnr = vim.fn.bufadd(path)
+    vim.fn.bufloaded(bufnr)
+    return bufnr
 end
 
 -- M.floating_window()
