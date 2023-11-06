@@ -262,6 +262,15 @@ local function get_visual_selection()
     return vim.fn.getreg('v')
 end
 
+-- floating window そのものの色
+-- hi! NormalFloat     ctermbg=249 ctermfg=46 guibg=#2F0B3A guifg=#D8D8D8
+-- vim.highlight.create("NormalFloat", {ctermbg=249, guibg=#2F0B3A, ctermfg=46, guifg=#D8D8D8}, false)
+vim.api.nvim_set_hl(0, "NormalFloat", {ctermbg=0, ctermfg=46})
+-- floating window の border の色指定
+-- hi! FloatBorder     ctermbg=249 ctermfg=46 guibg=#2F0B3A guifg=#D8D8D8
+-- vim.highlight.create("FloatBorder", {ctermbg=249, ctermfg=46, guibg=#2F0B3A, guifg=#D8D8D8}, false)
+vim.api.nvim_set_hl(0, "FloatBorder", {ctermbg=249, ctermfg=46})
+
 --- append tips
 -- 
 -- @param
