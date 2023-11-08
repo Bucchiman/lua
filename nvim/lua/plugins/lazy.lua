@@ -154,6 +154,7 @@ require("lazy").setup({
                   ["gx"] = "actions.open_external",
                   ["g."] = "actions.toggle_hidden",
               },
+            prompt_save_on_select_new_entry = false,
           })
       end
     },
@@ -1006,16 +1007,18 @@ require("lazy").setup({
             })
         end,
     },
-    -- {
-    --     'glepnir/template.nvim',
-    --     cmd = {
-    --         'Template',
-    --         'TemProject'
-    --     },
-    --     config = function()
-    --         require("plugins.config.template")
-    --     end
-    -- },
+    {
+        'glepnir/template.nvim',
+        cmd = {
+            'Template',
+            'TemProject'
+        },
+        config = function ()
+            require("template").setup(
+                require("plugins.config.template")
+            )
+        end
+    },
     "nvim-lua/plenary.nvim",
     {
         "folke/neodev.nvim",
@@ -1131,3 +1134,6 @@ require("lazy").setup({
         }
     }
 })
+
+
+require("plugins.config.template")

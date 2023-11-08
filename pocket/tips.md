@@ -9,3 +9,14 @@
 
 <!-- ---------------------------------------------- -->
 io.open
+
+
+<!-- ---------------------------------------------- -->
+# vim.api.nvim_create_autocmd
+2023-11-08 16時28分56秒
+
+Reference: https://coralpink.github.io/commentary/neovim/au/nvim_create_autocmd.html
+
+
+
+<!-- ---------------------------------------------- -->

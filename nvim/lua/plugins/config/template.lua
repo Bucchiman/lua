@@ -10,15 +10,20 @@
 --
 
 
-
-require("template").setup({
-    temp_dir = "$HOME/.config/template",
-    author = "8ucchiman",
-    email = "8ucchiman@gmail.com",
-})
-
-
 local file = vim.fn.expand("%")
+
+vim.api.nvim_create_autocmd (
+    {"BufNewFile"},
+    {
+        pattern = {
+            "*.lua"
+        },
+        callback = function ()
+            print("Hello world!!")
+            print("This is " .. file)
+        end
+    }
+)
 
 vim.api.nvim_create_autocmd(
     {"BufNewFile"},
@@ -99,3 +104,9 @@ vim.api.nvim_create_autocmd(
         command = "Template " ..file.." Cargo"
     }
 )
+
+return {
+    temp_dir = "$HOME/.config/template",
+    author = "8ucchiman",
+    email = "8ucchiman@gmail.com",
+}
