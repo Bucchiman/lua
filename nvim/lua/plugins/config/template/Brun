@@ -17,8 +17,13 @@ function Lchoose_project () {
     # @Reference
     #
 
-    local project=`ls_fzf $BASE_DIR/projects`
+    local project=`ls_fzf $BASE_DIR/submodules`
     echo $project
+}
+
+#@ archive
+function Lupdate_submodules () {
+    $(cd $BASE_DIR; git submodule update --init --recursive)   # cloneした後submoduleをclone 
 }
 
 #@ archive
@@ -37,7 +42,7 @@ function Lcreate_remote_repository () {
     cd projects; git submodule add $repository_url $project_name
 }
 
-#@
+#@ archive
 function Lsubmodule_add () {
     typeset -A platforms
     platforms=(
@@ -51,14 +56,13 @@ function Lsubmodule_add () {
     cd ${BASE_DIR}/projects; git submodule add $repository_url ${project_name}
 }
 
-
+#@ archive
 function Leval () {
     read casual_command
     eval $casual_command
 }
 
-
-typeset -A SUBMODULES
+#@ archive
 function Lset_variables () {
     #
     #
@@ -69,18 +73,23 @@ function Lset_variables () {
     echo "******************************"
     BASE_DIR=$PWD
     BMODS_PATH=$HOME/Bmods
-    SUBMODULES=(yolostereo3D https://github.com/Owen-Liuyuxuan/visualDet3D.git)
+    typeset -A -g SUBMODULES=(yolostereo3D https://github.com/Owen-Liuyuxuan/visualDet3D.git)
+}
+
+
+#@ archive
+function build () {
 }
 
 #@ archive
-function Lupdate_submodules () {
-    $(cd $BASE_DIR; git submodule update --init --recursive)   # cloneした後submoduleをclone 
+function run () {
 }
 
-
-function setup_environment () {
+#@ archive
+function setup () {
 }
 
+#@ archive
 function default () {
     #
     # this is default setting
@@ -95,6 +104,7 @@ function default () {
 }
 #######################################
 
+#@ archive
 function main01 () {
     source $HOME/Bmods
     Lset_variables

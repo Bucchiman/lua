@@ -101,12 +101,17 @@ keymap("v", "v", "$h", opts)
 -- 0番レジスタを使いやすくした
 keymap("v", "<C-p>", '"0p', opts)
 
+
 -- run python
 -- nnoremap <C-R> :sp <CR> :term python % <CR>
 
 -- ターミナルモード
 keymap("t", "<ESC><ESC>", '<C-\\><C-n>', opts)
 keymap("t", "<S-j><S-j>", '<C-\\><C-n>', opts)
+
+-- when ending up excuting programs, return to previous buffer
+-- https://vi.stackexchange.com/questions/12982/return-to-buffer-after-exiting-terminal-neovim
+keymap("t", "<ESC>", "<C-\\><C-n>:buffer #<CR>", opts)
 
 
 keymap("n", "<C-p>", ":bprev<CR>", opts)
