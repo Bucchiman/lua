@@ -168,6 +168,27 @@ vim.cmd('nnoremap <Space>v :call sml#mode_on()<CR>')
 
 vim.keymap.set("n", "<C-s><leader>", function () Bmods.getPaste() end)
 
+-- Reference: https://blog.atusy.net/2022/04/28/vim-colorscheme-by-buffer/
+-- vim.api.nvim_create_autocmd(
+--   'BufEnter',
+--   {
+--     pattern = '*',
+--     callback = function(args)
+--       local FILE = args.file  -- バッファのファイル名
+--       local CWD = vim.fn.getcwd() -- 作業ディレクトリのパス
+-- 
+--       -- カラースキームの決定
+--       -- ファイル名がCWDで始まっていればdesertを選択、それ以外はeveningを選択
+--       local COLORSCHEME = CWD == string.sub(FILE, 1, string.len(CWD))
+--                           and 'desert'  -- 普段用
+--                           or 'evening'  -- 作業ディレクトリ外のバッファ用
+-- 
+--       -- カラースキームの適用
+--       vim.cmd('colorscheme ' .. COLORSCHEME)
+--     end
+--   }
+-- )
+
 -- 
 -- 第一引数の `bufnr` には、シェルを開いている :terminal のバッファ番号が入っている。
 -- function! Tapi_getcwd(bufnr, ...) abort

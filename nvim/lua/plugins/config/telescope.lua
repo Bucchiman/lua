@@ -19,6 +19,7 @@ require('telescope').load_extension('possession')
 -- require("telescope").load_extension('find_template')
 -- require('telescope').load_extension('githubcoauthors')
 require('telescope').load_extension('hotprojects')
+require('telescope').load_extension('issuelist')
 
 M.extensions = {
     media_files = {

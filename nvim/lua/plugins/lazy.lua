@@ -159,6 +159,9 @@ require("lazy").setup({
       end
     },
     {
+        'Bucchiman/issuelist.nvim',
+    },
+    {
         'Bucchiman/hotprojects.nvim'
     },
     {
