@@ -130,7 +130,7 @@ wk.register({
             elseif ((_file_name == _file) or _extension == "sh" or _extension == "zsh") then
                 vim.cmd("terminal zsh %")
             elseif (_extension == "lua") then
-                vim.cmd("terminal lua %")
+                vim.cmd("luafile %")
             elseif (_extension == "rs") then
                 vim.cmd("terminal rustc %; ./" .. _file_name)
             elseif (_extension == "py") then
