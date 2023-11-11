@@ -67,10 +67,10 @@ keymap("n", "<S-A-l>", ":vertical resize -2<CR>", opts)
 keymap("n", "<S-A-h>", ":vertical resize +2<CR>", opts)
 
 -- on mac
-keymap("n", "<C-D-k>", ":resize -2<CR>", opts)
-keymap("n", "<C-D-j>", ":resize +2<CR>", opts)
-keymap("n", "<C-D-l>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-D-h>", ":vertical resize +2<CR>", opts)
+keymap("n", "<D-k>", ":resize -2<CR>", opts)
+keymap("n", "<D-j>", ":resize +2<CR>", opts)
+keymap("n", "<D-l>", ":vertical resize -2<CR>", opts)
+keymap("n", "<D-h>", ":vertical resize +2<CR>", opts)
 
 -- keymap("n", "<C-t>", ":terminal<CR>", opts)
 

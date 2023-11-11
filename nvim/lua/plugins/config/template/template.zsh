@@ -42,7 +42,18 @@ function set_variables () {
     echo "******************************"
     BASE_DIR=$PWD
     BMODS_PATH=$HOME/Bmods
-    typeset -A -g SUBMODULES=(yolostereo3D https://github.com/Owen-Liuyuxuan/visualDet3D.git)
+    ### you can write
+    typeset -A -g SUBMODULES=(
+        repo_name https://github.com/ # blablabla ...
+    )
+    typeset -A -g Reference_lst=(
+        ref_name https:// # blablabla ...
+    )
+    echo "BASE_DIR=$PWD"
+}
+
+#@
+function open () {
 }
 
 #@ archive

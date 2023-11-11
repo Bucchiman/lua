@@ -58,6 +58,9 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        "sakhnik/nvim-gdb"
+    },
+    {
         "ellisonleao/gruvbox.nvim",
         priority=1000,
         config=function ()

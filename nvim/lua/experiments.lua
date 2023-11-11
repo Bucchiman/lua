@@ -208,7 +208,7 @@ vim.cmd([[ autocmd DirChanged * lua vim.schedule_wrap(require('oil').open)(vim.v
 
 
 
-vim.keymap.set("n", "<leader><leader>", function () vim.cmd("!ln $HOME/.config/template/template.zsh Brun") end)
+vim.keymap.set("n", "<leader><leader>", function () vim.cmd("!ln -sf $HOME/.config/template/template.zsh Brun") end)
 
 
 
