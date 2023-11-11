@@ -124,7 +124,7 @@ wk.register({
                 _extension = ""
             end
             local _file_name = Bmods.StringDel(_file, _extension)
-            print(_file, _file_name, _extension)
+            -- print(_file, _file_name, _extension)
             if (( _file == "Bmods" or _file == "Bmain" )) then
                 vim.cmd("terminal source $HOME/.zshrc; Bmain")
             elseif ((_file_name == _file) or _extension == "sh" or _extension == "zsh") then

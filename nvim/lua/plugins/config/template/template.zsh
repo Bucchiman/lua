@@ -9,41 +9,29 @@
 #
 
 
-set -ex        # 途中のエラーで実行中断
+# set -ex        # 途中のエラーで実行中断
 
-function func_lst () {
-    echo "***********************************"
-    echo "The following function is prepared."
-    echo "***********************************"
-    cat $0 | awk '/^function/ {printf "| %s\n", $2}'
-    echo "***********************************"
+
+#@
+function update_submodules () {
+    $(cd $BASE_DIR; git submodule update --init --recursive)   # cloneした後submoduleをclone 
 }
 
+#@
+function submodule_add () {
+    typeset -A platforms
+    platforms=(
+        github git@github.com:Bucchiman/
+        gitlab git@gitlab.com:Bucchiman/
+    )
+    local target_platform=`array_fzf "${(k)platforms[*]}"`
+    echo -n "project name> ${platforms[$target_platform]}"
+    read project_name
+    local repository_url=${platforms[$target_platform]}${project_name}.git
+    cd ${BASE_DIR}/submodules; git submodule add $repository_url ${project_name}
+}
 
-########################################
-# while getopts :i:c:g OPT
-# do
-#     case $OPT in
-#         i) image_name=$OPTARG;;
-#         g) gpu_flag=true;;
-#         c) container_name=$OPTARG;;
-#         :|\?) _usage;;
-#     esac
-# done
-# function _usage () {
-#     echo 
-# }
-# function help () {
-# 
-# }
-# 
-# 
-# function main02 () {
-#     
-# }
-########################################
-
-typeset -A SUBMODULES
+#@
 function set_variables () {
     #
     #
@@ -53,15 +41,31 @@ function set_variables () {
     echo "* set_variables              *"
     echo "******************************"
     BASE_DIR=$PWD
-    SUBMODULES=(yolostereo3D https://github.com/Owen-Liuyuxuan/visualDet3D.git)
+    typeset -A -g SUBMODULES=(yolostereo3D https://github.com/Owen-Liuyuxuan/visualDet3D.git)
+}
+
+#@ archive
+function setup () {
+
+}
+
+#@ archive
+function build () {
+
+}
+
+#@ archive
+function run () {
+
+}
+
+#@ archive
+function clean () {
+
 }
 
 
-function setup_environment () {
-}
-
-
-
+#@ archive
 function default () {
     #
     # this is default setting
@@ -72,15 +76,21 @@ function default () {
     echo "******************************"
     echo "this is default setting"
     echo "you can run this function without no arguments."
-
+    setup
+    build
+    run
 }
 
 
 #######################################
+#@ archive
 function main01 () {
-    set_variable
+    set_variables
     if [[ $@ == "" ]]; then
         default
+    elif [[ $@ == "." ]]; then
+        local target_func=`choose_local_function $BASE_DIR/Brun`
+        eval $target_func
     else
         eval $@
     fi

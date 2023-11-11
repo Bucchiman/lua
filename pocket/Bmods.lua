@@ -151,6 +151,8 @@ end
 -- @Reference   https://codereview.stackexchange.com/questions/90177/get-file-name-with-extension-and-get-only-extension
 M.GetFileExtension = function (url)
     local text = url:match("^.+(%..+)$")
+    vim.notify(url)
+    -- vim.notify("text in getfileextension is "..text)
     return string.sub(text, 2, -1)
 end
 

@@ -17,16 +17,16 @@ require("base")
 require("options")
 require("keymaps")
 
--- function file_exists(name)
---    local f=io.open(name, "r")
---    if f~=nil then io.close(f) return true else return false end
--- end
+function file_exists(name)
+   local f=io.open(name, "r")
+   if f~=nil then io.close(f) return true else return false end
+end
 -- 
--- -- if vim.fn.filereadable("$HOME/.config/local/lua/local.lua") then
--- if file_exists(home_dir .. "/.config/local/lua/local.lua") then
---     vim.opt.runtimepath:append('$HOME/.config/local')
---     require("local")
--- end
+-- if vim.fn.filereadable("$HOME/.config/local/lua/local.lua") then
+if file_exists(home_dir .. "/.config/local/lua/local.lua") then
+    vim.opt.runtimepath:append('$HOME/.config/local')
+    require("local")
+end
 -- 
 -- -- if vim.fn.filereadable(vim.fn.expand("/tmp/8ucchiman/nvim")) then
 -- if file_exists("/tmp/8ucchiman/nvim/sample.lua") then
