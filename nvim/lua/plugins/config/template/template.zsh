@@ -41,6 +41,7 @@ function set_variables () {
     echo "* set_variables              *"
     echo "******************************"
     BASE_DIR=$PWD
+    BMODS_PATH=$HOME/Bmods
     typeset -A -g SUBMODULES=(yolostereo3D https://github.com/Owen-Liuyuxuan/visualDet3D.git)
 }
 
@@ -86,6 +87,7 @@ function default () {
 #@ archive
 function main01 () {
     set_variables
+    source $BMODS_PATH
     if [[ $@ == "" ]]; then
         default
     elif [[ $@ == "." ]]; then

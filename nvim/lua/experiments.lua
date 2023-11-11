@@ -205,4 +205,11 @@ vim.keymap.set("n", "<C-s><leader>", function () Bmods.getPaste() end)
 
 vim.cmd([[ autocmd DirChanged * lua vim.schedule_wrap(require('oil').open)(vim.v.event.cwd) ]])
 
+
+
+
+vim.keymap.set("n", "<leader><leader>", function () vim.cmd("!ln $HOME/.config/template/template.zsh Brun") end)
+
+
+
 return M
