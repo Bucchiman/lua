@@ -312,12 +312,12 @@ M.append_tips = function ()
         row = 1,
         anchor = 'NW',
         style = 'minimal'
-        }
-    vim.api.nvim_open_win(buf, false, opts)
+    }
+    vim.api.nvim_open_win(buf, true, opts)
     -- vim.api.nvim_win_close(0, false)
 end
 
-vim.keymap.set("v", "<C-i>", function ()
+vim.keymap.set("n", "<C-s><C-;>", function ()
     -- local file_path=vim.api.nvim_buf_get_name(0)        -- get current buffer
     -- local text=get_visual_selection()
     -- print(file_path)

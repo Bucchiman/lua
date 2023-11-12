@@ -50,3 +50,12 @@ Reference: https://www.reddit.com/r/neovim/comments/vygdbi/how_do_you_save_the_o
 ```
 
 Reference: :help vim.system()
+
+<!-- ---------------------------------------------- -->
+# vim.api.nvim_open_win({buffer}, {enter}, {config})
+- {buffer}: buffer to display, or 0 for current buffer
+- {enter}:  enter the window (make it the current window)
+- {config}:
+
+- 2023-11-12 15時59分45秒
+- [reference](https://neovim.io/doc/user/api.html#nvim_open_win())

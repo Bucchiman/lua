@@ -32,6 +32,10 @@ function submodule_add () {
 }
 
 #@
+function fzf_install () {
+}
+
+#@
 function set_variables () {
     #
     #
@@ -54,26 +58,29 @@ function set_variables () {
 
 #@
 function open () {
+    lopen
 }
 
 #@ archive
 function setup () {
-
+    if [[ -e $BASE_DIR/local ]]; then
+        source local
+    fi
 }
 
 #@ archive
 function build () {
-
+    lbuild
 }
 
 #@ archive
 function run () {
-
+    lrun
 }
 
 #@ archive
 function clean () {
-
+    lclean
 }
 
 
@@ -88,8 +95,7 @@ function default () {
     echo "******************************"
     echo "this is default setting"
     echo "you can run this function without no arguments."
-    setup
-    build
+    #build
     run
 }
 
@@ -98,6 +104,7 @@ function default () {
 #@ archive
 function main01 () {
     set_variables
+    setup
     source $BMODS_PATH
     if [[ $@ == "" ]]; then
         default
