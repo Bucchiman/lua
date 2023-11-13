@@ -83,6 +83,7 @@ function build () {
 
 #@ archive
 function run () {
+    lrun
 }
 
 #@ archive
@@ -107,6 +108,7 @@ function default () {
 #@ archive
 function main01 () {
     source $HOME/Bmods
+    source local
     Lset_variables
     if [[ $@ == "" ]]; then
         #
