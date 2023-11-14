@@ -58,6 +58,9 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        "sindrets/diffview.nvim",
+    },
+    {
         "sakhnik/nvim-gdb"
     },
     {

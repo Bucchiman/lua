@@ -76,9 +76,15 @@ function Lset_variables () {
     typeset -A -g SUBMODULES=(yolostereo3D https://github.com/Owen-Liuyuxuan/visualDet3D.git)
 }
 
+#@ archive
+function open () {
+    lopen
+}
+
 
 #@ archive
 function build () {
+    lbuild
 }
 
 #@ archive
@@ -88,6 +94,7 @@ function run () {
 
 #@ archive
 function setup () {
+    lsetup
 }
 
 #@ archive
@@ -108,8 +115,8 @@ function default () {
 #@ archive
 function main01 () {
     source $HOME/Bmods
-    source local
     Lset_variables
+    source $BASE_DIR/local
     if [[ $@ == "" ]]; then
         #
         # source modules
