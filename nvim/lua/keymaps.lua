@@ -111,7 +111,7 @@ keymap("t", "<S-j><S-j>", '<C-\\><C-n>', opts)
 
 -- when ending up excuting programs, return to previous buffer
 -- https://vi.stackexchange.com/questions/12982/return-to-buffer-after-exiting-terminal-neovim
-keymap("t", "<ESC>", "<C-\\><C-n>:buffer #<CR>", opts)
+keymap("t", "<C-s><ESC>", "<C-\\><C-n>:buffer #<CR>", opts)
 
 
 keymap("n", "<C-p>", ":bprev<CR>", opts)

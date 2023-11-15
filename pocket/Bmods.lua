@@ -294,7 +294,7 @@ M.append_tips = function ()
     local extension_name = M.GetFileExtension(file_path)
     -- print(file_path)
     local pocket_path = vim.fn.expand("$HOME/.config/pockets/")
-    local tips_path = pocket_path .. extension2path[extension_name] .. "/tips.md"
+    local tips_path = pocket_path .. extension2path[extension_name] .. "/tips." .. extension_name
     print(tips_path)
     -- local text=get_visual_selection()
 
