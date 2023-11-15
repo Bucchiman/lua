@@ -300,6 +300,7 @@ M.append_tips = function ()
 
     local buf = M.set_buffer(tips_path)
 
+
     -- vim.api.nvim_buf_set_lines(buf, 0, -1, true, {})
 
     local opts = {
@@ -308,13 +309,34 @@ M.append_tips = function ()
         relative = 'cursor',
         width = 100,
         height = 7,
-        col = 0,
-        row = 1,
+        col = 1,
+        row = 2,
         anchor = 'NW',
         style = 'minimal'
     }
-    vim.api.nvim_open_win(buf, true, opts)
+    local winopts = {
+        style = "minimal",
+        relative = "editor",
+        width = 102,
+        height = 9,
+        row = 1,
+        col = 0,
+    }
+    win = vim.api.nvim_open_win(buf, true, winopts)
+
+    -- vim.api.nvim_open_win(buf, true, opts)
+    -- vim.api.nvim_win_set_option(win, 'cursorline', true)    -- windowハンドルを指定してウィンドウオプションを指定
     -- vim.api.nvim_win_close(0, false)
+
+    local color = "#e27878"
+    local hl_name = "ClipBG" .. win
+
+    -- vim.cmd("hi " .. hl_name .. 'guifg=#fffffff guibg=#fff2525')                      -- https://github.com/daverivera/neovim-dots/blob/main/init.lua 
+    -- vim.highlight.create(hl_name, {ctermbg=249, guibg=#2F0B3A, ctermfg=46, guifg=#2F0B3A}, false)
+    -- vim.api.nvim_set_hl(win, hl_name, { ctermfg=White,  ctermbg=Black })        -- https://stackoverflow.com/questions/71152802/how-to-override-color-scheme-in-neovim-lua-config-file
+
+    -- vim.api.nvim_set_hl(0, "TipColor", {ctermbg=0, bg=})
+    -- vim.api.nvim_win_set_option(win, "TipColor", 'Normal:'..hl_name)
 end
 
 vim.keymap.set("n", "<C-s><C-;>", function ()
