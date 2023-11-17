@@ -21,6 +21,10 @@ function Lchoose_project () {
     echo $project
 }
 
+# function choose_local_shell_function () {
+#     local 
+# }
+
 #@ archive
 function Lupdate_submodules () {
     $(cd $BASE_DIR; git submodule update --init --recursive)   # cloneした後submoduleをclone 
