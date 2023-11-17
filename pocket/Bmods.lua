@@ -325,6 +325,8 @@ M.append_tips = function ()
         col = 0,
     }
     win = vim.api.nvim_open_win(buf, true, winopts)
+    vim.highlight.create('TipsColor', {guibg='#8fbcbb'}, false)
+    vim.api.nvim_win_set_option(win, "TipsColor", "TipsColor")
 
     -- vim.api.nvim_open_win(buf, true, opts)
     -- vim.api.nvim_win_set_option(win, 'cursorline', true)    -- windowハンドルを指定してウィンドウオプションを指定
@@ -338,7 +340,7 @@ M.append_tips = function ()
     -- vim.api.nvim_set_hl(win, hl_name, { ctermfg=White,  ctermbg=Black })        -- https://stackoverflow.com/questions/71152802/how-to-override-color-scheme-in-neovim-lua-config-file
 
     -- vim.api.nvim_set_hl(0, "TipColor", {ctermbg=0, bg=})
-    vim.api.nvim_win_set_option(win, "TelescopeNormal", 'TelescopeNormal')
+    -- vim.api.nvim_win_set_option(win, "TelescopeNormal", 'TelescopeNormal')
 end
 
 vim.keymap.set("n", "<C-s><C-;>", function ()
