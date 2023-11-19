@@ -9,6 +9,8 @@
 #
 
 
+source $HOME/Bmods
+
 function lopen () {
     echo "open"
 }
@@ -24,3 +26,6 @@ function lrun () {
 function lclean () {
     echo "clean"
 }
+
+
+eval $@

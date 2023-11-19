@@ -28,7 +28,7 @@ function submodule_add () {
     echo -n "project name> ${platforms[$target_platform]}"
     read project_name
     local repository_url=${platforms[$target_platform]}${project_name}.git
-    cd ${BASE_DIR}/submodules; git submodule add $repository_url ${project_name}
+    mkdir ${BASE_DIR}/submodules; cd $_; git submodule add $repository_url ${project_name}
 }
 
 #@
