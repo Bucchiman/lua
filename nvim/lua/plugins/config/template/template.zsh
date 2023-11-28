@@ -55,6 +55,11 @@ function set_variables () {
     )
     echo "BASE_DIR=$PWD"
 }
+#@
+function create_devbox () {
+    devbox init;
+    devbox shell;
+}
 
 #@
 function open () {
