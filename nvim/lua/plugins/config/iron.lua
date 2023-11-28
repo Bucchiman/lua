@@ -15,16 +15,17 @@ local iron = require("iron.core")
 local view = require("iron.view")
 
 M = {
-  config = {
-    -- Whether a repl should be discarded or not
-    scratch_repl = true,
-    -- Your repl definitions come here
-    repl_definition = {
-      sh = {
-        -- Can be a table or a function that
-        -- returns a table (see below)
-        command = {"zsh"}
-      }
+    config = {
+        -- Whether a repl should be discarded or not
+        scratch_repl = true,
+        -- Your repl definitions come here
+        repl_definition = {
+            sh = {
+                -- Can be a table or a function that
+                -- returns a table (see below)
+                command = {"zsh"}
+            },
+            python = require("iron.fts.python").ipython
     },
         -- repl_open_cmd = view.right(30)
     -- repl_open_cmd = view.offset {

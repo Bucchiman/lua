@@ -143,6 +143,7 @@ wk.register({
     },
     ["<C-r>"] = {
         name = "Repl",
+        f = {"<cmd>IronFocus<cr>", "ReplFocus"},
         t = {"<cmd>IronRepl<cr>", "ReplToggle"},
         r = { function () require("iron.core").send_file() end, "Run script file" },
         l = { function () require("iron.core").send_line() end, "Run line" },
