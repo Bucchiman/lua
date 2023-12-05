@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-04 00:47:41
--- LastModified: 2023-01-23 14:18:33 +0900
+-- LastModified: 2023-12-05 16:09:31
 -- Reference:    https://zenn.dev/botamotch/articles/46bd760b44c6a2
 --               https://zenn.dev/kawarimidoll/articles/7e986ceb6802fc
 -- autocmdに関するドキュメント: https://vim-jp.org/vimdoc-ja/autocmd.html
@@ -205,7 +205,57 @@ vim.keymap.set("n", "<C-s><leader>", function () Bmods.getPaste() end)
 
 vim.cmd([[ autocmd DirChanged * lua vim.schedule_wrap(require('oil').open)(vim.v.event.cwd) ]])
 
+-- Insert timestamp after 'LastModified: '
+--function! LastModified()
+--    if &modified
+--	let save_cursor = getpos(".")
+--	let n = min([40, line("$")])
+--	keepjumps exe '1,' . n . 's#^\(.\{,10}LastModified: \).*#\1' . \ strftime('%Y-%m-%d %H:%M:%S %z') . '#e'
+--	call histdel('search', -1)
+--	call setpos('.', save_cursor)
+--    endif
+--endfun
+--autocmd BufWritePre * call LastModified()
 
+-- -> change
+-- vim.api.nvim_create_autocmd("BufWritePre",{
+--     pattern = "*",
+--     callback = function ()
+--         if vim.opt.modified then
+--             local save_cursor = vim.fn.getpos(".")
+--             -- vim.cmd('echo 123455 8ucchiman')
+-- 
+--             -- vim.cmd('keepjumps exe '1,' . n . 's#^\(.\{,10}LastModified: \).*#\1' . \ strftime('%Y-%m-%d %H:%M:%S %z') . '#e'')
+--             vim.fn.histdel('search', -1)
+--             vim.fn.setpos('.', save_cursor)
+--         end
+--     end
+-- })
+
+local function update_modified_date ()
+    local n = math.min(vim.api.nvim_buf_line_count(0), 10)
+    local lines = vim.api.nvim_buf_get_lines(0, 0, n, false)
+    local pattern = '(LastModified: ).*'
+    local repl
+
+    for i, line in ipairs(lines) do
+        if line:find(pattern) then
+            repl = line:gsub(pattern, '%1' .. os.date('%Y-%m-%d %H:%M:%S'))
+            vim.api.nvim_buf_set_lines(0, i - 1, i, false, { repl })
+        end
+    end
+end
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*",
+    callback = function ()
+        local buf = vim.api.nvim_get_current_buf()
+        local buf_modified = vim.api.nvim_buf_get_option(buf, "modified")
+        if buf_modified then
+            update_modified_date()
+        end
+
+    end
+})
 
 
 vim.keymap.set("n", "<leader><leader>", function () vim.cmd("!ln -sf $HOME/.config/template/template.zsh Brun") end)

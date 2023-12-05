@@ -58,3 +58,28 @@ local obj = vim.system({'echo', 'hello'}, { text = true }):wait()
 -- 
 -- - 2023-11-12 15時59分45秒
 -- - [reference](https://neovim.io/doc/user/api.html#nvim_open_win())
+
+----------------------------------------------
+-- Reference: https://www.lua.org/pil/20.1.html
+-- 2023-12-05 10:35:41
+
+s = "hello world"
+i, j = string.find(s, "hello")      -- i: the index where the match begins
+                                    -- j: the index where the match ends
+print(i, j)                         -- 1 5
+
+i, j = string.find(s, "world")
+print(i, j)                         -- 7 11
+
+-- string.gsub(a subject string, a pattern, a replacement string)
+s = string.gsub("Lua is cute", "cute", "great")
+print(s)
+
+
+----------------------------------------------
+-- Reference https://www.reddit.com/r/neovim/comments/13el4fz/check_if_buffer_is_modified_and_execute_command/
+local buf = vim.api.nvim_get_current_buf()
+local buf_modified = vim.api.nvim_buf_get_option(buf, "modified")
+print(buf_modified)
+
+----------------------------------------------
