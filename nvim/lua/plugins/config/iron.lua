@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-07-27 13:26:39
--- LastModified: 2023-01-23 14:18:33 +0900
+-- LastModified: 2023-12-06 13:16:03
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 -- Description:  ---
 --
@@ -25,7 +25,8 @@ M = {
                 -- returns a table (see below)
                 command = {"zsh"}
             },
-            python = require("iron.fts.python").ipython
+            python = require("iron.fts.python").ipython,
+            cpp = require("iron.fts.cpp").root
     },
         -- repl_open_cmd = view.right(30)
     -- repl_open_cmd = view.offset {
