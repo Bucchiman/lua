@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-11 11:59:04
--- LastModified: 2023-01-23 14:18:33 +0900
+-- LastModified: 2023-12-07 15:55:21
 -- Reference:    https://sbulav.github.io/vim/neovim-setting-up-luasnip/
 -- Description:  ---
 --
@@ -52,9 +52,18 @@ ls.add_snippets(nil, {
         },{
             func(function ()
                 -- return "Command>\n\nArguments>\n\nTL;DR>\n\nKeywords>\n\nAlias>\n\nDescription>\nScene01>\nScene02>\nScene03>\n\nRelated>\n\nReference>\n\nLastModified> "
-                return "Command>Arguments>TL;DR>Keywords>Alias>Description>Scene01>Scene02>Scene03>Related>Reference>LastModified> "
+                return "Command>\\nArguments>TL;DR>Keywords>Alias>Description>Scene01>Scene02>Scene03>Related>Reference>LastModified> "
             end, {})
-        })
+        }),
+        -- snip({
+        --     trig = "cron",
+        --     namr = "",
+        --     dscr = "systemd template"},
+        --     {
+        --         func(function ()
+        --             return ""
+        --         end, {})
+        -- })
     }
 })
 
@@ -64,3 +73,4 @@ require("luasnip.loaders.from_snipmate").load({
         "~/.config/snippets"
     }
 })
+
