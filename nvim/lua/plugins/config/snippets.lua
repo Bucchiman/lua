@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-11 11:59:04
--- LastModified: 2023-12-07 15:55:21
+-- LastModified: 2023-12-08 17:23:39
 -- Reference:    https://sbulav.github.io/vim/neovim-setting-up-luasnip/
 -- Description:  ---
 --
@@ -21,7 +21,7 @@ local choice = ls.choice_node
 local dynamicn = ls.dynamic_node
 
 
-local date = function() return {os.date('%Y-%m-%d %X')} end
+local date = function() return {os.date('%Y-%m-%d %H:%M:%S')} end
 
 function _(text)
     return tostring(text):gsub("^\t+", ""):gsub("\n\t+$", ""):gsub("(\n)\t+", "%1")
