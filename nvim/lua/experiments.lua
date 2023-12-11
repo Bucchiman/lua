@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-04 00:47:41
--- LastModified: 2023-12-05 16:09:31
+-- LastModified: 2023-12-09 15:35:04
 -- Reference:    https://zenn.dev/botamotch/articles/46bd760b44c6a2
 --               https://zenn.dev/kawarimidoll/articles/7e986ceb6802fc
 -- autocmdに関するドキュメント: https://vim-jp.org/vimdoc-ja/autocmd.html
@@ -258,7 +258,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 
-vim.keymap.set("n", "<leader><leader>", function () vim.cmd("!ln -sf $HOME/.config/template/template.zsh Brun") end)
 
 vim.api.nvim_set_hl(0, 'FloatBorder', {bg='#3B4252', fg='#5E81AC'})
 vim.api.nvim_set_hl(0, 'NormalFloat', {bg='#3B4252'})

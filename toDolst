@@ -1,0 +1,13 @@
+- nvim: popup window in upper right        issue: 67
+    - motivation: A tips file and a Bmods open manually, which makes me annoyed.
+    - goal: to change some buffers of the popup window in upper right automatically depending on the filetype of the current buffer
+    - description
+        - [] In a popup window, the below files are displayed as buffers.
+            - buffers
+                - tips.*
+                - Bmods.*
+        - [] When you change the current buffer, the popup windows are closed automatically.
+        - [] Based on the filetype of the current buffer, a new popup window opens automatically.
+        - [] (future) enable colorscheme of buffers in the popup window
+    - Note
+        - [] Some files will appended to buffers.

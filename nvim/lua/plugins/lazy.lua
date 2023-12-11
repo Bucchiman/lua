@@ -58,6 +58,9 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        "tikhomirov/vim-glsl"
+    },
+    {
         "sindrets/diffview.nvim",
     },
     {
