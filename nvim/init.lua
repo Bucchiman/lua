@@ -10,6 +10,7 @@
 
 
 local home_dir = os.getenv('HOME')
+print(home_dir)
 local current_dir = vim.fn.getcwd()
 local nvim_qt_dir = os.getenv('NVIM_QT_RUNTIME_PATH')
 
@@ -36,6 +37,6 @@ end
 
 require("plugins.lazy")
 -- require("tools.settings")
-local experiments = require("experiments")
+-- local experiments = require("experiments")
 
 

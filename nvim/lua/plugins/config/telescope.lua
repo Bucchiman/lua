@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-10-14 12;46:07
--- LastModified: 2023-12-11 23:05:54
+-- LastModified: 2023-12-12 00:07:17
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 -- Description:  ---
 --
@@ -14,7 +14,7 @@ M = {}
 
 require('telescope').load_extension('media_files')
 -- require('telescope').load_extension('remote-sshfs')
-require('telescope').load_extension('possession')
+-- require('telescope').load_extension('possession')
 -- require('telescope').load_extension('projects')
 -- require("telescope").load_extension('find_template')
 -- require('telescope').load_extension('githubcoauthors')
