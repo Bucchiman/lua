@@ -11,7 +11,7 @@
 
 
 local wk = require("which-key")
-local Bmods = require("Bmods")
+-- local Bmods = require("Bmods")
 wk.register({
     g = {
         name = "+Git",
@@ -115,32 +115,33 @@ wk.register({
     ["<C-m>"] = { function () require("plugins.config.fzf_lua").readme() end, "README" },
     ["<C-i>"] = {"<cmd>GHOpenIssue", "github issue"},
     -- ["<C-s>"] = { function () require("iron.core").send_file() end, "Run script file"},
-    ["<C-s>"] = {
-        function ()
-            local _file_path = vim.api.nvim_buf_get_name(0)
-            local _file = Bmods.GetFileName(_file_path)
-            local _extension = Bmods.GetFileExtension(_file_path)
-            if _extension == nil then
-                _extension = ""
-            end
-            local _file_name = Bmods.StringDel(_file, _extension)
-            -- print(_file, _file_name, _extension)
-            if (( _file == "Bmods" or _file == "Bmain" )) then
-                vim.cmd("terminal source $HOME/.zshrc; Bmain")
-            elseif ((_file_name == _file) or _extension == "sh" or _extension == "zsh") then
-                vim.cmd("terminal zsh %")
-            elseif (_extension == "lua") then
-                vim.cmd("luafile %")
-            elseif (_extension == "rs") then
-                vim.cmd("terminal rustc %; ./" .. _file_name)
-            elseif (_extension == "py") then
-                vim.cmd("terminal python %")
-            else
-                vim.notify("Could Not Run", vim.log.levels.ERROR)
-            end
-        end,
-        "Run script file"
-    },
+
+    -- ["<C-s>"] = {
+    --     function ()
+    --         local _file_path = vim.api.nvim_buf_get_name(0)
+    --         local _file = Bmods.GetFileName(_file_path)
+    --         local _extension = Bmods.GetFileExtension(_file_path)
+    --         if _extension == nil then
+    --             _extension = ""
+    --         end
+    --         local _file_name = Bmods.StringDel(_file, _extension)
+    --         -- print(_file, _file_name, _extension)
+    --         if (( _file == "Bmods" or _file == "Bmain" )) then
+    --             vim.cmd("terminal source $HOME/.zshrc; Bmain")
+    --         elseif ((_file_name == _file) or _extension == "sh" or _extension == "zsh") then
+    --             vim.cmd("terminal zsh %")
+    --         elseif (_extension == "lua") then
+    --             vim.cmd("luafile %")
+    --         elseif (_extension == "rs") then
+    --             vim.cmd("terminal rustc %; ./" .. _file_name)
+    --         elseif (_extension == "py") then
+    --             vim.cmd("terminal python %")
+    --         else
+    --             vim.notify("Could Not Run", vim.log.levels.ERROR)
+    --         end
+    --     end,
+    --     "Run script file"
+    -- },
     ["<C-r>"] = {
         name = "Repl",
         f = {"<cmd>IronFocus<cr>", "ReplFocus"},

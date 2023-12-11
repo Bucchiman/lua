@@ -3,14 +3,16 @@
 -- FileName:     init
 -- Author:       8ucchiman
 -- CreatedDate:  2023-03-26 11:40:26 +0900
--- LastModified: 2023-03-31 21:41:28 +0900
+-- LastModified: 2023-12-12 00:35:47
 -- Reference:    https://zenn.dev/hisasann/articles/neovim-settings-to-lua
 --               https://developer.jmatsuzaki.com/posts/get-file-name-in-vim/
 --
 
 
 local home_dir = os.getenv('HOME')
-print(home_dir)
+if home_dir == nil then
+    home_dir = os.getenv('UserProfile')
+end
 local current_dir = vim.fn.getcwd()
 local nvim_qt_dir = os.getenv('NVIM_QT_RUNTIME_PATH')
 
