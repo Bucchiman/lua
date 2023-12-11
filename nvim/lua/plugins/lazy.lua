@@ -2,7 +2,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-03 15:39:49
--- LastModified: 2023-01-23 14:18:33 +0900
+-- LastModified: 2023-12-11 18:27:11
 -- Reference:    https://github.com/MiaadTeam/lesvim/blob/main/lua/lazy/plugins.lua
 -- Description:  ---
 --
@@ -57,6 +57,9 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 
 require("lazy").setup({
+    {
+        "tikhomirov/vim-glsl"
+    },
     {
         "sindrets/diffview.nvim",
     },
