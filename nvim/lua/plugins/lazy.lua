@@ -2,7 +2,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-03 15:39:49
--- LastModified: 2023-12-12 00:06:50
+-- LastModified: 2023-12-13 13:34:38
 -- Reference:    https://github.com/MiaadTeam/lesvim/blob/main/lua/lazy/plugins.lua
 -- Description:  ---
 --
@@ -1019,16 +1019,16 @@ require("lazy").setup({
             })
         end,
     },
---     -- {
---     --     'glepnir/template.nvim',
---     --     cmd = {
---     --         'Template',
---     --         'TemProject'
---     --     },
---     --     config = function()
---     --         require("plugins.config.template")
---     --     end
---     -- },
+    {
+        'glepnir/template.nvim',
+        cmd = {
+            'Template',
+            'TemProject'
+        },
+        config = function()
+            -- require("plugins.config.template")
+        end
+    },
     "nvim-lua/plenary.nvim",
     {
         "folke/neodev.nvim",
@@ -1110,16 +1110,16 @@ require("lazy").setup({
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-vsnip',
     'hrsh7th/vim-vsnip',
---    -- For luasnip users
---    {
---        'L3MON4D3/LuaSnip',
---        after = 'nvim-cmp',
---        version = "v2.*",
---        build = "make install_jsregexp",
---        config = function ()
---            require('plugins.config.snippets')
---        end
---    },
+    -- For luasnip users
+    {
+        'L3MON4D3/LuaSnip',
+        after = 'nvim-cmp',
+        version = "v2.*",
+        build = "make install_jsregexp",
+        config = function ()
+            require('plugins.config.snippets')
+        end
+    },
     'saadparwaiz1/cmp_luasnip',
     {
         'hrsh7th/nvim-cmp',
