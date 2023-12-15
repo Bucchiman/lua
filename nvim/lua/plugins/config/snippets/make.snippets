@@ -4,7 +4,7 @@ snippet _8 metadate
 	# FileName:     Makefile
 	# Author: 		8ucchiman
 	# CreatedDate:  2023-07-27 13:18:00
-	# LastModified: 2023-02-03 21:27:40 +0900
+	# LastModified: 2023-12-15 11:35:25
 	# Reference: 	https://qiita.com/chibi929/items/b8c5f36434d5d3fbfa4a
 	# Description:	---
 	#
@@ -218,4 +218,7 @@ snippet _8:function:call $(call 関数名/マクロ名, 引数) 関数やマク�
 
 	sample_call02:
 		$(call HELLO, Japan)    # -> Hello, Japan!
+
+snippet _8:suffix_cpp2o suffix change
+	$(patsubst %.cpp, %.o, $(wildcard *.cpp))
 
