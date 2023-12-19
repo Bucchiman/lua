@@ -1,0 +1,33 @@
+#
+# FileName:      {{_file_name_}}
+# Author:        {{_author_}}
+# CreatedDate:   {{_date_}}
+# LastModified: 2023-12-19 09:43:04
+# Reference:     8ucchiman.jp
+# Description:   ---
+#
+
+
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Rust
+      uses: actions/setup-rust@v1
+
+    - name: Build
+      run: cargo build
+
+    - name: Test
+      run: cargo test
