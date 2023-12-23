@@ -2,7 +2,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-03 15:39:49
--- LastModified: 2023-12-13 13:34:38
+-- LastModified: 2023-12-20 21:34:06
 -- Reference:    https://github.com/MiaadTeam/lesvim/blob/main/lua/lazy/plugins.lua
 -- Description:  ---
 --
@@ -789,10 +789,10 @@ require("lazy").setup({
             require("plugins.config.noice")
         end
     },
---     {
---         'neoclide/coc.nvim',
---         branch = 'release'
---     },
+    {
+        'neoclide/coc.nvim',
+        branch = 'release'
+    },
     {
         'VonHeikemen/fine-cmdline.nvim',
         dependencies = {
