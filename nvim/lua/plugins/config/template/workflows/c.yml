@@ -1,0 +1,27 @@
+#
+# FileName:      {{_file_name_}}
+# Author:        {{_author_}}
+# CreatedDate:   {{_date_}}
+# LastModified: 2023-12-19 09:44:13
+# Reference:     8ucchiman.jp
+# Description:   ---
+#
+
+
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Build
+      run: gcc -o my_program my_program.c
