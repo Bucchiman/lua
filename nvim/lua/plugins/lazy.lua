@@ -132,7 +132,7 @@ require("lazy").setup({
     {
       'stevearc/oil.nvim',
       opts = {},
-      enabled = function() return jit.os == "Linux" end,  -- https://www.reddit.com/r/neovim/comments/10yx0mu/how_can_i_load_a_plugin_only_if_im_using_linux/
+      enabled = function() return jit.os == "Linux" or jit.os == "OSX" end,  -- https://www.reddit.com/r/neovim/comments/10yx0mu/how_can_i_load_a_plugin_only_if_im_using_linux/
       -- Optional dependencies
       dependencies = { "nvim-tree/nvim-web-devicons" },
       config = function ()
