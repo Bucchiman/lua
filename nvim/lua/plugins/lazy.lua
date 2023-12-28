@@ -2,7 +2,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-03 15:39:49
--- LastModified: 2023-12-19 12:11:59
+-- LastModified: 2023-12-25 12:27:57
 -- Reference:    https://github.com/MiaadTeam/lesvim/blob/main/lua/lazy/plugins.lua
 -- Description:  ---
 --
@@ -146,7 +146,7 @@ require("lazy").setup({
               view_options = {
                   show_hidden = true,
               },
-                use_default_keymaps = false,
+              use_default_keymaps = false,
               keymaps = {
                   ["<C-v>"] = "actions.select_vsplit",
                   ["g?"] = "actions.show_help",
@@ -164,7 +164,7 @@ require("lazy").setup({
                   ["gx"] = "actions.open_external",
                   ["g."] = "actions.toggle_hidden",
               },
-            prompt_save_on_select_new_entry = false,
+              prompt_save_on_select_new_entry = false,
           })
       end
     },
