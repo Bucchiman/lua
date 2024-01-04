@@ -2,7 +2,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-03 15:39:49
--- LastModified: 2023-12-25 12:27:57
+-- LastModified: 2023-12-26 20:11:00
 -- Reference:    https://github.com/MiaadTeam/lesvim/blob/main/lua/lazy/plugins.lua
 -- Description:  ---
 --
@@ -148,7 +148,7 @@ require("lazy").setup({
               },
               use_default_keymaps = false,
               keymaps = {
-                  ["<C-v>"] = "actions.select_vsplit",
+                  -- ["<C-v>"] = "actions.select_vsplit",
                   ["g?"] = "actions.show_help",
                   ["<CR>"] = "actions.select",
                   ["<C-h>"] = "actions.select_split",
