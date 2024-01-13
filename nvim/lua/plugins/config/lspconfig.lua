@@ -81,6 +81,44 @@ lspconfig.lua_ls.setup {
     }
 }
 
+lspconfig.clangd.setup ({
+    settings = {
+        cmd = { "clangd", "--background-index" },
+        filetypes = { "c", "cpp", "objc", "objcpp" },
+        -- root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+        init_options = {
+            clangdFileStatus = true,
+            usePlaceholders = true,
+            completeUnimported = true,
+            semanticHighlighting = true,
+            extraClangArguments = {"/opt/local/include"},
+        },
+    },
+
+    -- Diagnostics
+    handlers = {
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(
+            vim.lsp.diagnostic.on_publish_diagnostics, {
+                virtual_text = { prefix = "", spacing = 0 },
+                signs = true,
+                update_in_insert = true,
+            }
+        ),
+    },
+    -- Code navigation
+    -- capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+
+    on_attach = function(client, bufnr)
+        -- custom setting
+        print("clangd is now attached!")
+    end,
+    -- flags = {
+    --     debounce_text_changes = 150,
+    -- }
+})
+
+lspconfig.glslls.setup{}
+
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

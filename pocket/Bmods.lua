@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-06 19:24:06
--- LastModified: 2023-01-23 14:18:33 +0900
+-- LastModified: 2024-01-13 21:32:53
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 --               https://github.com/CharlesChiuGit/nvimdots.lua
 -- Description:  ---
@@ -21,6 +21,16 @@ local position = 0
 
 
 M.hello_8ucchiman = "8ucchiman was here!!"
+
+--- debug message
+-- this is specified function
+-- @param
+-- @return
+-- @ReferenceA
+M.__debug = function ()
+    print("Hello world from 8ucchiman")
+end
+
 
 --- open window
 -- @param       position
