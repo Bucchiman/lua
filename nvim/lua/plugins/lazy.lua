@@ -789,10 +789,10 @@ require("lazy").setup({
             require("plugins.config.noice")
         end
     },
---     {
---         'neoclide/coc.nvim',
---         branch = 'release'
---     },
+    {
+        'neoclide/coc.nvim',
+        branch = 'release'
+    },
     {
         'VonHeikemen/fine-cmdline.nvim',
         dependencies = {
