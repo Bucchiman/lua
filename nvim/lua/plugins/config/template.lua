@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-07-09 15:23:57
--- LastModified: 2023-01-23 14:18:33 +0900
+-- LastModified: 2023-12-25 12:30:11
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 -- Description:  ---
 --
@@ -12,18 +12,18 @@
 
 local file = vim.fn.expand("%")
 
-vim.api.nvim_create_autocmd (
-    {"BufNewFile"},
-    {
-        pattern = {
-            "*.lua"
-        },
-        callback = function ()
-            print("Hello world!!")
-            print("This is " .. file)
-        end
-    }
-)
+-- vim.api.nvim_create_autocmd (
+--     {"BufNewFile"},
+--     {
+--         pattern = {
+--             "*.lua"
+--         },
+--         callback = function ()
+--             print("Hello world!!")
+--             print("This is " .. file)
+--         end
+--     }
+-- )
 
 vim.api.nvim_create_autocmd(
     {"BufNewFile"},
