@@ -1,0 +1,40 @@
+<!--
+ FileName:      {{_file_name_}}
+ Author:        {{_author_}}
+ CreatedDate:   {{_date_}}
+ LastModified: 2024-01-21 01:28:38
+ Reference:     8ucchiman.jp
+Description:    for ros2 humble
+    <name></name>               must: package name
+    <version></version>         must: must version of the package
+    <description></description> must: description of the package
+    <maintainer></maintainer>   must: name and mail
+    <license></license>         must: license
+    <buildtool_depend>ament_cmake</buildtool_depend>    build tool
+    <depend></build>                                    all dependencies
+    <build_depend></build_depend>                       dependencies for build
+    <exec_depend></exec_depend>                         dependencies for execution
+    <test_depend></test_depend>                         dependencies for test
+-->
+
+<?xml version="1.0"?>                                                                                                                                            
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+    <name>hello_world</name>
+    <version>0.0.0</version>
+    <description>TODO: </description>
+    <maintainer email="8ucchiman@gmail.com">8ucchiman</maintainer>
+    <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>hello_world_msgs</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

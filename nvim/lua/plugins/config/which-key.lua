@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-10-06 14:51:33
--- LastModified: 2023-01-23 14:18:33 +0900
+-- LastModified: 2024-01-24 09:38:43
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 -- Description:  ---
 --
@@ -111,7 +111,7 @@ wk.register({
     ["<C-n>"] = {"<cmd>Oil<cr>", "Open parent directory"},
 
     ["<C-p>"] = { function () require("plugins.config.fzf_lua").snippets() end, "Snippets" },
-    ["<C-o>"] = { function () require("plugins.config.fzf_lua").onelines() end, "Onelines" },
+    -- ["<C-o>"] = { function () require("plugins.config.fzf_lua").onelines() end, "Onelines" },
     ["<C-m>"] = { function () require("plugins.config.fzf_lua").readme() end, "README" },
     ["<C-i>"] = {"<cmd>GHOpenIssue", "github issue"},
     -- ["<C-s>"] = { function () require("iron.core").send_file() end, "Run script file"},

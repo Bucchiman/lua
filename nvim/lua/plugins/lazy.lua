@@ -2,7 +2,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-03 15:39:49
--- LastModified: 2023-12-26 20:11:00
+-- LastModified: 2024-01-24 20:04:17
 -- Reference:    https://github.com/MiaadTeam/lesvim/blob/main/lua/lazy/plugins.lua
 -- Description:  ---
 --
@@ -57,6 +57,9 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 
 require("lazy").setup({
+    {
+        "vijaymarupudi/nvim-fzf"
+    },
     {
         "tikhomirov/vim-glsl"
     },

@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-06 19:24:06
--- LastModified: 2024-01-13 21:32:53
+-- LastModified: 2024-01-26 00:45:46
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 --               https://github.com/CharlesChiuGit/nvimdots.lua
 -- Description:  ---
@@ -418,6 +418,60 @@ end
 -- M.floating_window()
 
 -- M.open_window()
+
+
+
+--- show oneline snippets
+-- 
+-- @param
+-- @return
+-- @Reference   
+M.show_oneline = function ()
+    local extension2path = {
+        zsh = "shell",
+        sh = "shell",
+        lua = "lua",
+        c = "c",
+        cpp = "c++",
+        cs = "csharp",
+        rs = "rust",
+        py = "python",
+        s = "assembler"
+    }
+    local file_path = vim.api.nvim_buf_get_name(0)        -- get current buffer
+    local extension_name = M.GetFileExtension(file_path)
+    -- print(file_path)
+    local pocket_path = vim.fn.expand("$HOME/.config/pockets/")
+    local oneline_path = pocket_path .. extension2path[extension_name] .. "/onelines"
+
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+
+    local fzf = require("fzf")
+
+    local result
+    coroutine.wrap(function()
+        result = fzf.fzf("/bin/ls -1 " .. oneline_path)
+        -- print(result[1])
+        -- local text_to_print = string.format('%s', result[1])
+        vim.api.nvim_put(result, 'l', false, true)
+
+    end)()
+
+    -- local text_to_print = string.format('%s%s', vim.api.nvim_buf_get_lines(0, row-1, col, false)[1], result[1])
+    -- vim.api.nvim_put({text_to_print}, 'l', false, true)
+    -- vim.api.nvim_exec(command, false)
+end
+
+vim.keymap.set("n", "<C-s><C-;>", function ()
+    -- local file_path=vim.api.nvim_buf_get_name(0)        -- get current buffer
+    -- local text=get_visual_selection()
+    -- print(file_path)
+    M.append_tips()
+end)
+
+vim.keymap.set("n", "<C-s><C-o>", function ()
+    M.show_oneline()
+end)
 
 
 return M
