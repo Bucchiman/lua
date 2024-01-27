@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-06 19:24:06
--- LastModified: 2024-01-26 00:45:46
+-- LastModified: 2024-01-27 14:56:59
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 --               https://github.com/CharlesChiuGit/nvimdots.lua
 -- Description:  ---
@@ -436,7 +436,8 @@ M.show_oneline = function ()
         cs = "csharp",
         rs = "rust",
         py = "python",
-        s = "assembler"
+        s = "assembler",
+        ps1 = "powershell"
     }
     local file_path = vim.api.nvim_buf_get_name(0)        -- get current buffer
     local extension_name = M.GetFileExtension(file_path)
@@ -451,6 +452,10 @@ M.show_oneline = function ()
     local result
     coroutine.wrap(function()
         result = fzf.fzf("/bin/ls -1 " .. oneline_path)
+        -- f = io.open(oneline_path, "r")
+        -- for m in f:lines() do
+        --     vim.api.nvim_put(m, 'l', false, true)
+        -- end
         -- print(result[1])
         -- local text_to_print = string.format('%s', result[1])
         vim.api.nvim_put(result, 'l', false, true)
