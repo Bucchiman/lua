@@ -4,7 +4,7 @@ snippet _8 metadata
 	# FileName:     file
 	# Author:       8ucchiman
 	# CreatedDate:  2023-07-27 13:10:49
-	# LastModified: 2023-12-17 15:57:57
+	# LastModified: 2024-02-15 11:29:29
 	# Reference:    8ucchiman.jp
 	# Description:  ---
 	#
@@ -275,3 +275,10 @@ snippet _8:heredoc_file heredoc create file
 
 snippet _8:border
 	# ----------------------------------------------------
+
+snippet _8:log
+	2>&1 | tee $ml.log
+
+snippet _8:date
+    date "+%Y_%m_%d_%H_%M_%S"
+
