@@ -2,7 +2,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-03 15:39:49
--- LastModified: 2024-02-20 12:09:56
+-- LastModified: 2024-03-14 11:03:04
 -- Reference:    https://github.com/MiaadTeam/lesvim/blob/main/lua/lazy/plugins.lua
 -- Description:  ---
 --
@@ -158,6 +158,7 @@ require("lazy").setup({
                   ["<C-t>"] = "actions.select_tab",
                   ["<C-p>"] = "actions.preview",
                   ["<C-c>"] = "actions.close",
+                  ["<C-i>"] = "actions.refresh",
                   -- ["<C-l>"] = "actions.refresh",
                   ["-"] = "actions.parent",
                   ["_"] = "actions.open_cwd",
