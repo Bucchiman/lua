@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-10-06 14:51:33
--- LastModified: 2024-01-24 09:38:43
+-- LastModified: 2024-06-08 15:11:36
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 -- Description:  ---
 --
@@ -164,7 +164,7 @@ wk.register({
 
 
 wk.register({
-    ["<space>"] = {'<cmd>e %<cr>', "for enable syntax hightlight"},
+    -- ["<space>"] = {'<cmd>e %<cr>', "for enable syntax hightlight"},
     t = {'<cmd>lua require("nabla").popup()<cr>', "Preview mathematics"},
     p = {'<cmd>MarkdownPreviewToggle<cr>', "Preview readme"},
     l = {"<cmd>NoiceLog<cr>", "Noice Log"},

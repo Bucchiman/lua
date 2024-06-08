@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-06 19:24:06
--- LastModified: 2024-01-27 14:56:59
+-- LastModified: 2024-06-08 15:49:35
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 --               https://github.com/CharlesChiuGit/nvimdots.lua
 -- Description:  ---
@@ -478,5 +478,33 @@ vim.keymap.set("n", "<C-s><C-o>", function ()
     M.show_oneline()
 end)
 
+
+-- Function to get the absolute file path under the cursor, remove the 'oil://' prefix, and open it with viu
+function OpenImageUnderCursor()
+  -- Get the file path under the cursor
+  local file = vim.fn.expand('<cfile>')
+
+  -- Get the directory of the current buffer
+  local dir = vim.fn.expand('%:p:h')
+
+  -- Combine the directory and file path to get the absolute path
+  local fullpath = dir .. '/' .. file
+
+  -- Remove the 'oil://' prefix if present
+  if fullpath:sub(1, 6) == 'oil://' then
+    fullpath = fullpath:sub(7)
+  end
+
+  -- Check if the file exists
+  if file ~= '' and vim.fn.filereadable(fullpath) == 1 then
+    -- vim.cmd('silent !viu ' .. vim.fn.shellescape(fullpath))
+    vim.cmd('silent !open ' .. vim.fn.shellescape(fullpath))
+  else
+    print(fullpath .. " is not valid file under cursor")
+  end
+end
+
+-- Map <leader>i to call the function
+vim.api.nvim_set_keymap('n', '<leader>i', ':lua OpenImageUnderCursor()<CR>', { noremap = true, silent = true })
 
 return M

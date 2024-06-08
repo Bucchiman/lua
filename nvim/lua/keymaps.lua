@@ -3,7 +3,7 @@
 -- FileName:     lua/keymaps
 -- Author:       8ucchiman
 -- CreatedDate:  2023-03-31 23:40:18 +0900
--- LastModified: 2024-03-14 11:16:28
+-- LastModified: 2024-06-08 15:10:11
 -- Reference: https://zenn.dev/hisasann/articles/neovim-settings-to-lua
 --
 
@@ -72,6 +72,8 @@ keymap("n", "<D-j>", ":resize +2<CR>", opts)
 keymap("n", "<D-l>", ":vertical resize -2<CR>", opts)
 keymap("n", "<D-h>", ":vertical resize +2<CR>", opts)
 
+keymap("n", "<Space><Space>", ":diffthis<CR>", opts)
+
 -- keymap("n", "<C-t>", ":terminal<CR>", opts)
 
 -- S-v Shift-v
@@ -120,6 +122,7 @@ keymap("n", "<C-n>", ":bnext<CR>", opts)
 
 keymap("n", "<C-b><C-b>", ":%!xxd<CR>", opts);
 keymap("n", "<leader><C-j>", ":windo diffthis<CR>", opts);
+
 
 vim.keymap.set("n", "<leader><leader>", function () vim.cmd("!ln -sf $HOME/.config/pockets/shell/Brun Brun; cp $HOME/.config/pockets/shell/local local;") end)
 
