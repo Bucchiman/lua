@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-06 19:24:06
--- LastModified: 2024-06-08 15:49:35
+-- LastModified: 2024-06-09 15:27:18
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 --               https://github.com/CharlesChiuGit/nvimdots.lua
 -- Description:  ---
@@ -506,5 +506,44 @@ end
 
 -- Map <leader>i to call the function
 vim.api.nvim_set_keymap('n', '<leader>i', ':lua OpenImageUnderCursor()<CR>', { noremap = true, silent = true })
+
+
+-- Global variable to store the source file path
+_G.source_file_path = nil
+
+-- Define the function to handle the logic
+function handle_symlink()
+  -- Get the file path under the cursor
+  local file = vim.fn.expand('<cfile>')
+
+  -- Get the directory of the current buffer
+  local dir = vim.fn.expand('%:p:h')
+
+  -- Combine the directory and file path to get the absolute path
+  fullpath = dir .. '/' .. file
+
+  -- Remove the 'oil://' prefix if present
+  if fullpath:sub(1, 6) == 'oil://' then
+    fullpath = fullpath:sub(7)
+  end
+
+  if _G.source_file_path == nil then
+    -- If the source file path is not set, store the current file path
+    _G.source_file_path = fullpath
+    print("Source file path set to: " .. _G.source_file_path)
+  else
+    -- If the source file path is already set, create the symbolic link
+    local symlink_path = fullpath
+    local cmd = string.format("ln -s %s %s", _G.source_file_path, symlink_path)
+    os.execute(cmd)
+    print(string.format("Created symlink: %s -> %s", symlink_path, _G.source_file_path))
+
+    -- Reset the source file path for future use
+    _G.source_file_path = nil
+  end
+end
+
+-- Map the function to the desired keybinding
+vim.api.nvim_set_keymap('n', '<Space>l', ':lua handle_symlink()<CR>', { noremap = true, silent = true })
 
 return M
