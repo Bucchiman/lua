@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-06 19:24:06
--- LastModified: 2024-06-09 15:27:18
+-- LastModified: 2024-06-10 11:17:36
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 --               https://github.com/CharlesChiuGit/nvimdots.lua
 -- Description:  ---
@@ -545,5 +545,22 @@ end
 
 -- Map the function to the desired keybinding
 vim.api.nvim_set_keymap('n', '<Space>l', ':lua handle_symlink()<CR>', { noremap = true, silent = true })
+
+
+function copy_buffer_path()
+  vim.g.copied_buffer_path = vim.fn.expand('%:p')
+  print('Buffer path copied: ' .. vim.g.copied_buffer_path)
+end
+
+function switch_to_copied_buffer()
+  if vim.g.copied_buffer_path then
+    vim.cmd('e ' .. vim.g.copied_buffer_path)
+  else
+    print('No buffer path copied!')
+  end
+end
+
+vim.api.nvim_set_keymap('n', '<leader>cb', ':lua copy_buffer_path()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sb', ':lua switch_to_copied_buffer()<CR>', { noremap = true, silent = true })
 
 return M
