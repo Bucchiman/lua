@@ -4,7 +4,7 @@ snippet _8 metadata
 	# FileName:     file
 	# Author:       8ucchiman
 	# CreatedDate:  2023-07-27 13:10:49
-	# LastModified: 2024-02-15 11:29:29
+	# LastModified: 2024-06-13 13:33:23
 	# Reference:    8ucchiman.jp
 	# Description:  ---
 	#
@@ -19,6 +19,13 @@ snippet _8:function_metadata
 	# @Example
 	# @Reference    https://qiita.com/egawa_kun/items/714394609eef6be8e0bf
 	#
+
+snippet _8:RUN_return
+	# Run the command and capture the output
+	output=$(RUN python main.py)
+
+	# Extract the log file path from the output
+	log_file=$(echo "$output" | grep -oP 'Log file created at: \K.*')
 
 
 
