@@ -2,7 +2,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-03 15:39:49
--- LastModified: 2024-03-14 11:03:04
+-- LastModified: 2024-06-27 17:01:31
 -- Reference:    https://github.com/MiaadTeam/lesvim/blob/main/lua/lazy/plugins.lua
 -- Description:  ---
 --
@@ -57,6 +57,13 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 
 require("lazy").setup({
+    {
+        'RaafatTurki/hex.nvim',
+        config=function ()
+            require("hex").setup({
+            })
+        end
+    },
     {
         "vijaymarupudi/nvim-fzf"
     },
@@ -155,7 +162,7 @@ require("lazy").setup({
                   ["g?"] = "actions.show_help",
                   ["<CR>"] = "actions.select",
                   -- ["<C-h>"] = "actions.select_split",
-                  ["<C-t>"] = "actions.select_tab",
+                  -- ["<C-t>"] = "actions.select_tab",
                   ["<C-p>"] = "actions.preview",
                   ["<C-c>"] = "actions.close",
                   ["<C-i>"] = "actions.refresh",

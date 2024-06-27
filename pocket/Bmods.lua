@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-06 19:24:06
--- LastModified: 2024-06-09 15:27:18
+-- LastModified: 2024-06-27 17:30:54
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 --               https://github.com/CharlesChiuGit/nvimdots.lua
 -- Description:  ---
@@ -545,5 +545,116 @@ end
 
 -- Map the function to the desired keybinding
 vim.api.nvim_set_keymap('n', '<Space>l', ':lua handle_symlink()<CR>', { noremap = true, silent = true })
+
+
+
+-- terminal <--> oil
+local oil = require("oil")
+
+-- Global variable to store the last active terminal buffer
+vim.g.last_active_terminal_buf = nil
+
+-- Function to get process working directory on macOS
+function GetProcessCwd(pid)
+  local handle = io.popen(string.format("lsof -a -d cwd -p %d | tail -n 1 | awk '{print $NF}'", pid))
+  if handle then
+    local result = handle:read("*a")
+    handle:close()
+    return result:gsub("%s+$", "") -- Trim whitespace
+  end
+  return nil
+end
+
+-- Function to open oil from terminal
+function OpenOilFromTerminal()
+  local buf = vim.api.nvim_get_current_buf()
+  local pid = vim.b[buf].terminal_job_pid
+  if pid then
+    local pwd = GetProcessCwd(pid)
+    if pwd then
+      vim.g.last_active_terminal_buf = buf  -- Store the terminal buffer number globally
+      vim.g.last_terminal_pwd = pwd  -- Store the terminal's PWD
+      oil.open(pwd)
+    else
+      print("Could not determine terminal PWD")
+    end
+  else
+    print("Not in a terminal buffer")
+  end
+end
+
+-- Function to return to the last terminal buffer from oil or create a new one
+function ReturnToTerminalFromOil()
+  local last_term_buf = vim.g.last_active_terminal_buf
+  local pwd = vim.fn.expand('%:p:h')
+  -- Remove the 'oil://' prefix if present
+  if pwd:sub(1, 6) == 'oil://' then
+    pwd = pwd:sub(7)
+  end
+
+  if last_term_buf and vim.api.nvim_buf_is_valid(last_term_buf) then
+    vim.api.nvim_set_current_buf(last_term_buf)
+    vim.api.nvim_chan_send(vim.b.terminal_job_id, 'cd "' .. pwd .. '"\n')
+    vim.cmd('startinsert')  -- Enter terminal mode
+  else
+    -- Create a new terminal buffer in the correct directory
+    vim.cmd('lcd ' .. pwd)
+    vim.cmd('terminal')
+    vim.cmd('startinsert')
+  end
+end
+
+-- Function to get all terminal buffers
+function GetTerminalBuffers()
+  local terminal_buffers = {}
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.bo[buf].buftype == 'terminal' then
+      table.insert(terminal_buffers, buf)
+    end
+  end
+  return terminal_buffers
+end
+
+-- Set up autocmd to store terminal job PID and update last active terminal
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function(args)
+    vim.b[args.buf].terminal_job_pid = vim.fn.jobpid(vim.b[args.buf].terminal_job_id)
+    vim.b[args.buf].terminal_job_id = vim.b.terminal_job_id
+    vim.g.last_active_terminal_buf = args.buf
+    vim.g.last_terminal_pwd = vim.fn.getcwd()
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function(args)
+    if vim.bo[args.buf].buftype == 'terminal' then
+      vim.g.last_active_terminal_buf = args.buf
+      local pid = vim.b[args.buf].terminal_job_pid
+      if pid then
+        vim.g.last_terminal_pwd = GetProcessCwd(pid)
+      end
+    end
+  end,
+})
+
+-- Mapping to switch from terminal to oil
+vim.api.nvim_set_keymap('t', '<C-t>', '<C-\\><C-n>:lua OpenOilFromTerminal()<CR>', {noremap = true, silent = true})
+
+-- Mapping to switch from oil back to terminal
+vim.api.nvim_set_keymap('n', '<C-t>', ':lua ReturnToTerminalFromOil()<CR>', {noremap = true, silent = true})
+
+-- Initialize last_active_terminal_buf if there's an existing terminal
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    local terminal_buffers = GetTerminalBuffers()
+    if #terminal_buffers > 0 then
+      vim.g.last_active_terminal_buf = terminal_buffers[1]
+      local pid = vim.b[terminal_buffers[1]].terminal_job_pid
+      if pid then
+        vim.g.last_terminal_pwd = GetProcessCwd(pid)
+      end
+    end
+  end,
+})
 
 return M

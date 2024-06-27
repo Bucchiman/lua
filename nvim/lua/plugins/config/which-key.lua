@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-10-06 14:51:33
--- LastModified: 2024-06-09 15:18:29
+-- LastModified: 2024-06-27 17:00:33
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 -- Description:  ---
 --
@@ -104,7 +104,7 @@ wk.register({
     -- ["<C-s>"] = {"<cmd>Telescope projects<cr>", "Show projects"},
     -- ["d"] = {"<cmd>Autosession delete<cr>", "Delete Session"},
     ["<C-b>"] = {"<cmd>Telescope buffers<cr>", "buffer list"},
-    ["<C-t>"] = {"<cmd>ToggleTerm<cr>", "terminal on/off"},
+    -- ["<C-t>"] = {"<cmd>ToggleTerm<cr>", "terminal on/off"},
     -- ["<C-n>"] = {"<cmd>Neotree<cr>", "open Neotree"},
     -- ["<C-n>"] = {"<cmd>Dired<cr>", "open Dired"},
     -- ["<C-n>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree on/off"},
