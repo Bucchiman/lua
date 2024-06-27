@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-06 19:24:06
--- LastModified: 2024-06-27 17:30:54
+-- LastModified: 2024-06-27 17:33:14
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 --               https://github.com/CharlesChiuGit/nvimdots.lua
 -- Description:  ---
@@ -478,8 +478,6 @@ vim.keymap.set("n", "<C-s><C-o>", function ()
     M.show_oneline()
 end)
 
-
--- Function to get the absolute file path under the cursor, remove the 'oil://' prefix, and open it with viu
 function OpenImageUnderCursor()
   -- Get the file path under the cursor
   local file = vim.fn.expand('<cfile>')
@@ -497,10 +495,26 @@ function OpenImageUnderCursor()
 
   -- Check if the file exists
   if file ~= '' and vim.fn.filereadable(fullpath) == 1 then
-    -- vim.cmd('silent !viu ' .. vim.fn.shellescape(fullpath))
-    vim.cmd('silent !open ' .. vim.fn.shellescape(fullpath))
+    local command
+    if vim.fn.has('macunix') == 1 then
+      command = 'open'
+    elseif vim.fn.has('unix') == 1 then
+      command = 'eog'
+    else
+      print('Unsupported OS')
+      return
+    end
+
+    -- Asynchronously open the image
+    local handle
+    local function on_exit()
+      handle:close()
+    end
+    handle = vim.loop.spawn(command, {
+      args = { fullpath },
+    }, vim.schedule_wrap(on_exit))
   else
-    print(fullpath .. " is not valid file under cursor")
+    print(fullpath .. " is not a valid file under cursor")
   end
 end
 
@@ -545,7 +559,6 @@ end
 
 -- Map the function to the desired keybinding
 vim.api.nvim_set_keymap('n', '<Space>l', ':lua handle_symlink()<CR>', { noremap = true, silent = true })
-
 
 
 -- terminal <--> oil
@@ -656,5 +669,28 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end
   end,
 })
+
+
+function copy_buffer_path()
+  vim.g.copied_buffer_path = vim.fn.expand('%:p')
+  print('Buffer path copied: ' .. vim.g.copied_buffer_path)
+end
+
+function switch_to_copied_buffer()
+  if vim.g.copied_buffer_path then
+    vim.cmd('e ' .. vim.g.copied_buffer_path)
+  else
+    print('No buffer path copied!')
+  end
+end
+
+vim.api.nvim_set_keymap('n', '<leader>cb', ':lua copy_buffer_path()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sb', ':lua switch_to_copied_buffer()<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('v', '/', ':<C-u>lua SearchWithinSelection()<CR>', { noremap = true, silent = true })
+function SearchWithinSelection()
+  local search_term = vim.fn.input('Search for: ')
+  vim.cmd(":'<,'>s/" .. search_term .. "//gn")
+end
 
 return M
