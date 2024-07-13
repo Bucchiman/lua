@@ -2,7 +2,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-03 15:39:49
--- LastModified: 2024-06-27 17:01:31
+-- LastModified: 2024-07-13 22:30:49
 -- Reference:    https://github.com/MiaadTeam/lesvim/blob/main/lua/lazy/plugins.lua
 -- Description:  ---
 --
@@ -57,6 +57,14 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 
 require("lazy").setup({
+    {
+        "nosduco/remote-sshfs.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        opts = {
+         -- Refer to the configuration section below
+         -- or leave empty for defaults
+        },
+    },
     {
         'RaafatTurki/hex.nvim',
         config=function ()
