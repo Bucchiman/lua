@@ -37,7 +37,7 @@ end
 --     require("sample")
 -- end
 
-require("plugins.lazy")
+-- require("plugins.lazy")
 -- require("tools.settings")
 -- local experiments = require("experiments")
 
