@@ -12,7 +12,8 @@
 -- vim.api.nvim_command('set runtimepath^=.')
 
 
-Bmods = require("Bmods")
+-- Bmods = require("Bmods")
+Bmods = require("pocket.Bmods")
 
 
 local Window = {}
