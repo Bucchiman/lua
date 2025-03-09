@@ -3,7 +3,7 @@
 -- FileName:     lua/base
 -- Author: 8ucchiman
 -- CreatedDate:  2023-04-02 14:51:17 +0900
--- LastModified: 2023-04-02 14:51:53 +0900
+-- LastModified: 2025-03-09 11:08:43
 -- Reference: 8ucchiman.jp
 --
 
@@ -35,3 +35,7 @@ vim.opt.formatoptions:append { 'r' }
 -- vim.api.nvim_buf_call(terminal_buffer, function ()
 --     vim.cmd("terminal")
 -- end)
+
+
+local default_path = vim.fn.expand("~")
+vim.api.nvim_set_current_dir(default_path)
