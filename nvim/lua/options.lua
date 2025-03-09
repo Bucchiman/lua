@@ -3,7 +3,7 @@
 -- FileName:     options
 -- Author: 8ucchiman
 -- CreatedDate:  2023-03-31 23:36:03 +0900
--- LastModified: 2023-01-23 14:18:33 +0900
+-- LastModified: 2025-03-09 11:34:54
 -- Reference: 8ucchiman.jp
 --
 
@@ -33,6 +33,7 @@ local options = {
     smartindent = true,
     swapfile = false,
     termguicolors = true,
+    guicursor = "n-v-c-sm-i-ci-ve:block,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
     timeoutlen = 300,
     undofile = true,
     updatetime = 300,
@@ -54,7 +55,7 @@ local options = {
     background = "dark",
     scrolloff = 8,
     sidescrolloff = 8,
-    guifont = "Mononoki Nerd Font:h10",
+    guifont = "Mononoki Nerd Font:h16",
     splitbelow = false, -- オンのとき、ウィンドウを横分割すると新しいウィンドウはカレントウィンドウの下に開かれる
     splitright = false, -- オンのとき、ウィンドウを縦分割すると新しいウィンドウはカレントウィンドウの右に開かれる
     inccommand = "split",
