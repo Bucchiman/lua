@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-04 00:47:41
--- LastModified: 2023-12-23 12:41:55
+-- LastModified: 2024-11-03 14:15:29
 -- Reference:    https://zenn.dev/botamotch/articles/46bd760b44c6a2
 --               https://zenn.dev/kawarimidoll/articles/7e986ceb6802fc
 -- autocmdに関するドキュメント: https://vim-jp.org/vimdoc-ja/autocmd.html
@@ -12,7 +12,8 @@
 -- vim.api.nvim_command('set runtimepath^=.')
 
 
-Bmods = require("Bmods")
+-- Bmods = require("Bmods")
+Bmods = require("pocket.Bmods")
 
 
 local Window = {}
@@ -154,12 +155,8 @@ end
 --print(vim.api.nvim_buf_get_name(1))
 --print(tostring(vim.api.nvim_get_current_line()))
 
-function file_exists(name)
-   local f=io.open(name, "r")
-   if f~=nil then io.close(f) return true else return false end
-end
 
-if file_exists("$HOME/common/development/schedule.nvim") then
+if Bmods.file_exists("$HOME/common/development/schedule.nvim") then
     vim.cmd("set runtimepath+=$HOME/common/development/schedule.nvim")
     vim.cmd('source $HOME/common/development/schedule.nvim/plugin/schedule.lua')
 end

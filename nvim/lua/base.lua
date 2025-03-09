@@ -3,7 +3,7 @@
 -- FileName:     lua/base
 -- Author: 8ucchiman
 -- CreatedDate:  2023-04-02 14:51:17 +0900
--- LastModified: 2025-03-09 11:08:43
+-- LastModified: 2025-03-09 11:17:04
 -- Reference: 8ucchiman.jp
 --
 
@@ -18,17 +18,17 @@ vim.api.nvim_create_autocmd(
     }
 )
 
- -- vim.api.nvim_create_augroup("WorkingDirectory", { clear = true })
- -- vim.api.nvim_create_autocmd({"BufEnter"}, {
- --     pattern = {"*.*"}, 
- --     callback = function()
- --         local path = vim.fn.expand('%:h')..'/'
- --         path = "cd "..path
- --         print(path)
- --         vim.api.nvim_command(path)
- --     end,
- --     group = "WorkingDirectory",
- -- })
+vim.api.nvim_create_augroup("WorkingDirectory", { clear = true })
+vim.api.nvim_create_autocmd({"BufEnter"}, {
+    pattern = {"*.*"}, 
+    callback = function()
+        local path = vim.fn.expand('%:h')..'/'
+        path = "cd "..path
+        print(path)
+        vim.api.nvim_command(path)
+    end,
+    group = "WorkingDirectory",
+})
 
 vim.opt.formatoptions:append { 'r' }
 -- local terminal_buffer = vim.api.nvim_create_buf(false, true)

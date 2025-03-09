@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-06 19:24:06
--- LastModified: 2024-06-27 17:33:14
+-- LastModified: 2024-11-03 14:15:46
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 --               https://github.com/CharlesChiuGit/nvimdots.lua
 -- Description:  ---
@@ -30,6 +30,16 @@ M.hello_8ucchiman = "8ucchiman was here!!"
 M.__debug = function ()
     print("Hello world from 8ucchiman")
 end
+
+-- check file exists or not
+-- @param   file_path
+-- @return  true/false
+-- @Reference   https://www.reddit.com/r/neovim/comments/vu9atg/how_do_i_get_the_text_selected_in_visual_mode/
+M.file_exists = function (file_path)
+   local f=io.open(file_path, "r")
+   if f~=nil then io.close(f) return true else return false end
+end
+
 
 
 --- open window

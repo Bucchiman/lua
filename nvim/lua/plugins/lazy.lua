@@ -574,17 +574,18 @@ require("lazy").setup({
 --     --   vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
 --     -- end
 --     -- },
-    {
-        'gelguy/wilder.nvim',
-        build = function ()
-            vim.cmd("UpdateRemotePlugins")
-        end,
-        config = function()
-            require("wilder").setup({
-                modes = {':', '/', '?'}
-            })
-        end,
-    },
+    -- {
+    --     2024-10-28 10:21:14 error
+    --     'gelguy/wilder.nvim',
+    --     build = function ()
+    --         vim.cmd("UpdateRemotePlugins")
+    --     end,
+    --     config = function()
+    --         require("wilder").setup({
+    --             modes = {':', '/', '?'}
+    --         })
+    --     end,
+    -- },
     {
         "folke/styler.nvim",
         config = function()
@@ -680,20 +681,21 @@ require("lazy").setup({
     -- },
     {
         -- git
-        {
-            -- glabコマンド
-            "harrisoncramer/gitlab.nvim",
-            dependencies = {
-                "MunifTanjim/nui.nvim",
-                "nvim-lua/plenary.nvim",
-                "stevearc/dressing.nvim", -- Recommended but not required. Better UI for pickers.
-                enabled = true,
-            },
-            build = function () require("gitlab.server").build(true) end, -- Builds the Go binary
-            config = function()
-                require("gitlab").setup() -- Uses delta reviewer by default
-            end,
-        },
+        -- {
+        --     2024-10-28 10:14:32 error: there is no glab command
+        --     -- glabコマンド
+        --     "harrisoncramer/gitlab.nvim",
+        --     dependencies = {
+        --         "MunifTanjim/nui.nvim",
+        --         "nvim-lua/plenary.nvim",
+        --         "stevearc/dressing.nvim", -- Recommended but not required. Better UI for pickers.
+        --         enabled = true,
+        --     },
+        --     build = function () require("gitlab.server").build(true) end, -- Builds the Go binary
+        --     config = function()
+        --         require("gitlab").setup() -- Uses delta reviewer by default
+        --     end,
+        -- },
         {
             -- lazygit
             "kdheepak/lazygit.nvim",
@@ -701,17 +703,18 @@ require("lazy").setup({
                 "nvim-lua/plenary.nvim"
             },
         },
-        {
-            -- ghコマンド
-            'ldelossa/gh.nvim',
-            dependencies = {
-                {'ldelossa/litee.nvim'}
-            },
-            config = function ()
-                require('litee.lib').setup()
-                require('litee.gh').setup()
-            end
-        },
+        -- {
+        --     2024-10-28 10:14:32 error: there is no glab command
+        --     -- ghコマンド
+        --     'ldelossa/gh.nvim',
+        --     dependencies = {
+        --         {'ldelossa/litee.nvim'}
+        --     },
+        --     config = function ()
+        --         require('litee.lib').setup()
+        --         require('litee.gh').setup()
+        --     end
+        -- },
     },
     {
         -- 各行をコピー

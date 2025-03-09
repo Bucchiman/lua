@@ -3,7 +3,7 @@
 -- FileName:     init
 -- Author:       8ucchiman
 -- CreatedDate:  2023-03-26 11:40:26 +0900
--- LastModified: 2023-12-12 00:35:47
+-- LastModified: 2024-11-03 14:14:59
 -- Reference:    https://zenn.dev/hisasann/articles/neovim-settings-to-lua
 --               https://developer.jmatsuzaki.com/posts/get-file-name-in-vim/
 --
@@ -20,25 +20,21 @@ require("base")
 require("options")
 require("keymaps")
 
-function file_exists(name)
-   local f=io.open(name, "r")
-   if f~=nil then io.close(f) return true else return false end
-end
--- 
--- if vim.fn.filereadable("$HOME/.config/local/lua/local.lua") then
-if file_exists(home_dir .. "/.config/local/lua/local.lua") then
+require("plugins.lazy")
+Bmods = require("pocket.Bmods")
+
+if Bmods.file_exists(home_dir .. "/.config/local/lua/local.lua") then
     vim.opt.runtimepath:append('$HOME/.config/local')
     require("local")
 end
+
+-- require("tools.settings")
+local experiments = require("experiments")
+
 -- 
 -- -- if vim.fn.filereadable(vim.fn.expand("/tmp/8ucchiman/nvim")) then
 -- if file_exists("/tmp/8ucchiman/nvim/sample.lua") then
 --     vim.opt.runtimepath:append('/tmp/8ucchiman')
 --     require("sample")
 -- end
-
-require("plugins.lazy")
--- require("tools.settings")
-local experiments = require("experiments")
-
 
