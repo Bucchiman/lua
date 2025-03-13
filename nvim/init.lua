@@ -9,10 +9,34 @@
 --
 
 
+
+local uname = vim.loop.os_uname().sysname
+
+if uname == "Darwin" then
+    -- macOS の設定
+    vim.g.os_name = "macOS"
+    vim.opt.clipboard = "unnamedplus" -- クリップボード共有
+    vim.opt.shell = "/bin/zsh" -- シェルを zsh に変更
+elseif uname == "Linux" then
+    -- Linux の設定
+    vim.g.os_name = "Linux"
+    vim.opt.clipboard = "unnamedplus" -- クリップボード共有
+    vim.opt.shell = "/bin/bash" -- シェルを bash に変更
+elseif uname == "Windows_NT" then
+    -- Windows の設定
+    vim.g.os_name = "Windows"
+    vim.opt.shell = "powershell.exe"
+    vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+else
+    -- その他の OS（未対応）
+    vim.g.os_name = "Unknown"
+end
+
 local home_dir = os.getenv('HOME')
 if home_dir == nil then
     home_dir = os.getenv('UserProfile')
 end
+
 local current_dir = vim.fn.getcwd()
 local nvim_qt_dir = os.getenv('NVIM_QT_RUNTIME_PATH')
 
@@ -37,8 +61,9 @@ end
 --     require("sample")
 -- end
 
--- require("plugins.lazy")
+require("plugins.lazy")
 -- require("tools.settings")
 -- local experiments = require("experiments")
 
-
+local default_path = vim.fn.expand("~")
+vim.api.nvim_set_current_dir(default_path)
