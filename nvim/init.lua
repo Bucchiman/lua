@@ -3,38 +3,40 @@
 -- FileName:     init
 -- Author:       8ucchiman
 -- CreatedDate:  2023-03-26 11:40:26 +0900
--- LastModified: 2024-11-03 14:14:59
+-- LastModified: 2025-03-15 11:36:01
 -- Reference:    https://zenn.dev/hisasann/articles/neovim-settings-to-lua
 --               https://developer.jmatsuzaki.com/posts/get-file-name-in-vim/
 --
 
 
-local home_dir = os.getenv('HOME')
-if home_dir == nil then
-    home_dir = os.getenv('UserProfile')
+
+function main()
+    local uname = vim.loop.os_uname().sysname
+
+    -- OS 名をグローバル変数に保存（必要なら）
+    vim.g.os_name = uname
+    print("Detected OS: " .. vim.g.os_name)
+
+    require("base")
+    require("options")
+    require("keymaps")
+
+    require("plugins.lazy")
+    Bmods = require("pocket.Bmods")
+
+
+    -- require("tools.settings")
+    local experiments = require("experiments")
+
+    -- 
+    -- -- if vim.fn.filereadable(vim.fn.expand("/tmp/8ucchiman/nvim")) then
+    -- if file_exists("/tmp/8ucchiman/nvim/sample.lua") then
+    --     vim.opt.runtimepath:append('/tmp/8ucchiman')
+    --     require("sample")
+    -- end
 end
-local current_dir = vim.fn.getcwd()
-local nvim_qt_dir = os.getenv('NVIM_QT_RUNTIME_PATH')
 
-require("base")
-require("options")
-require("keymaps")
-
-require("plugins.lazy")
-Bmods = require("pocket.Bmods")
-
-if Bmods.file_exists(home_dir .. "/.config/local/lua/local.lua") then
-    vim.opt.runtimepath:append('$HOME/.config/local')
-    require("local")
+local success, err = pcall(main)
+if not success then
+    print("Error:", err)
 end
-
--- require("tools.settings")
-local experiments = require("experiments")
-
--- 
--- -- if vim.fn.filereadable(vim.fn.expand("/tmp/8ucchiman/nvim")) then
--- if file_exists("/tmp/8ucchiman/nvim/sample.lua") then
---     vim.opt.runtimepath:append('/tmp/8ucchiman')
---     require("sample")
--- end
-
