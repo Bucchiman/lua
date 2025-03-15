@@ -3,7 +3,7 @@
 -- FileName:     options
 -- Author: 8ucchiman
 -- CreatedDate:  2023-03-31 23:36:03 +0900
--- LastModified: 2025-03-15 12:23:33
+-- LastModified: 2025-03-15 13:35:12
 -- Reference: 8ucchiman.jp
 --
 
@@ -81,29 +81,31 @@ function M:common()
 end
 
 function M:macos()
-    table.insert(M, {
+    table.insert(M.options, {
         shell = "zsh"
     })
 end
 
 function M:linux()
-    table.insert(M, {
-        shell = "zsh"
-    })
+    -- table.insert(M.options, {
+    --     shell = "zsh"
+    -- })
+    vim.opt.shell = "zsh"
 end
 
 function M:windows()
-    table.insert(M, {
-        shell = "powershell"
-    })
-
+    -- table.insert(M.options, {
+    --     shell = "powershell"
+    -- })
+    -- M.options[shell] = "powershell"
+    vim.opt.shell = "powershell"
 end
 
 
 M:init()
 M:common()
+-- M:windows()
 M:linux()
 for k, v in pairs(M.options) do
-	vim.opt[k] = v
+    vim.opt[k] = v
 end
-
