@@ -1,9 +1,0 @@
-Command> lua print(_VERSION)
-
-Keywords> ex
-        > lua_version
-
-Description>
-
-
-Reference> https://neovim.io/doc/user/lua.html
