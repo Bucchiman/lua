@@ -81,29 +81,29 @@ function M:common()
 end
 
 function M:macos()
-    table.insert(M, {
+    table.insert(M.options, {
         shell = "zsh"
     })
 end
 
 function M:linux()
-    table.insert(M, {
+    table.insert(M.options, {
         shell = "zsh"
     })
 end
 
 function M:windows()
-    table.insert(M, {
-        shell = "powershell"
-    })
-
+    -- table.insert(M.options, {
+    --     shell = "powershell"
+    -- })
+    -- M.options[shell] = "powershell"
+    vim.opt.shell = "powershell"
 end
 
 
 M:init()
 M:common()
-M:linux()
+M:windows()
 for k, v in pairs(M.options) do
-	vim.opt[k] = v
+    vim.opt[k] = v
 end
-
