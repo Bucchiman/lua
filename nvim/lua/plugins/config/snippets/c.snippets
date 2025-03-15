@@ -3,7 +3,7 @@ snippet _8 metadata
 	 * FileName:     file
 	 * Author: 		 8ucchiman
 	 * CreatedDate:  2023-02-25 18:25:13 +0900
-	 * LastModified: 2023-12-17 13:24:39
+	 * LastModified: 2024-11-24 14:51:30
 	 * Reference: 	 8ucchiman.jp
 	 */
 
@@ -130,3 +130,63 @@ snippet _8file_read
 
 snippet _8boarder
 	/* -------------------------------------------------------- */
+
+
+
+snippet tmp_opengl
+	// gcc clr_fullscreen.c -o clr_fullscreen -lGL -lGLU -lglut
+	include <GL/glut.h> /* GLUT ライブラリ用 */
+
+	* 初期化 */
+	void initialize(void) {
+		/* 画面クリアカラーの設定 */
+		glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
+	}
+
+	/* 描画 */
+	void display(void) {
+		/* 画面クリア */
+		glClear( GL_COLOR_BUFFER_BIT );
+
+		/* 描画終了 */
+		glFlush();
+	}
+	
+	/* キーボード入力処理 */
+	void keyboard( unsigned char c, int x, int y ) {
+		/* ESC キー (コード 27) でプログラム終了 */
+		if( c==27 ) exit( 0 );
+	}
+	
+	/* ウィンドウ変形処理 */
+	void reshape( int w, int h ) {
+		/* 何もしない */
+	}
+	
+	int main( int argc, char *argv[] ) {
+		/* glut のイニシャライズ */
+		glutInit( &argc, argv );
+
+		/* ウィンドウの生成 */
+		glutInitDisplayMode( GLUT_RGB );
+		glutInitWindowPosition( 100, 100 );
+		glutInitWindowSize( 500, 400 );
+		glutCreateWindow( argv[0] );
+
+		/* 描画ルーチンの設定 */
+		glutDisplayFunc( display );
+
+		/* キーボード入力処理ルーチンの設定 */
+		glutKeyboardFunc( keyboard );
+
+		/* ウィンドウ変形処理ルーチンの設定 */
+		glutReshapeFunc( reshape );
+
+		/* OpenGL 初期化ルーチンの呼び出し */
+		initialize();
+
+		/* 無限ループ */
+		glutMainLoop();
+		return 0;
+	}
+

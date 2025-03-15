@@ -3,67 +3,40 @@
 -- FileName:     init
 -- Author:       8ucchiman
 -- CreatedDate:  2023-03-26 11:40:26 +0900
--- LastModified: 2023-12-12 00:35:47
+-- LastModified: 2025-03-15 11:36:01
 -- Reference:    https://zenn.dev/hisasann/articles/neovim-settings-to-lua
 --               https://developer.jmatsuzaki.com/posts/get-file-name-in-vim/
 --
 
 
 
-local uname = vim.loop.os_uname().sysname
+function main()
+    local uname = vim.loop.os_uname().sysname
 
-if uname == "Darwin" then
-    -- macOS の設定
-    vim.g.os_name = "macOS"
-    vim.opt.clipboard = "unnamedplus" -- クリップボード共有
-    vim.opt.shell = "/bin/zsh" -- シェルを zsh に変更
-elseif uname == "Linux" then
-    -- Linux の設定
-    vim.g.os_name = "Linux"
-    vim.opt.clipboard = "unnamedplus" -- クリップボード共有
-    vim.opt.shell = "/bin/bash" -- シェルを bash に変更
-elseif uname == "Windows_NT" then
-    -- Windows の設定
-    vim.g.os_name = "Windows"
-    vim.opt.shell = "powershell.exe"
-    vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
-else
-    -- その他の OS（未対応）
-    vim.g.os_name = "Unknown"
+    -- OS 名をグローバル変数に保存（必要なら）
+    vim.g.os_name = uname
+    print("Detected OS: " .. vim.g.os_name)
+
+    require("base")
+    require("options")
+    require("keymaps")
+
+    require("plugins.lazy")
+    Bmods = require("pocket.Bmods")
+
+
+    -- require("tools.settings")
+    local experiments = require("experiments")
+
+    -- 
+    -- -- if vim.fn.filereadable(vim.fn.expand("/tmp/8ucchiman/nvim")) then
+    -- if file_exists("/tmp/8ucchiman/nvim/sample.lua") then
+    --     vim.opt.runtimepath:append('/tmp/8ucchiman')
+    --     require("sample")
+    -- end
 end
 
-local home_dir = os.getenv('HOME')
-if home_dir == nil then
-    home_dir = os.getenv('UserProfile')
+local success, err = pcall(main)
+if not success then
+    print("Error:", err)
 end
-
-local current_dir = vim.fn.getcwd()
-local nvim_qt_dir = os.getenv('NVIM_QT_RUNTIME_PATH')
-
-require("base")
-require("options")
-require("keymaps")
-
-function file_exists(name)
-   local f=io.open(name, "r")
-   if f~=nil then io.close(f) return true else return false end
-end
--- 
--- if vim.fn.filereadable("$HOME/.config/local/lua/local.lua") then
-if file_exists(home_dir .. "/.config/local/lua/local.lua") then
-    vim.opt.runtimepath:append('$HOME/.config/local')
-    require("local")
-end
--- 
--- -- if vim.fn.filereadable(vim.fn.expand("/tmp/8ucchiman/nvim")) then
--- if file_exists("/tmp/8ucchiman/nvim/sample.lua") then
---     vim.opt.runtimepath:append('/tmp/8ucchiman')
---     require("sample")
--- end
-
-require("plugins.lazy")
--- require("tools.settings")
--- local experiments = require("experiments")
-
-local default_path = vim.fn.expand("~")
-vim.api.nvim_set_current_dir(default_path)

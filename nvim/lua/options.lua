@@ -3,77 +3,107 @@
 -- FileName:     options
 -- Author: 8ucchiman
 -- CreatedDate:  2023-03-31 23:36:03 +0900
--- LastModified: 2023-01-23 14:18:33 +0900
+-- LastModified: 2025-03-15 12:23:33
 -- Reference: 8ucchiman.jp
 --
 
 
-local options = {
-    number = true,
-    virtualedit = "onemore",
-    hidden = true,
-    autoindent = true,
-    wrapscan = true,
-    encoding = "utf-8",
-    fileencoding = "utf-8",
-    title = true,
-    -- autochdir = true,
-    backup = false,
-    clipboard = "unnamedplus",
-    cmdheight = 2,
-    completeopt = { "menuone", "noselect" },
-    conceallevel = 0,
-    hlsearch = true,
-    ignorecase = true,
-    mouse = "a",
-    pumheight = 10,
-    showmode = false,
-    showtabline = 2,
-    smartcase = false,
-    smartindent = true,
-    swapfile = false,
-    termguicolors = true,
-    timeoutlen = 300,
-    undofile = true,
-    updatetime = 300,
-    writebackup = false,
-    shell = "powershell",
-    expandtab = true,
-    shiftwidth = 4,
-    tabstop = 4,
-    softtabstop = 4,
-    smarttab = true,
-    cursorline = true,
-    relativenumber = false,
-    numberwidth = 4,
-    signcolumn = "yes",
-    wrap = false,
-    winblend = 0,
-    wildoptions = "pum",
-    pumblend = 5,
-    background = "dark",
-    scrolloff = 8,
-    sidescrolloff = 8,
-    guifont = "Mononoki Nerd Font:h10",
-    splitbelow = false, -- オンのとき、ウィンドウを横分割すると新しいウィンドウはカレントウィンドウの下に開かれる
-    splitright = false, -- オンのとき、ウィンドウを縦分割すると新しいウィンドウはカレントウィンドウの右に開かれる
-    inccommand = "split",
-}
 
-vim.opt.shortmess:append("c")
+local M = {}
 
-for k, v in pairs(options) do
+function M:init()
+    M.options = {}
+end
+
+function M:common()
+    M.options = {
+        number = true,
+        virtualedit = "onemore",
+        hidden = true,
+        autoindent = true,
+        wrapscan = true,
+        encoding = "utf-8",
+        fileencoding = "utf-8",
+        title = true,
+        -- autochdir = true,
+        backup = false,
+        clipboard = "unnamedplus",
+        cmdheight = 2,
+        completeopt = { "menuone", "noselect" },
+        conceallevel = 0,
+        hlsearch = true,
+        ignorecase = true,
+        mouse = "a",
+        pumheight = 10,
+        showmode = false,
+        showtabline = 2,
+        smartcase = false,
+        smartindent = true,
+        swapfile = false,
+        termguicolors = true,
+        guicursor = "n-v-c-sm-i-ci-ve:block,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
+        timeoutlen = 300,
+        undofile = true,
+        updatetime = 300,
+        writebackup = false,
+        expandtab = true,
+        shiftwidth = 4,
+        tabstop = 4,
+        softtabstop = 4,
+        smarttab = true,
+        cursorline = true,
+        relativenumber = false,
+        numberwidth = 4,
+        signcolumn = "yes",
+        wrap = false,
+        winblend = 0,
+        wildoptions = "pum",
+        pumblend = 5,
+        background = "dark",
+        scrolloff = 8,
+        sidescrolloff = 8,
+        guifont = "Mononoki Nerd Font:h16",
+        splitbelow = false, -- オンのとき、ウィンドウを横分割すると新しいウィンドウはカレントウィンドウの下に開かれる
+        splitright = false, -- オンのとき、ウィンドウを縦分割すると新しいウィンドウはカレントウィンドウの右に開かれる
+        inccommand = "split",
+    }
+    vim.opt.shortmess:append("c")
+
+
+    --vim.cmd("set whichwrap+=<,>,[,],h,l")
+    vim.cmd([[set iskeyword+=-]])
+    vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
+
+    -- vim.g.loaded_netrwPlugin = 1
+    -- vim.g.loaded_netrw = 1
+    vim.o.sessionoptions="buffers"
+
+end
+
+function M:macos()
+    table.insert(M, {
+        shell = "zsh"
+    })
+end
+
+function M:linux()
+    table.insert(M, {
+        shell = "zsh"
+    })
+end
+
+function M:windows()
+    table.insert(M, {
+        shell = "powershell"
+    })
+
+end
+
+
+M:init()
+M:common()
+M:linux()
+for k, v in pairs(M.options) do
 	vim.opt[k] = v
 end
 
---vim.cmd("set whichwrap+=<,>,[,],h,l")
-vim.cmd([[set iskeyword+=-]])
-vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
-
-
-local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
-
--- vim.g.loaded_netrwPlugin = 1
--- vim.g.loaded_netrw = 1
-vim.o.sessionoptions="buffers"
