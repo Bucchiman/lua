@@ -51,6 +51,9 @@ function M:init()
     end
     local nvim_qt_dir = os.getenv('NVIM_QT_RUNTIME_PATH')
 
+    vim.opt.runtimepath:append('$HOME/.config/local')
+    require("local")
+
     -- if Bmods.file_exists(home_dir .. "/.config/local/lua/local.lua") then
     --     vim.opt.runtimepath:append('$HOME/.config/local')
     --     require("local")
