@@ -26,7 +26,7 @@ function main()
 
 
     -- require("tools.settings")
-    local experiments = require("experiments")
+    -- local experiments = require("experiments")
 
     -- 
     -- -- if vim.fn.filereadable(vim.fn.expand("/tmp/8ucchiman/nvim")) then

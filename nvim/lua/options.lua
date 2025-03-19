@@ -3,7 +3,7 @@
 -- FileName:     options
 -- Author: 8ucchiman
 -- CreatedDate:  2023-03-31 23:36:03 +0900
--- LastModified: 2025-03-15 13:35:12
+-- LastModified: 2025-03-16 13:30:40
 -- Reference: 8ucchiman.jp
 --
 
@@ -74,6 +74,9 @@ function M:common()
     vim.cmd([[set iskeyword+=-]])
     vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
 
+    vim.cmd([[highlight Cursor guifg=white guibg=red]])
+    vim.cmd([[highlight lCursor guifg=white guibg=red]])
+
     -- vim.g.loaded_netrwPlugin = 1
     -- vim.g.loaded_netrw = 1
     vim.o.sessionoptions="buffers"
@@ -106,7 +109,6 @@ elseif vim.g.os_name == "Windows_NT" then
     M:windows()
 else
 end
-
 
 for k, v in pairs(M.options) do
     vim.opt[k] = v
