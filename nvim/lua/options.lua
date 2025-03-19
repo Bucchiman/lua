@@ -81,31 +81,33 @@ function M:common()
 end
 
 function M:macos()
-    table.insert(M.options, {
-        shell = "zsh"
-    })
+    vim.opt.shell = "zsh"
 end
 
 function M:linux()
-    -- table.insert(M.options, {
-    --     shell = "zsh"
-    -- })
     vim.opt.shell = "zsh"
 end
 
 function M:windows()
-    -- table.insert(M.options, {
-    --     shell = "powershell"
-    -- })
-    -- M.options[shell] = "powershell"
     vim.opt.shell = "powershell"
 end
 
 
 M:init()
 M:common()
--- M:windows()
-M:linux()
+if vim.g.os_name == "Darwin" then
+    -- macOS の設定
+    M:macos()
+elseif vim.g.os_name== "Linux" then
+    -- Linux の設定
+    M:linux()
+elseif vim.g.os_name == "Windows_NT" then
+    -- Windows の設定
+    M:windows()
+else
+end
+
+
 for k, v in pairs(M.options) do
     vim.opt[k] = v
 end
