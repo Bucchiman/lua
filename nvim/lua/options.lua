@@ -97,7 +97,10 @@ function M:windows()
     --     shell = "powershell"
     -- })
     -- M.options[shell] = "powershell"
-    vim.opt.shell = "powershell"
+    -- vim.opt.shell = "powershell"
+    vim.opt.shell = "pwsh"
+    vim.opt.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
+    vim.opt.shellxquote = ''
 end
 
 
