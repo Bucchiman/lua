@@ -803,10 +803,10 @@ require("lazy").setup({
             require("plugins.config.noice")
         end
     },
-    {
-        'neoclide/coc.nvim',
-        branch = 'release'
-    },
+    -- {
+    --     'neoclide/coc.nvim',
+    --     branch = 'release'
+    -- },
     {
         'VonHeikemen/fine-cmdline.nvim',
         dependencies = {
@@ -1041,7 +1041,9 @@ require("lazy").setup({
             'TemProject'
         },
         config = function()
-            -- require("plugins.config.template")
+            require('template').setup(
+                require("plugins.config.template")
+            )
         end
     },
     "nvim-lua/plenary.nvim",
@@ -1159,6 +1161,3 @@ require("lazy").setup({
         }
     }
 })
-
-
-require("plugins.config.template")

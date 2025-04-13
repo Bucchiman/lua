@@ -203,31 +203,31 @@ vim.keymap.set("n", "<C-s><leader>", function () Bmods.getPaste() end)
 vim.cmd([[ autocmd DirChanged * lua vim.schedule_wrap(require('oil').open)(vim.v.event.cwd) ]])
 
 -- Insert timestamp after 'LastModified: '
---function! LastModified()
---    if &modified
---	let save_cursor = getpos(".")
---	let n = min([40, line("$")])
---	keepjumps exe '1,' . n . 's#^\(.\{,10}LastModified: \).*#\1' . \ strftime('%Y-%m-%d %H:%M:%S %z') . '#e'
---	call histdel('search', -1)
---	call setpos('.', save_cursor)
---    endif
---endfun
---autocmd BufWritePre * call LastModified()
+function! LastModified()
+    if &modified
+	let save_cursor = getpos(".")
+	let n = min([40, line("$")])
+	keepjumps exe '1,' . n . 's#^\(.\{,10}LastModified: \).*#\1' . \ strftime('%Y-%m-%d %H:%M:%S %z') . '#e'
+	call histdel('search', -1)
+	call setpos('.', save_cursor)
+    endif
+endfun
+autocmd BufWritePre * call LastModified()
 
 -- -> change
--- vim.api.nvim_create_autocmd("BufWritePre",{
---     pattern = "*",
---     callback = function ()
---         if vim.opt.modified then
---             local save_cursor = vim.fn.getpos(".")
---             -- vim.cmd('echo 123455 8ucchiman')
--- 
---             -- vim.cmd('keepjumps exe '1,' . n . 's#^\(.\{,10}LastModified: \).*#\1' . \ strftime('%Y-%m-%d %H:%M:%S %z') . '#e'')
---             vim.fn.histdel('search', -1)
---             vim.fn.setpos('.', save_cursor)
---         end
---     end
--- })
+vim.api.nvim_create_autocmd("BufWritePre",{
+    pattern = "*",
+    callback = function ()
+        if vim.opt.modified then
+            local save_cursor = vim.fn.getpos(".")
+            -- vim.cmd('echo 123455 8ucchiman')
+
+            -- vim.cmd('keepjumps exe '1,' . n . 's#^\(.\{,10}LastModified: \).*#\1' . \ strftime('%Y-%m-%d %H:%M:%S %z') . '#e'')
+            vim.fn.histdel('search', -1)
+            vim.fn.setpos('.', save_cursor)
+        end
+    end
+})
 
 local function update_modified_date ()
     local n = math.min(vim.api.nvim_buf_line_count(0), 10)
