@@ -25,6 +25,18 @@ M = {
                 -- returns a table (see below)
                 command = {"zsh"}
             },
+            zsh = {
+                command = {"zsh"}
+            },
+            c = {
+                command = {"root6"}
+            },
+            rust = {
+                command = {"evcxr"}
+            },
+            cs = {
+                command = {"csharprepl"}
+            },
             python = require("iron.fts.python").ipython,
             cpp = require("iron.fts.cpp").root
     },

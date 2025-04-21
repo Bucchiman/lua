@@ -48,6 +48,7 @@ vim.api.nvim_create_autocmd(
             "*.Dockerfile",
             "*.snippets",
             "*.asm",
+            "*.nasm",
         },
         command = "Template "..file.." template"
     }
