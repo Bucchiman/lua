@@ -11,6 +11,16 @@ snippet _8 metadata
 
 snippet _8basic
 	cmake_minimum_required(VERSION 3.8.2)
+	project(8ucchiman CXX)
+	set(SOURCE_FILE main.cpp)
+
+	# set executable
+	add_executable(main
+		\${SOURCE_FILE})
+
+
+snippet _8opencv
+	cmake_minimum_required(VERSION 3.8.2)
 	project(8ucchiman)
 	set(SOURCE_FILE main.cpp)
 
@@ -28,7 +38,6 @@ snippet _8basic
 	target_link_libraries(main
 		${OPENCV_LIBRARIES}
 	)
-
 
 
 snippet _8static
