@@ -23,18 +23,16 @@ function M:init()
     )
 
     vim.api.nvim_create_augroup("WorkingDirectory", { clear = true })
-    -- vim.api.nvim_create_autocmd({"BufEnter"}, {
-    --     pattern = {"*.*"}, 
-    --     callback = function()
-    --         local path = vim.fn.expand('%:h')..'/'
-    --         path_lua = path:gsub("term://.~//%d+:", "")
-    --         path_lua = "cd "..path_lua
-    --         print(path_lua)
-    --         -- local status, err = pcall(vim.api.nvim_command(path))
-    --         vim.api.nvim_command(path_lua)
-    --     end,
-    --     group = "WorkingDirectory",
-    -- })
+    vim.api.nvim_create_autocmd({"BufEnter"}, {
+        pattern = {"*.*"}, 
+        callback = function()
+            local path = vim.fn.expand('%:h')..'/'
+            path = "cd "..path
+            print(path)
+            vim.api.nvim_command(path)
+        end,
+        group = "WorkingDirectory",
+    })
 
     vim.opt.formatoptions:append { 'r' }
     -- local terminal_buffer = vim.api.nvim_create_buf(false, true)
@@ -52,6 +50,9 @@ function M:init()
         home_dir = os.getenv('UserProfile')
     end
     local nvim_qt_dir = os.getenv('NVIM_QT_RUNTIME_PATH')
+
+    vim.opt.runtimepath:append('$HOME/.config/local')
+    -- require("local")
 
     -- if Bmods.file_exists(home_dir .. "/.config/local/lua/local.lua") then
     --     vim.opt.runtimepath:append('$HOME/.config/local')

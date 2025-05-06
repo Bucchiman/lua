@@ -48,6 +48,7 @@ vim.api.nvim_create_autocmd(
             "*.Dockerfile",
             "*.snippets",
             "*.asm",
+            "*.nasm",
         },
         command = "Template "..file.." template"
     }
@@ -116,7 +117,8 @@ vim.api.nvim_create_autocmd(
 
 
 return {
-    temp_dir = "$HOME/.config/template",
+    -- temp_dir = "$HOME/.config/template",
+    temp_dir = "~/dotfiles/.config/template",
     author = "8ucchiman",
     email = "8ucchiman@gmail.com",
 }

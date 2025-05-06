@@ -222,3 +222,6 @@ snippet _8:function:call $(call 関数名/マクロ名, 引数) 関数やマク�
 snippet _8:suffix_cpp2o suffix change
 	$(patsubst %.cpp, %.o, $(wildcard *.cpp))
 
+snippet _8:echo print_debug
+	$(info $(TARGET))
+

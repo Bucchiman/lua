@@ -1,4 +1,4 @@
-snippet _8 metadata
+snippet _8:metadata
 	/*
 	 * FileName:     file
 	 * Author: 		 8ucchiman
@@ -38,7 +38,7 @@ snippet _8:func template func
 		return 1;
 	}
 
-snippet _8callback
+snippet _8:callback
 
 	/** @brief Converts an image from one color space to another.
 
@@ -51,7 +51,7 @@ snippet _8callback
 		return callback(x, x, x);
 	}
 
-snippet _8multithread
+snippet _8:multithread
 	/*
 		スレッドで処理する関数
 		
@@ -89,7 +89,7 @@ snippet _8multithread
 		return 0;
 	}
 
-snippet _8struct
+snippet _8:struct
 	/**
 		- typedef不使用
 		struct _playersData { };      // 宣言
@@ -105,7 +105,7 @@ snippet _8struct
 		double* RBI;
 	}_playersData;
 
-snippet _8file_read
+snippet _8:file_read
 	/**
 		
 
@@ -128,12 +128,12 @@ snippet _8file_read
 	}
 
 
-snippet _8boarder
+snippet _8:boarder
 	/* -------------------------------------------------------- */
 
 
 
-snippet tmp_opengl
+snippet _8:tmp_opengl
 	// gcc clr_fullscreen.c -o clr_fullscreen -lGL -lGLU -lglut
 	include <GL/glut.h> /* GLUT ライブラリ用 */
 
@@ -190,3 +190,22 @@ snippet tmp_opengl
 		return 0;
 	}
 
+# https://housoubu.mizusasi.net/data/prog/p009.html
+snippet _8:debug
+	//#ifndef _DEBUG
+	#ifdef _DEBUG
+	#define TEST_FUNC(string) {printf("debug:%s\n", string);}
+	#else
+	#define TEST_FUNC(string) {;}
+	#endif
+	#define RED     "\x1b[31m"
+	#define GREEN   "\x1b[32m"
+	#define YELLOW  "\x1b[33m"
+	#define BLUE    "\x1b[34m"
+	#define MAGENTA "\x1b[35m"
+	#define CYAN    "\x1b[36m"
+	#define DEFAULT "\x1b[39m"
+	#define UNDER_LINE    "\x1b[4m"
+	#define BOLD          "\x1b[1m"
+	#define FONT_DEFAULT "\x1b[0m"
+	
