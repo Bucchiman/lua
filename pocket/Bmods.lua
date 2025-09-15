@@ -436,7 +436,7 @@ end
 -- @param
 -- @return
 -- @Reference   
-M.show_oneline = function ()
+M.show_block = function ()
     local extension2path = {
         zsh = "shell",
         sh = "shell",
@@ -453,29 +453,56 @@ M.show_oneline = function ()
     local extension_name = M.GetFileExtension(file_path)
     -- print(file_path)
     local pocket_path = vim.fn.expand("$HOME/.config/pockets/")
-    local oneline_path = pocket_path .. extension2path[extension_name] .. "/onelines"
-
+    local block_path = pocket_path .. extension2path[extension_name] .. "/blocks"
     local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-
     local fzf = require("fzf")
-
     local result
     coroutine.wrap(function()
-        result = fzf.fzf("/bin/ls -1 " .. oneline_path)
-        -- f = io.open(oneline_path, "r")
-        -- for m in f:lines() do
-        --     vim.api.nvim_put(m, 'l', false, true)
-        -- end
-        -- print(result[1])
-        -- local text_to_print = string.format('%s', result[1])
-        vim.api.nvim_put(result, 'l', false, true)
+        result = fzf.fzf("/bin/ls -1 " .. block_path)
+        if result and #result > 0 then
+            local selected_file = result[1]  -- fzfで選択されたファイル名
+            local full_file_path = block_path .. "/" .. selected_file
 
+            -- ファイルの内容を読み込む
+            local file = io.open(full_file_path, "r")
+            if file then
+                local file_content = file:read("*all")
+                file:close()
+
+                -- Block>から>ENDまでの内容を抽出
+                local block_start = file_content:find("Block>")
+                if block_start then
+                    local content_start = block_start + 6  -- "Block>"の長さ分スキップ
+                    local block_end = file_content:find(">END", content_start)
+                    if block_end then
+                        local block_content = file_content:sub(content_start, block_end - 1)
+                        -- 先頭と末尾の改行を削除
+                        block_content = block_content:gsub("^%s*", ""):gsub("%s*$", "")
+
+                        -- コンソールに出力
+                        print("Block content:")
+                        print(block_content)
+
+                        -- カーソル位置に挿入する場合（元のコードの動作を保持）
+                        local lines = {}
+                        for line in block_content:gmatch("[^\n]*") do
+                            table.insert(lines, line)
+                        end
+                        vim.api.nvim_put(lines, 'l', false, true)
+                    else
+                        print("Error: >END marker not found in file: " .. selected_file)
+                    end
+                else
+                    print("Error: Block> marker not found in file: " .. selected_file)
+                end
+            else
+                print("Error: Could not open file: " .. full_file_path)
+            end
+        end
     end)()
-
-    -- local text_to_print = string.format('%s%s', vim.api.nvim_buf_get_lines(0, row-1, col, false)[1], result[1])
-    -- vim.api.nvim_put({text_to_print}, 'l', false, true)
-    -- vim.api.nvim_exec(command, false)
 end
+
+
 
 vim.keymap.set("n", "<C-s><C-;>", function ()
     -- local file_path=vim.api.nvim_buf_get_name(0)        -- get current buffer
@@ -485,7 +512,7 @@ vim.keymap.set("n", "<C-s><C-;>", function ()
 end)
 
 vim.keymap.set("n", "<C-s><C-o>", function ()
-    M.show_oneline()
+    M.show_block()
 end)
 
 function OpenImageUnderCursor()
