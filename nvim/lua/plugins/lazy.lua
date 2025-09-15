@@ -58,6 +58,45 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+      "hat0uma/csvview.nvim",
+      ---@module "csvview"
+      ---@type CsvView.Options
+      opts = {
+        parser = { comments = { "#", "//" } },
+        keymaps = {
+          -- Text objects for selecting fields
+          textobject_field_inner = { "if", mode = { "o", "x" } },
+          textobject_field_outer = { "af", mode = { "o", "x" } },
+          -- Excel-like navigation:
+          -- Use <Tab> and <S-Tab> to move horizontally between fields.
+          -- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
+          -- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
+          jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
+          jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
+          jump_next_row = { "<Enter>", mode = { "n", "v" } },
+          jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+        },
+      },
+      cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+    },
+    {
+        'anurag3301/nvim-platformio.lua',
+        dependencies = {
+            {'akinsho/nvim-toggleterm.lua'},
+            {'nvim-telescope/telescope.nvim'},
+            {'nvim-lua/plenary.nvim'},
+        },
+        cmd = {
+            "Pioinit",
+            "Piorun",
+            "Piocmd",
+            "Piolib",
+            "Piomon",
+            "Piodebug",
+            "Piodb",
+        },
+    },
+    {
         'RaafatTurki/hex.nvim',
         config=function ()
             require("hex").setup({
@@ -785,28 +824,28 @@ require("lazy").setup({
             }
         end
     },
-    {
-        "folke/noice.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- add any options here
-        },
-        dependencies = {
-            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-            "MunifTanjim/nui.nvim",
-            -- OPTIONAL:
-            --   `nvim-notify` is only needed, if you want to use the notification view.
-            --   If not available, we use `mini` as the fallback
-            "rcarriga/nvim-notify",
-        },
-        config = function ()
-            require("plugins.config.noice")
-        end
-    },
     -- {
-    --     'neoclide/coc.nvim',
-    --     branch = 'release'
+    --     "folke/noice.nvim",
+    --     event = "VeryLazy",
+    --     opts = {
+    --       -- add any options here
+    --     },
+    --     dependencies = {
+    --         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    --         "MunifTanjim/nui.nvim",
+    --         -- OPTIONAL:
+    --         --   `nvim-notify` is only needed, if you want to use the notification view.
+    --         --   If not available, we use `mini` as the fallback
+    --         "rcarriga/nvim-notify",
+    --     },
+    --     config = function ()
+    --         require("plugins.config.noice")
+    --     end
     -- },
+    {
+        'neoclide/coc.nvim',
+        branch = 'release'
+    },
     {
         'VonHeikemen/fine-cmdline.nvim',
         dependencies = {

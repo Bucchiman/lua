@@ -83,7 +83,8 @@ lspconfig.lua_ls.setup {
 
 lspconfig.clangd.setup ({
     settings = {
-        cmd = { "clangd", "--background-index" },
+        cmd = { "clangd", "--background-index", "--compile-commands-dir=." },
+        rootPattern = { "compile_commands.json" },
         filetypes = { "c", "cpp", "objc", "objcpp" },
         -- root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
         init_options = {
