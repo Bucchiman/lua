@@ -29,7 +29,7 @@ function M:init()
             local path = vim.fn.expand('%:h')..'/'
             path = "cd "..path
             print(path)
-            vim.api.nvim_command(path)
+            -- vim.api.nvim_command(path)
         end,
         group = "WorkingDirectory",
     })
@@ -58,6 +58,9 @@ function M:init()
     --     vim.opt.runtimepath:append('$HOME/.config/local')
     --     require("local")
     -- end
+
+    vim.loader.enable()
+    vim.loader.use_cache = false
 
 end
 
