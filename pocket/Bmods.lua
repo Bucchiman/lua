@@ -458,7 +458,8 @@ M.show_block = function ()
     local fzf = require("fzf")
     local result
     coroutine.wrap(function()
-        result = fzf.fzf("/bin/ls -1 " .. block_path)
+        -- result = fzf.fzf("/bin/ls -1 " .. block_path)
+        result = fzf.fzf("C:/Users/8ucch/bin/ls.exe -1 " .. block_path)
         if result and #result > 0 then
             local selected_file = result[1]  -- fzfで選択されたファイル名
             local full_file_path = block_path .. "/" .. selected_file
@@ -729,5 +730,41 @@ function SearchWithinSelection()
   local search_term = vim.fn.input('Search for: ')
   vim.cmd(":'<,'>s/" .. search_term .. "//gn")
 end
+
+
+M.detect_os = function ()
+    -- OS from JIT
+    if jit and jit.os then
+        local m = {
+	    Windows = "windows",
+	    OSX = "macos",
+	    Linux = "linux",
+	    BSD = "bsd",
+	    Other = "other",
+	}
+	if m[jit.os] then return m[jit.os] end
+    end
+
+    local ok, uname = pcall(vim.loop.os_uname)
+    if ok and uname and uname.sysname then
+        local s = uname.sysname:lower()
+	if s:find("windows") then return "windows" end
+	if s:find("darwin") then return "macos" end
+	if s:find("linux") then return "linux" end
+	if s:find("bsd") then return "bsd" end
+    end
+
+    if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
+	return "windows"
+    end
+    if vim.fn.has("mac") == 1 then
+	return "macos"
+    end
+    if vim.fn.has("unix") == 1 then
+        return "linux"
+    end
+    return "other"
+end
+
 
 return M
