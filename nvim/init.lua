@@ -50,6 +50,8 @@ function main()
     --   end
     -- end
 
+    local experiments = require("experiments")
+
     -- boot log
     vim.defer_fn(function()
       vim.notify(("nvim: OS profile = %s%s"):format(
@@ -58,6 +60,7 @@ function main()
       ), vim.log.levels.INFO, { title = "Neovim" })
     end, 50)
 end
+
 
 function main01()
     local uname = vim.loop.os_uname().sysname
@@ -73,11 +76,9 @@ function main01()
     require("plugins.lazy")
     Bmods = require("pocket.Bmods")
 
-
     -- require("tools.settings")
     local experiments = require("experiments")
 
-    -- 
     -- -- if vim.fn.filereadable(vim.fn.expand("/tmp/8ucchiman/nvim")) then
     -- if file_exists("/tmp/8ucchiman/nvim/sample.lua") then
     --     vim.opt.runtimepath:append('/tmp/8ucchiman')

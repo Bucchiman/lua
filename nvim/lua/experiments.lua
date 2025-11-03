@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-04 00:47:41
--- LastModified: 2024-11-03 14:15:29
+-- LastModified: 2025-11-03 22:04:23
 -- Reference:    https://zenn.dev/botamotch/articles/46bd760b44c6a2
 --               https://zenn.dev/kawarimidoll/articles/7e986ceb6802fc
 -- autocmdに関するドキュメント: https://vim-jp.org/vimdoc-ja/autocmd.html
@@ -94,7 +94,7 @@ autocmd({"BufEnter", "BufWinEnter"}, {
 --})
 
 
--- 起動後にコールバック軌道
+-- 起動後にコールバック起動
 --autocmd("VimEnter", {
 --    callback = M.term_split
 --    --command = 
@@ -202,17 +202,20 @@ vim.keymap.set("n", "<C-s><leader>", function () Bmods.getPaste() end)
 
 vim.cmd([[ autocmd DirChanged * lua vim.schedule_wrap(require('oil').open)(vim.v.event.cwd) ]])
 
--- Insert timestamp after 'LastModified: '
-function! LastModified()
-    if &modified
-	let save_cursor = getpos(".")
-	let n = min([40, line("$")])
-	keepjumps exe '1,' . n . 's#^\(.\{,10}LastModified: \).*#\1' . \ strftime('%Y-%m-%d %H:%M:%S %z') . '#e'
-	call histdel('search', -1)
-	call setpos('.', save_cursor)
-    endif
-endfun
-autocmd BufWritePre * call LastModified()
+-- -- Insert timestamp after 'LastModified: '
+-- function LastModified()
+--     if &modified
+--     let save_cursor = getpos(".")
+--     let n = min([40, line("$")])
+--     keepjumps exe '1,' . n . 's#^\(.\{,10}LastModified: \).*#\1' . \ strftime('%Y-%m-%d %H:%M:%S %z') . '#e'
+--     call histdel('search', -1)
+--     call setpos('.', save_cursor)
+--     endif
+-- endfun
+-- autocmd BufWritePre * call LastModified()
+
+
+print("DEBUG for 8ucchiman")
 
 -- -> change
 vim.api.nvim_create_autocmd("BufWritePre",{
@@ -220,6 +223,7 @@ vim.api.nvim_create_autocmd("BufWritePre",{
     callback = function ()
         if vim.opt.modified then
             local save_cursor = vim.fn.getpos(".")
+            print(save_cursor)
             -- vim.cmd('echo 123455 8ucchiman')
 
             -- vim.cmd('keepjumps exe '1,' . n . 's#^\(.\{,10}LastModified: \).*#\1' . \ strftime('%Y-%m-%d %H:%M:%S %z') . '#e'')
@@ -257,12 +261,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- Reference: https://www.reddit.com/r/neovim/comments/vkn2e7/change_indent_depending_on_file_type_in_lua/
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "html",
-	command = "setlocal shiftwidth=2 tabstop=2"
+    pattern = "html",
+    command = "setlocal shiftwidth=2 tabstop=2"
 })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "py",
-	command = "setlocal shiftwidth=4 tabstop=4"
+    command = "setlocal shiftwidth=4 tabstop=4"
 })
 
 vim.api.nvim_set_hl(0, 'FloatBorder', {bg='#3B4252', fg='#5E81AC'})
