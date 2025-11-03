@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-06 19:24:06
--- LastModified: 2024-11-03 14:15:46
+-- LastModified: 2025-11-03 22:58:59
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 --               https://github.com/CharlesChiuGit/nvimdots.lua
 -- Description:  ---
@@ -449,56 +449,79 @@ M.show_block = function ()
         s = "assembler",
         ps1 = "powershell"
     }
-    local file_path = vim.api.nvim_buf_get_name(0)        -- get current buffer
+
+    local file_path = vim.api.nvim_buf_get_name(0)
     local extension_name = M.GetFileExtension(file_path)
-    -- print(file_path)
     local pocket_path = vim.fn.expand("$HOME/.config/pockets/")
-    local block_path = pocket_path .. extension2path[extension_name] .. "/blocks"
-    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-    local fzf = require("fzf")
+    local block_path = pocket_path .. (extension2path[extension_name] or "") .. "/blocks"
+    local fzf = require("fzf").fzf
+    local action = require("fzf.actions").action
     local result
+
     coroutine.wrap(function()
         -- result = fzf.fzf("/bin/ls -1 " .. block_path)
         result = fzf.fzf("C:/Users/8ucch/bin/ls.exe -1 " .. block_path)
         if result and #result > 0 then
             local selected_file = result[1]  -- fzfで選択されたファイル名
+        -- linux
+        -- -- ① プレビュー: ファイル全体を表示
+        -- local preview = action(function(items, _, _)
+        --     local selected_file = items[1]
             local full_file_path = block_path .. "/" .. selected_file
-
-            -- ファイルの内容を読み込む
             local file = io.open(full_file_path, "r")
-            if file then
-                local file_content = file:read("*all")
-                file:close()
-
-                -- Block>から>ENDまでの内容を抽出
-                local block_start = file_content:find("Block>")
-                if block_start then
-                    local content_start = block_start + 6  -- "Block>"の長さ分スキップ
-                    local block_end = file_content:find(">END", content_start)
-                    if block_end then
-                        local block_content = file_content:sub(content_start, block_end - 1)
-                        -- 先頭と末尾の改行を削除
-                        block_content = block_content:gsub("^%s*", ""):gsub("%s*$", "")
-
-                        -- コンソールに出力
-                        print("Block content:")
-                        print(block_content)
-
-                        -- カーソル位置に挿入する場合（元のコードの動作を保持）
-                        local lines = {}
-                        for line in block_content:gmatch("[^\n]*") do
-                            table.insert(lines, line)
-                        end
-                        vim.api.nvim_put(lines, 'l', false, true)
-                    else
-                        print("Error: >END marker not found in file: " .. selected_file)
-                    end
-                else
-                    print("Error: Block> marker not found in file: " .. selected_file)
-                end
-            else
-                print("Error: Could not open file: " .. full_file_path)
+            if not file then
+                return { "Preview not available (open error)" }
             end
+            local file_content = file:read("*all")
+            file:close()
+
+            -- 改行をLFに統一（中身はそのまま）
+            file_content = file_content:gsub("\r\n", "\n")
+
+            -- 行配列に分解（空行も保持）
+            local lines = {}
+            for line in (file_content .. "\n"):gmatch("([^\n]*)\n") do
+                table.insert(lines, line)
+            end
+            return lines
+        end)
+
+        -- fzf起動（左で選択、右で全ファイルプレビュー）
+        result = fzf("/bin/ls -1 " .. block_path, "--preview " .. preview)
+
+        -- ② 確定後: Block> ～ >END だけを貼り付け
+        if result and #result > 0 then
+            local selected_file = result[1]
+            local full_file_path = block_path .. "/" .. selected_file
+            local file = io.open(full_file_path, "r")
+
+            if not file then
+                print("Error: Could not open file: " .. full_file_path)
+                return
+            end
+
+            local file_content = file:read("*all")
+            file:close()
+            file_content = file_content:gsub("\r\n", "\n")
+
+            local block_start = file_content:find("Block>")
+            if not block_start then
+                print("Error: Block> marker not found in file: " .. selected_file)
+                return
+            end
+
+            local content_start = block_start + 6 -- #"Block>" = 6
+            local block_end = file_content:find(">END", content_start)
+            if not block_end then
+                print("Error: >END marker not found in file: " .. selected_file)
+                return
+            end
+
+            -- マーカー間をそのまま抽出（トリムしない）
+            local block_content = file_content:sub(content_start, block_end - 1)
+
+            -- そのまま貼り付け（改行保持）
+            vim.api.nvim_paste(block_content, true, -1)
         end
     end)()
 end

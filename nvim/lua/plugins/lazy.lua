@@ -58,6 +58,16 @@ local venv = os.getenv("VIRTUAL_ENV")
 
 require("lazy").setup({
     {
+        "amitds1997/remote-nvim.nvim",
+        version = "*", -- Pin to GitHub releases
+        dependencies = {
+            "nvim-lua/plenary.nvim", -- For standard functions
+            "MunifTanjim/nui.nvim", -- To build the plugin UI
+            "nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
+        },
+        config = true,
+    },
+    {
       "hat0uma/csvview.nvim",
       ---@module "csvview"
       ---@type CsvView.Options
@@ -185,37 +195,7 @@ require("lazy").setup({
       -- Optional dependencies
       dependencies = { "nvim-tree/nvim-web-devicons" },
       config = function ()
-          require("oil").setup({
-              columns = {
-                  "icon",
-                  "permissions",
-                  "size",
-                  "mtime",
-              },
-              view_options = {
-                  show_hidden = true,
-              },
-              use_default_keymaps = false,
-              keymaps = {
-                  -- ["<C-v>"] = "actions.select_vsplit",
-                  ["g?"] = "actions.show_help",
-                  ["<CR>"] = "actions.select",
-                  -- ["<C-h>"] = "actions.select_split",
-                  -- ["<C-t>"] = "actions.select_tab",
-                  ["<C-p>"] = "actions.preview",
-                  ["<C-c>"] = "actions.close",
-                  ["<C-i>"] = "actions.refresh",
-                  -- ["<C-l>"] = "actions.refresh",
-                  ["-"] = "actions.parent",
-                  ["_"] = "actions.open_cwd",
-                  ["`"] = "actions.cd",
-                  ["~"] = "actions.tcd",
-                  ["gs"] = "actions.change_sort",
-                  ["gx"] = "actions.open_external",
-                  ["g."] = "actions.toggle_hidden",
-              },
-              prompt_save_on_select_new_entry = false,
-          })
+          require("plugins.config.oil")
       end
     },
     {
