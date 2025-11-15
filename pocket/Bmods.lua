@@ -459,14 +459,9 @@ M.show_block = function ()
     local result
 
     coroutine.wrap(function()
-        -- result = fzf.fzf("/bin/ls -1 " .. block_path)
-        result = fzf.fzf("C:/Users/8ucch/bin/ls.exe -1 " .. block_path)
-        if result and #result > 0 then
-            local selected_file = result[1]  -- fzfで選択されたファイル名
-        -- linux
-        -- -- ① プレビュー: ファイル全体を表示
-        -- local preview = action(function(items, _, _)
-        --     local selected_file = items[1]
+        -- プレビュー: ファイル全体を表示
+        local preview = action(function(items, _, _)
+            local selected_file = items[1]
             local full_file_path = block_path .. "/" .. selected_file
             local file = io.open(full_file_path, "r")
             if not file then
@@ -474,11 +469,8 @@ M.show_block = function ()
             end
             local file_content = file:read("*all")
             file:close()
-
-            -- 改行をLFに統一（中身はそのまま）
             file_content = file_content:gsub("\r\n", "\n")
 
-            -- 行配列に分解（空行も保持）
             local lines = {}
             for line in (file_content .. "\n"):gmatch("([^\n]*)\n") do
                 table.insert(lines, line)
@@ -486,15 +478,23 @@ M.show_block = function ()
             return lines
         end)
 
-        -- fzf起動（左で選択、右で全ファイルプレビュー）
-        result = fzf("/bin/ls -1 " .. block_path, "--preview " .. preview)
+        -- fzfオプション: 小さめウィンドウ＋カーソル付近表示
+        local fzf_opts = table.concat({
+            "--height=40%",            -- 高さを40%に
+            "--min-height=10",         -- 最低高さ
+            "--layout=reverse",        -- カーソル近くに出るよう下向きに
+            "--border=rounded",        -- 枠を丸く
+            "--margin=1,2",            -- 余白を少し
+            "--info=inline",           -- 情報を下に
+            "--preview-window=right:50%", -- プレビューを右半分に
+        }, " ")
 
-        -- ② 確定後: Block> ～ >END だけを貼り付け
+        result = fzf("/bin/ls -1 " .. block_path, fzf_opts .. " --preview " .. preview)
+
         if result and #result > 0 then
             local selected_file = result[1]
             local full_file_path = block_path .. "/" .. selected_file
             local file = io.open(full_file_path, "r")
-
             if not file then
                 print("Error: Could not open file: " .. full_file_path)
                 return
@@ -510,22 +510,18 @@ M.show_block = function ()
                 return
             end
 
-            local content_start = block_start + 6 -- #"Block>" = 6
+            local content_start = block_start + 6
             local block_end = file_content:find(">END", content_start)
             if not block_end then
                 print("Error: >END marker not found in file: " .. selected_file)
                 return
             end
 
-            -- マーカー間をそのまま抽出（トリムしない）
             local block_content = file_content:sub(content_start, block_end - 1)
-
-            -- そのまま貼り付け（改行保持）
             vim.api.nvim_paste(block_content, true, -1)
         end
     end)()
 end
-
 
 
 vim.keymap.set("n", "<C-s><C-;>", function ()

@@ -18,4 +18,7 @@ local M = {}
 
 function M:init()
     vim.opt.shell = "zsh"
+    vim.opt.shellcmdflag = "-l -c"
 end
+
+M:init()
