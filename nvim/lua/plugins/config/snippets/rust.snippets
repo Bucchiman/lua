@@ -3,7 +3,7 @@ snippet _8 metadata
 	 * FileName:        file
 	 * Author:          8ucchiman
 	 * CreatedDate:     2023-07-27 13:25:33
-	 * LastModified:    2023-01-23 14:15:07 +0900
+	 * LastModified: 2025-12-15 18:35:33
 	 * Reference:       8ucchiman.jp
 	 * Description:     ---
 	 */
@@ -250,3 +250,36 @@ snippet enum enum
 		L,
 		T,
 	}
+
+
+snippet _8iter next
+    // Iterator<T> -> Option<T>
+
+snippet _8iter4extraction last
+    // Iterator<T> -> Option<T>
+
+snippet _8iter4extraction nth
+    // Iterator<T> -> usize -> Option<T>
+
+snippet _8iter4extraction find
+    // Iterator<T> -> (&T -> bool) -> Option<T>
+
+snippet _8iter4extraction max
+    // Iterator<T> -> Option<T>
+
+snippet _8iter4extraction max_by_key
+    // Iterator<T> -> (&T -> U) -> Option<T>
+
+snippet _8iter4extraction max_by
+    // Iterator<T> -> (&T -> &T -> Ordering) -> Option<T>
+
+
+snippet _8iter4extraction find_map
+    // Iterator<T> -> (T -> Option<U>) -> Option<U>
+
+
+snippet _8iter4reference filter
+    // Iterator<T> -> (&T -> bool) -> Iterator<T>
+
+snippet _8iter4reference take
+    // Iterator<T> -> usize -> Iterator<T>

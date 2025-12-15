@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-11 11:59:04
--- LastModified: 2023-12-08 17:23:39
+-- LastModified: 2025-12-09 09:49:33
 -- Reference:    https://sbulav.github.io/vim/neovim-setting-up-luasnip/
 -- Description:  ---
 --
@@ -70,7 +70,9 @@ ls.add_snippets(nil, {
 require("luasnip.loaders.from_snipmate").load({
     paths = {
         "~/.config/local/snippets",
-        "~/.config/snippets"
+        "~/.config/snippets",
+        "~/dotfiles/.config/lib/codes/lua/nvim/lua/plugins/config/snippets"
+
     }
 })
 
