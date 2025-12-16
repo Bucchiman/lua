@@ -3,7 +3,7 @@ snippet _8 metadata
 	 * FileName:        file
 	 * Author:          8ucchiman
 	 * CreatedDate:     2023-07-27 13:25:33
-	 * LastModified: 2025-12-15 18:35:33
+	 * LastModified: 2025-12-16 12:04:08
 	 * Reference:       8ucchiman.jp
 	 * Description:     ---
 	 */
@@ -283,3 +283,12 @@ snippet _8iter4reference filter
 
 snippet _8iter4reference take
     // Iterator<T> -> usize -> Iterator<T>
+
+snippet _8iter4concat chain
+	// Iterator<T> -> IntoIterator<T> -> Iterator<T>
+
+snippet _8iter4concat zip
+	// Iterator<T> -> IntoIterator<U> -> Iterator<T, U>
+
+snippet _8iter4concat map
+	// Iterator<T> -> IntoIterator<U> -> Iterator<T, U>
