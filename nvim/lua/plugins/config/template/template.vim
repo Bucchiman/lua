@@ -3,8 +3,8 @@
 " Author:       {{_author_}}
 " Email:        {{_email_}}
 " CreatedDate:  {{_date_}}
-" LastModified: 2023-01-26 17:46:51 +0900
-" Reference:    8ucchiman.jp
+" LastModified: 2026-01-06 12:26:04
+" Reference:    8ucchiman.github.io
 " Description:  ---
 "
 

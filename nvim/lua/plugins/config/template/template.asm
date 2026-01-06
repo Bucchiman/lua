@@ -2,8 +2,8 @@
 ; FileName:     asm
 ; Author:       8ucchiman
 ; CreatedDate:  2023-09-06 12:17:33
-; LastModified: 2023-02-26 13:30:39 +0900
-; Reference:    8ucchiman.jp
+; LastModified: 2026-01-06 12:23:43
+; Reference:    8ucchiman.github.io
 ; Description:  ---
 ; ----------------------------------------------------------------------------------------
 

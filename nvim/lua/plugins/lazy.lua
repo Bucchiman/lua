@@ -2,7 +2,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-03 15:39:49
--- LastModified: 2025-11-15 21:24:47
+-- LastModified: 2025-12-06 13:04:32
 -- Reference:    https://github.com/MiaadTeam/lesvim/blob/main/lua/lazy/plugins.lua
 -- Description:  ---
 --
@@ -632,19 +632,26 @@ require("lazy").setup({
     -- For luasnip users
     {
         'L3MON4D3/LuaSnip',
-        after = 'nvim-cmp',
+        -- after = 'nvim-cmp',
         version = "v2.*",
         build = "make install_jsregexp",
         config = function ()
             require('plugins.config.snippets')
-        end
+        end,
+        dependencies = {
+            "saadparwaiz1/cmp_luasnip",
+        }
     },
     'saadparwaiz1/cmp_luasnip',
     {
         'hrsh7th/nvim-cmp',
         config = function ()
             require("plugins.config.cmp")
-        end
+        end,
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "saadparwaiz1/cmp_luasnip",
+        },
     },
     {
         "folke/which-key.nvim",

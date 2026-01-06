@@ -2,8 +2,9 @@
 # FileName:     {{_file_name_}}
 # Author: 		{{_author_}}
 # CreatedDate:  {{_date_}}
-# LastModified: 2023-12-15 11:36:49
+# LastModified: 2026-01-06 12:23:20
 # Reference: 	https://qiita.com/chibi929/items/b8c5f36434d5d3fbfa4a
+#				8ucchiman.github.io
 # Description:	---
 #
 
