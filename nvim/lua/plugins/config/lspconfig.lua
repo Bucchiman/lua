@@ -53,6 +53,9 @@ lspconfig.rust_analyzer.setup {
   },
 }
 
+-- For neocmakelsp (correct setup)
+require('lspconfig').neocmake.setup({})
+
 lspconfig.lua_ls.setup {
     settings = {
         Lua = {
