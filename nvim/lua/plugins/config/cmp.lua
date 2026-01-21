@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-11 11:58:36
--- LastModified: 2023-01-23 14:18:33 +0900
+-- LastModified: 2025-12-14 16:41:31
 -- Reference:    8ucchiman.jp
 -- Description:  ---
 --
@@ -21,30 +21,29 @@ cmp.setup({
     sources = {
         { name = "nvim_lsp" },
         { name = "luasnip"},
-        -- { name = "buffer" },
-        -- { name = "path" },
+        { name = "buffer" },
+        { name = "path" },
     },
     mapping = cmp.mapping.preset.insert({
         -- ["<Tab>"] = cmp.mapping(function(fallback)
         --     if cmp.visible() then
         --         cmp.select_next_item()
-        --     elseif snippy.can_expand_or_advance() then
-        --         snippy.expand_or_advance()
-        --     elseif has_words_before() then
-        --         cmp.complete()
+        --     elseif luasnip.expand_or_jumpable() then
+        --         luasnip.expand_or_jump()
         --     else
         --         fallback()
         --     end
-        --     end, { "i", "s" }),
-        --     ["<S-Tab>"] = cmp.mapping(function(fallback)
-        --         if cmp.visible() then
-        --             endendcmp.select_prev_item()
-        --         elseif snippy.can_jump(-1) then
-        --             snippy.previous()
-        --         else
-        --             fallback()
-        --         end
-        --     end, { "i", "s" }),
+        -- end, { "i", "s" }),
+
+        -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_prev_item()
+        --     elseif luasnip.jumpable(-1) then
+        --         luasnip.jump(-1)
+        --     else
+        --         fallback()
+        --     end
+        -- end, { "i", "s" }),
         ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<C-n>'] = cmp.mapping.select_next_item(),
         ['<C-l>'] = cmp.mapping.complete(),

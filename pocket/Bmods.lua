@@ -4,7 +4,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-08-06 19:24:06
--- LastModified: 2025-11-03 22:58:59
+-- LastModified: 2025-12-14 17:48:05
 -- Reference:    https://stackoverflow.com/questions/73358168/where-can-i-check-my-neovim-lua-runtimepath
 --               https://github.com/CharlesChiuGit/nvimdots.lua
 -- Description:  ---
@@ -480,7 +480,7 @@ M.show_block = function ()
 
         -- fzfオプション: 小さめウィンドウ＋カーソル付近表示
         local fzf_opts = table.concat({
-            "--height=40%",            -- 高さを40%に
+            "--height=80%",            -- 高さを40%に
             "--min-height=10",         -- 最低高さ
             "--layout=reverse",        -- カーソル近くに出るよう下向きに
             "--border=rounded",        -- 枠を丸く

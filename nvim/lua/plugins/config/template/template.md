@@ -2,8 +2,8 @@
  FileName:      {{_file_name_}}
  Author:        {{_author_}}
  CreatedDate:   {{_date_}}
- LastModified:  2023-01-25 10:56:12 +0900
- Reference:     8ucchiman.jp
+ LastModified: 2026-01-06 12:24:54
+ Reference:     8ucchiman.github.io
  Description:   ---
 -->
 

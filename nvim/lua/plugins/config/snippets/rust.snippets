@@ -3,7 +3,7 @@ snippet _8 metadata
 	 * FileName:        file
 	 * Author:          8ucchiman
 	 * CreatedDate:     2023-07-27 13:25:33
-	 * LastModified: 2025-12-16 12:04:08
+	 * LastModified: 2025-12-19 21:48:31
 	 * Reference:       8ucchiman.jp
 	 * Description:     ---
 	 */
@@ -252,14 +252,24 @@ snippet enum enum
 	}
 
 
-snippet _8iter next
+snippet _8iter4extraction next
     // Iterator<T> -> Option<T>
+    let a = [2, 4, 13, 52];
+    a.iter().next()
+    // Some(2)
 
 snippet _8iter4extraction last
     // Iterator<T> -> Option<T>
+    let a = [2, 4, 13, 52];
+    a.iter().last()
+    // Some(52)
 
 snippet _8iter4extraction nth
     // Iterator<T> -> usize -> Option<T>
+    let a = [2, 4, 13, 52];
+    a.iter().nth(2)
+    // Some(13)
+
 
 snippet _8iter4extraction find
     // Iterator<T> -> (&T -> bool) -> Option<T>
@@ -284,11 +294,65 @@ snippet _8iter4reference filter
 snippet _8iter4reference take
     // Iterator<T> -> usize -> Iterator<T>
 
+snippet _8iter4reference skip
+    // Iterator<T> -> usize -> Iterator<T>
+
+snippet _8iter4reference step_by
+    // Iterator<T> -> usize -> Iterator<T>
+
+snippet _8iter4reference take_while
+    // Iterator<T> -> (&T -> bool) -> Iterator<T>
+
+snippet _8iter4reference skip_while
+    // Iterator<T> -> (&T -> bool) -> Iterator<T>
+
+snippet _8iter4alternative peekable
+    // Iterator<T> -> Iterator<T>
+    let a = [2, 4, 13, 52];
+    let mut hoge = a.iter().peekable();
+    hoge.peek().cloned()
+
+snippet _8iter4alternative cloned
+    // Iterator<&T> -> Iterator<T>
+
+snippet _8iter4alternative copied
+    // Iterator<&T> -> Iterator<T>
+
+snippet _8iter4alternative fuse
+    // Iterator<T> -> Iterator<T>
+
+snippet _8iter4alternative by_ref
+    // Iterator<T> -> &Iterator<T>
+
+snippet _8iter4add enumerate
+    // Iterator<T> -> Iterator<(usize, T)>
+
+snippet _8iter4add cycle
+    // Iterator<T> -> Iterator<T>
+
 snippet _8iter4concat chain
 	// Iterator<T> -> IntoIterator<T> -> Iterator<T>
 
 snippet _8iter4concat zip
 	// Iterator<T> -> IntoIterator<U> -> Iterator<T, U>
 
-snippet _8iter4concat map
+snippet _8iter4touch map
 	// Iterator<T> -> IntoIterator<U> -> Iterator<T, U>
+
+snippet _8iter4touch flatten
+    // Iterator<IntoIterator<T>> -> Iterator<T>
+
+snippet _8iter4touch
+
+snippet _8iter4make collect
+    // Iterator<T> -> collection of T
+
+snippet _8iter4make partition
+    // Iterator<T> -> (&T -> bool) -> (collection of T, collection of T)
+
+snippet _8iter4make fold
+    // Iterator<T> -> B -> (B->T->B) -> B
+
+snippet _8iter4make unzip
+    // Iterator<T, U> -> (collection of T, collection of U)
+
