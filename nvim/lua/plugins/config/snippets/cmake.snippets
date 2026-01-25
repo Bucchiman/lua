@@ -3,7 +3,7 @@ snippet _8 metadata
 	# FileName:     CMakeLists
 	# Author:       8ucchiman
 	# CreatedDate:  2023-07-27 13:18:13
-	# LastModified: 2023-12-13 11:33:17
+	# LastModified: 2026-01-22 01:08:53
 	# Reference:    https://qiita.com/shohirose/items/45fb49c6b429e8b204ac
 	#               https://cmake.org/cmake/help/git-master/prop_gbl/CMAKE_CXX_KNOWN_FEATURES.html#prop_gbl:CMAKE_CXX_KNOWN_FEATURES
 	# Description:  ---
@@ -12,6 +12,8 @@ snippet _8 metadata
 snippet _8basic
 	cmake_minimum_required(VERSION 3.8.2)
 	project(8ucchiman CXX)
+	set(CMAKE_CXX_STANDARD 11)
+	set(CMAKE_CXX_STANDARD_REQUIRED ON)
 	set(SOURCE_FILE main.cpp)
 
 	# set executable
@@ -38,6 +40,11 @@ snippet _8opencv
 	target_link_libraries(main
 		${OPENCV_LIBRARIES}
 	)
+
+
+snippet _8@static
+	# hello.cppとgood_morning.cppをコンパイルして静的ライブラリlibgreetings.aを作成
+	add_library(greetings STATIC hello.cpp good_morning.cpp)
 
 
 snippet _8static

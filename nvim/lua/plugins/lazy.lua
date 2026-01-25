@@ -460,18 +460,18 @@ require("lazy").setup({
 --         priority = 1001,
 --     },
 
-    {
-        {
-            'akinsho/toggleterm.nvim',
-            version = "*",
-            config = function ()
-                require("toggleterm").setup({
-                    autochdir = true
-                })
-            end
-        }
-
-    },
+    -- ToggleTermを無効化（カスタムターミナル管理を使用）
+    -- {
+    --     {
+    --         'akinsho/toggleterm.nvim',
+    --         version = "*",
+    --         config = function ()
+    --             require("toggleterm").setup({
+    --                 autochdir = true
+    --             })
+    --         end
+    --     }
+    -- },
     {
         'nvim-lualine/lualine.nvim',
         config = function ()

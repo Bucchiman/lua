@@ -112,6 +112,11 @@ local function preview_media()
   vim.notify("Not image/video: " .. entry.name, vim.log.levels.INFO)
 end
 
+-- Oil内でターミナルを開く
+local function open_terminal_in_oil()
+  require("plugins.config.oil-terminal").toggle_terminal()
+end
+
 -- 既存の画像専用を差し替えたい場合は、上の preview_media を使ってください
 -- local function preview_image() ... （不要）
 
@@ -123,6 +128,7 @@ oil.setup({
   keymaps = {
     ["<CR>"] = "actions.select",
     ["<C-p>"] = preview_media,  -- 画像/動画どちらもプレビュー
+    ["<C-t>"] = open_terminal_in_oil,  -- Oil内でターミナルを開く
     ["g?"] = "actions.show_help",
     ["<C-c>"] = "actions.close",
     ["<C-i>"] = "actions.refresh",
