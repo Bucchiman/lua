@@ -29,76 +29,91 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- ⇑上記のupdate_capabilities(...)の関数は非推奨となり、代わりにdefault_capabilities()関数が採用されました。日本語情報が少ないため、念の為併記してメモしておきます。
 
 -- この一連の記述で、mason.nvimでインストールしたLanguage Serverが自動的に個別にセットアップされ、利用可能になります
-require("mason").setup()
-require("mason-lspconfig").setup()
-require("mason-lspconfig").setup({
-    handlers = {
-        function (server_name) -- default handler (optional)
-            require("lspconfig")[server_name].setup {
-                on_attach = on_attach, --keyバインドなどの設定を登録
-                capabilities = capabilities, --cmpを連携
+-- Note: mason.setup() と mason-lspconfig.setup() は lazy.lua で既に呼ばれています
+require("mason-lspconfig").setup_handlers({
+    -- デフォルトハンドラー：全てのLSPに適用
+    function (server_name)
+        require("lspconfig")[server_name].setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }
+    end,
+    -- 特定のLSPに対するカスタムハンドラー
+    ["lua_ls"] = function()
+        require("lspconfig").lua_ls.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            settings = {
+                Lua = {
+                    completion = {
+                        callSnippet = "Replace"
+                    },
+                    runtime = {
+                        version = 'LuaJIT',
+                    },
+                    diagnostics = {
+                        globals = {
+                            'vim',
+                            'require'
+                        },
+                    },
+                    workspace = {
+                        library = vim.api.nvim_get_runtime_file("", true),
+                        checkThirdParty = false
+                    },
+                    telemetry = {
+                        enable = false,
+                    }
+                }
             }
-        end},
+        })
+    end,
 })
 
 
 -- Setup language servers.
 local lspconfig = require('lspconfig')
-lspconfig.pyright.setup {}
--- lspconfig.tsserver.setup {}
-lspconfig.rust_analyzer.setup {
-  -- Server-specific settings. See `:help lspconfig-setup`
-  settings = {
-    ['rust-analyzer'] = {},
-  },
-}
+
+-- Note: pyright, rust_analyzer は mason-lspconfig の自動ハンドラーで処理されます
+-- 個別の設定が必要な場合は、上記の setup_handlers 内にカスタムハンドラーを追加してください
+
+-- lspconfig.pyright.setup {}
+-- lspconfig.rust_analyzer.setup {
+--   settings = {
+--     ['rust-analyzer'] = {},
+--   },
+-- }
 
 -- For neocmakelsp (correct setup)
+-- Note: neocmake が mason でインストール可能なら、setup_handlers で処理されます
 require('lspconfig').neocmake.setup({})
 
-lspconfig.lua_ls.setup {
-    settings = {
-        Lua = {
-            --#region
-            -- Reference: https://github.com/folke/neodev.nvim
-            --#endregion
-            completion = {
-                callSnippet = "Replace"
-            },
-            runtime = {
-                version = 'LuaJIT',
-            },
-            diagnostics = {
-                globals = {
-                    'vim',
-                    'require'
-                },
-            },
-            workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
-                checkThirdParty = false
-            },
-            telemetry = {
-                enable = false,
-            }
-        }
-    }
-}
+-- Note: lua_ls の設定は上記の setup_handlers 内に移動しました
 
+-- clangd は詳細な設定があるため、個別にセットアップ
 lspconfig.clangd.setup ({
-    settings = {
-        cmd = { "clangd", "--background-index", "--compile-commands-dir=." },
-        rootPattern = { "compile_commands.json" },
-        filetypes = { "c", "cpp", "objc", "objcpp" },
-        -- root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
-        init_options = {
-            clangdFileStatus = true,
-            usePlaceholders = true,
-            completeUnimported = true,
-            semanticHighlighting = true,
-            extraClangArguments = {"/opt/local/include"},
-        },
+    cmd = {
+        "clangd",
+        "--background-index",
+        "--compile-commands-dir=.",
+        "--clang-tidy",
+        "--header-insertion=iwyu",
+        "--completion-style=detailed",
+        "--function-arg-placeholders",
+        "--fallback-style=llvm",
     },
+    filetypes = { "c", "cpp", "objc", "objcpp" },
+    root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+
+    init_options = {
+        clangdFileStatus = true,
+        usePlaceholders = true,
+        completeUnimported = true,
+        semanticHighlighting = true,
+        extraClangArguments = {"/opt/local/include"},
+    },
+
+    capabilities = capabilities,
 
     -- Diagnostics
     handlers = {
@@ -114,8 +129,25 @@ lspconfig.clangd.setup ({
     -- capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 
     on_attach = function(client, bufnr)
-        -- custom setting
         print("clangd is now attached!")
+
+        -- インレイヒントを有効化（Neovim 0.10+）
+        if vim.lsp.inlay_hint then
+            vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+        end
+
+        -- カスタムキーマッピング
+        local opts = { buffer = bufnr, noremap = true, silent = true }
+
+        -- 挿入モードでのシグネチャヘルプ
+        vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, opts)
+
+        -- インレイヒントのトグル
+        vim.keymap.set('n', '<leader>ih', function()
+            if vim.lsp.inlay_hint then
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
+            end
+        end, opts)
     end,
     -- flags = {
     --     debounce_text_changes = 150,
@@ -123,6 +155,9 @@ lspconfig.clangd.setup ({
 })
 
 lspconfig.glslls.setup{}
+
+-- コールバックヘルパーを初期化
+require("plugins.config.callback-helper").setup()
 
 
 -- Global mappings.

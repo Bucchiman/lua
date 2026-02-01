@@ -615,17 +615,36 @@ require("lazy").setup({
     'hrsh7th/cmp-vsnip',
     'hrsh7th/vim-vsnip',
     {
-        'williamboman/mason.nvim',
+        'mason-org/mason.nvim',
+        build = ':MasonUpdate',
         config = function()
-            require("mason").setup()
+            require("mason").setup({
+                ui = {
+                    border = "rounded",
+                    icons = {
+                        package_installed = "✓",
+                        package_pending = "➜",
+                        package_uninstalled = "✗"
+                    }
+                },
+                max_concurrent_installers = 4,
+            })
         end
     },
     {
-        'williamboman/mason-lspconfig.nvim',
+        'mason-org/mason-lspconfig.nvim',
+        dependencies = { 'mason-org/mason.nvim' },
         config = function()
-            -- require("plugins.config.lspconfig")
             require("mason-lspconfig").setup({
-                ensure_installed = {"lua_ls"}
+                ensure_installed = {
+                    "lua_ls",
+                    "clangd",
+                    "pyright",
+                    "rust_analyzer",
+                    "neocmake",
+                    "glsl_analyzer",
+                },
+                automatic_installation = true,
             })
         end
     },
@@ -652,6 +671,26 @@ require("lazy").setup({
             "hrsh7th/cmp-nvim-lsp",
             "saadparwaiz1/cmp_luasnip",
         },
+    },
+    {
+        'ray-x/lsp_signature.nvim',
+        event = "VeryLazy",
+        config = function()
+            require("lsp_signature").setup({
+                bind = true,
+                handler_opts = {
+                    border = "rounded"
+                },
+                floating_window = true,
+                hint_enable = true,
+                hint_prefix = "🐼 ",
+                hi_parameter = "LspSignatureActiveParameter",
+                always_trigger = false,
+                auto_close_after = nil,
+                extra_trigger_chars = {},
+                toggle_key = '<C-k>',
+            })
+        end,
     },
     {
         "folke/which-key.nvim",
