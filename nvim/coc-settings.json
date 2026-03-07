@@ -1,5 +1,6 @@
 {
   "deno.enable":true,
+  "suggest.autoTrigger": "always",
   "coc.preferences.formatOnSaveFiletypes": [
     "cpp"
   ]
