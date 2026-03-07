@@ -608,12 +608,12 @@ require("lazy").setup({
     --  Reference: https://github.com/hrsh7th/nvim-cmp
     --#endregion
     'neovim/nvim-lspconfig',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-cmdline',
-    'hrsh7th/cmp-vsnip',
-    'hrsh7th/vim-vsnip',
+    { 'hrsh7th/cmp-nvim-lsp', enabled = false },
+    { 'hrsh7th/cmp-buffer', enabled = false },
+    { 'hrsh7th/cmp-path', enabled = false },
+    { 'hrsh7th/cmp-cmdline', enabled = false },
+    { 'hrsh7th/cmp-vsnip', enabled = false },
+    { 'hrsh7th/vim-vsnip', enabled = false },
     {
         'mason-org/mason.nvim',
         build = ':MasonUpdate',
@@ -657,13 +657,12 @@ require("lazy").setup({
         config = function ()
             require('plugins.config.snippets')
         end,
-        dependencies = {
-            "saadparwaiz1/cmp_luasnip",
-        }
+        dependencies = {}
     },
-    'saadparwaiz1/cmp_luasnip',
+    { 'saadparwaiz1/cmp_luasnip', enabled = false },
     {
         'hrsh7th/nvim-cmp',
+        enabled = false,
         config = function ()
             require("plugins.config.cmp")
         end,
