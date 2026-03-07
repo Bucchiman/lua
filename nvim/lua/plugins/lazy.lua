@@ -2,7 +2,7 @@
 -- Author:       8ucchiman
 -- Email:        8ucchiman@gmail.com
 -- CreatedDate:  2023-06-03 15:39:49
--- LastModified: 2025-12-06 13:04:32
+-- LastModified: 2026-02-14 13:28:47
 -- Reference:    https://github.com/MiaadTeam/lesvim/blob/main/lua/lazy/plugins.lua
 -- Description:  ---
 --
@@ -59,13 +59,15 @@ local venv = os.getenv("VIRTUAL_ENV")
 require("lazy").setup({
     {
         "amitds1997/remote-nvim.nvim",
-        version = "*", -- Pin to GitHub releases
+        branch = "main", -- 最新のmainブランチを使用
         dependencies = {
-            "nvim-lua/plenary.nvim", -- For standard functions
-            "MunifTanjim/nui.nvim", -- To build the plugin UI
-            "nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            "nvim-telescope/telescope.nvim",
         },
-        config = true,
+        config = function()
+            require("remote-nvim").setup()
+        end,
     },
     {
       "hat0uma/csvview.nvim",
