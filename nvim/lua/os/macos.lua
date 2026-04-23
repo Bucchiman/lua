@@ -16,7 +16,23 @@ local M = {}
 function M:init()
     vim.opt.shell = "zsh"
     vim.opt.shellcmdflag = "-l -c"
+
+    if vim.g.neovide then
+        vim.g.neovide_opacity = 1.0
+        vim.g.neovide_normal_opacity = 1.0
+        vim.g.neovide_window_blurred = false
+        -- Disable transparent.nvim (applied in base.lua before this file)
+        vim.g.transparent_enabled = false
+        -- Override semi-transparent background set in local.lua (alpha cc → ff)
+        vim.g.neovide_background_color = "#0f1117ff"
+        -- Re-apply colorscheme to restore highlight groups cleared by transparent.nvim
+        if vim.g.colors_name then
+            vim.cmd("colorscheme " .. vim.g.colors_name)
+        end
+    end
 end
+
+M:init()
 
 
 

@@ -554,16 +554,40 @@ require("lazy").setup({
     },
     {
         "xiyaowong/transparent.nvim",
+        cond = not vim.g.neovide,
         config = function ()
+            local function fix_float_hl()
+                -- iceberg dark: popup bg=#1e2132, fg=#c6c8d1
+                vim.api.nvim_set_hl(0, "NormalFloat",  { bg = "#1e2132", fg = "#c6c8d1" })
+                vim.api.nvim_set_hl(0, "FloatBorder",  { bg = "#1e2132", fg = "#6e7597" })
+                -- Pmenu: wildoptions=pum のコマンド補完にも使用される
+                vim.api.nvim_set_hl(0, "Pmenu",        { bg = "#1e2132", fg = "#c6c8d1" })
+                vim.api.nvim_set_hl(0, "PmenuSel",     { bg = "#2d3149", fg = "#eff0f4" })
+                vim.api.nvim_set_hl(0, "PmenuSbar",    { bg = "#1e2132" })
+                vim.api.nvim_set_hl(0, "PmenuThumb",   { bg = "#6e7597" })
+                vim.api.nvim_set_hl(0, "WildMenu",     { bg = "#2d3149", fg = "#eff0f4" })
+                -- coc.nvim は ColorScheme 毎に CocFloating を再設定するので明示的に上書きが必要
+                vim.api.nvim_set_hl(0, "CocFloating",  { bg = "#1e2132", fg = "#c6c8d1" })
+                vim.api.nvim_set_hl(0, "CocMenuSel",   { bg = "#2d3149", fg = "#eff0f4" })
+            end
             require("transparent").setup({
-              groups = { -- table: default groups
+              groups = {
                 'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
                 'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
                 'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
                 'SignColumn', 'CursorLineNr', 'EndOfBuffer',
               },
-              extra_groups = {}, -- table: additional groups that should be cleared
-              exclude_groups = {}, -- table: groups you don't want to clear
+              extra_groups = {},
+              exclude_groups = {},
+              -- transparent.nvim の clear() 後に float hl を復元
+              on_clear = function() vim.schedule(fix_float_hl) end,
+            })
+            -- ColorScheme で coc が CocFloating を上書きした後に vim.schedule で再上書き
+            vim.api.nvim_create_autocmd("ColorScheme", {
+                callback = function() vim.schedule(fix_float_hl) end,
+            })
+            vim.api.nvim_create_autocmd("VimEnter", {
+                callback = function() vim.schedule(fix_float_hl) end,
             })
         end
     },
@@ -648,17 +672,8 @@ require("lazy").setup({
             })
         end
     },
-    -- For luasnip users
-    {
-        'L3MON4D3/LuaSnip',
-        -- after = 'nvim-cmp',
-        version = "v2.*",
-        build = "make install_jsregexp",
-        config = function ()
-            require('plugins.config.snippets')
-        end,
-        dependencies = {}
-    },
+    -- LuaSnip は coc.nvim + coc-snippets に移行したため無効化
+    { 'L3MON4D3/LuaSnip', enabled = false },
     { 'saadparwaiz1/cmp_luasnip', enabled = false },
     {
         'hrsh7th/nvim-cmp',
@@ -708,3 +723,6 @@ require("lazy").setup({
         }
     }
 })
+
+-- lazy.nvim の setup() 後に rtp を追加（setup前だと上書きされる）
+vim.opt.rtp:append(vim.fn.expand('~/.config'))  -- coc-snippets snipmate: ~/.config/snippets/*.snippets

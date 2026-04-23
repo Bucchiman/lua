@@ -43,6 +43,9 @@ require("mason-lspconfig").setup_handlers({
         }
     end,
     -- 特定のLSPに対するカスタムハンドラー
+    ["ltex"] = function() end,
+    ["cmake"] = function() end,
+    ["neocmake"] = function() end, -- managed by coc.nvim languageserver
     ["lua_ls"] = function()
         require("lspconfig").lua_ls.setup({
             on_attach = on_attach,
@@ -88,9 +91,8 @@ local lspconfig = require('lspconfig')
 --   },
 -- }
 
--- For neocmakelsp (correct setup)
--- Note: neocmake が mason でインストール可能なら、setup_handlers で処理されます
-require('lspconfig').neocmake.setup({})
+-- neocmake は coc.nvim の languageserver として管理しているため lspconfig では起動しない
+-- require('lspconfig').neocmake.setup({})
 
 -- Note: lua_ls の設定は上記の setup_handlers 内に移動しました
 

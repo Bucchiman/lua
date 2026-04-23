@@ -3,7 +3,7 @@ snippet _8:metadata
 	 * FileName:     file
 	 * Author: 		 8ucchiman
 	 * CreatedDate:  2023-02-25 18:25:13 +0900
-	 * LastModified: 2024-11-24 14:51:30
+	 * LastModified: 2026-04-16 15:50:36
 	 * Reference: 	 8ucchiman.jp
 	 */
 
@@ -209,3 +209,23 @@ snippet _8:debug
 	#define BOLD          "\x1b[1m"
 	#define FONT_DEFAULT "\x1b[0m"
 	
+
+snippet dispatcher
+	// ハンドラ関数たち
+	void handler_a(int sig) { printf("A\n"); }
+	void handler_b(int sig) { printf("B\n"); }
+                                                                    
+	// ディスパッチャが持つテーブル（関数ポインタの配列）
+	void (*dispatch_table[3])(int) = {
+	    NULL,       // イベント0
+	    handler_a,  // イベント1
+	    handler_b,  // イベント2
+	};
+                                                                    
+	// ディスパッチャ本体
+	void dispatch(int event) {
+	    void (*fp)(int) = dispatch_table[event];  // 関数ポインタを取得
+	    if (fp != NULL) {
+	        fp(event);  // ← ここで呼び出す
+	    }
+	}

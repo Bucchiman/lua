@@ -3,5 +3,17 @@
   "suggest.autoTrigger": "always",
   "coc.preferences.formatOnSaveFiletypes": [
     "cpp"
-  ]
+  ],
+  "snippets.snipmate.enable": true,
+  "snippets.priority": 90,
+  "snippets.ultisnips.pythonPrompt": false,
+  "coc.preferences.snippetNextPlaceholderKey": "<C-j>",
+  "coc.preferences.snippetPrevPlaceholderKey": "<C-k>",
+  "languageserver": {
+    "neocmake": {
+      "command": "/Users/8ucchiman/.local/share/nvim/mason/bin/neocmakelsp",
+      "args": ["stdio"],
+      "filetypes": ["cmake"]
+    }
+  }
 }

@@ -58,7 +58,7 @@ function M:common()
         wrap = false,
         winblend = 0,
         wildoptions = "pum",
-        pumblend = 5,
+        pumblend = 0,
         background = "dark",
         scrolloff = 8,
         sidescrolloff = 8,

@@ -188,6 +188,10 @@ function M:common()
         return ':Template '
     end, { remap = true})
 
+    -- coc-snippets: プレースホルダー間ジャンプ
+    vim.keymap.set('i', '<C-j>', '<Plug>(coc-snippets-expand-jump)', { silent = true })
+    vim.keymap.set('v', '<C-j>', '<Plug>(coc-snippets-select)',       { silent = true })
+
 end
 
 function M:linux()
