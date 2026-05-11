@@ -56,6 +56,30 @@ vim.opt.rtp:prepend(lazypath)
 local venv = os.getenv("VIRTUAL_ENV")
 
 
+-- Float window highlight fix — runs unconditionally (also in Neovide where transparent.nvim is disabled)
+local function fix_float_hl()
+    vim.api.nvim_set_hl(0, "NormalFloat",  { bg = "#1e2132", fg = "#c6c8d1" })
+    vim.api.nvim_set_hl(0, "FloatBorder",  { bg = "#1e2132", fg = "#6e7597" })
+    vim.api.nvim_set_hl(0, "Pmenu",        { bg = "#1e2132", fg = "#c6c8d1" })
+    vim.api.nvim_set_hl(0, "PmenuSel",     { bg = "#2d3149", fg = "#eff0f4" })
+    vim.api.nvim_set_hl(0, "PmenuSbar",    { bg = "#1e2132" })
+    vim.api.nvim_set_hl(0, "PmenuThumb",   { bg = "#6e7597" })
+    vim.api.nvim_set_hl(0, "WildMenu",     { bg = "#2d3149", fg = "#eff0f4" })
+    vim.api.nvim_set_hl(0, "CocFloating",  { bg = "#1e2132", fg = "#c6c8d1" })
+    vim.api.nvim_set_hl(0, "CocMenuSel",   { bg = "#2d3149", fg = "#eff0f4" })
+end
+local function schedule_float_fixes()
+    vim.schedule(fix_float_hl)
+    vim.defer_fn(fix_float_hl, 600)
+    vim.defer_fn(fix_float_hl, 1100)
+    vim.defer_fn(fix_float_hl, 3100)
+    vim.defer_fn(fix_float_hl, 5100)
+end
+vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
+    callback = schedule_float_fixes,
+})
+
+
 require("lazy").setup({
     {
         "amitds1997/remote-nvim.nvim",
@@ -558,38 +582,20 @@ require("lazy").setup({
         "xiyaowong/transparent.nvim",
         cond = not vim.g.neovide,
         config = function ()
-            local function fix_float_hl()
-                -- iceberg dark: popup bg=#1e2132, fg=#c6c8d1
-                vim.api.nvim_set_hl(0, "NormalFloat",  { bg = "#1e2132", fg = "#c6c8d1" })
-                vim.api.nvim_set_hl(0, "FloatBorder",  { bg = "#1e2132", fg = "#6e7597" })
-                -- Pmenu: wildoptions=pum のコマンド補完にも使用される
-                vim.api.nvim_set_hl(0, "Pmenu",        { bg = "#1e2132", fg = "#c6c8d1" })
-                vim.api.nvim_set_hl(0, "PmenuSel",     { bg = "#2d3149", fg = "#eff0f4" })
-                vim.api.nvim_set_hl(0, "PmenuSbar",    { bg = "#1e2132" })
-                vim.api.nvim_set_hl(0, "PmenuThumb",   { bg = "#6e7597" })
-                vim.api.nvim_set_hl(0, "WildMenu",     { bg = "#2d3149", fg = "#eff0f4" })
-                -- coc.nvim は ColorScheme 毎に CocFloating を再設定するので明示的に上書きが必要
-                vim.api.nvim_set_hl(0, "CocFloating",  { bg = "#1e2132", fg = "#c6c8d1" })
-                vim.api.nvim_set_hl(0, "CocMenuSel",   { bg = "#2d3149", fg = "#eff0f4" })
-            end
             require("transparent").setup({
-              groups = {
-                'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
-                'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
-                'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
-                'SignColumn', 'CursorLineNr', 'EndOfBuffer',
-              },
-              extra_groups = {},
-              exclude_groups = {},
-              -- transparent.nvim の clear() 後に float hl を復元
-              on_clear = function() vim.schedule(fix_float_hl) end,
-            })
-            -- ColorScheme で coc が CocFloating を上書きした後に vim.schedule で再上書き
-            vim.api.nvim_create_autocmd("ColorScheme", {
-                callback = function() vim.schedule(fix_float_hl) end,
-            })
-            vim.api.nvim_create_autocmd("VimEnter", {
-                callback = function() vim.schedule(fix_float_hl) end,
+                groups = {
+                    "Normal", "NormalNC", "Comment", "Constant", "Special", "Identifier",
+                    "Statement", "PreProc", "Type", "Underlined", "Todo", "String", "Function",
+                    "Conditional", "Repeat", "Operator", "Structure", "LineNr", "NonText",
+                    "SignColumn", "CursorLineNr", "EndOfBuffer",
+                },
+                extra_groups = {},
+                exclude_groups = {
+                    "NormalFloat", "FloatBorder",
+                    "Pmenu", "PmenuSel", "PmenuSbar", "PmenuThumb",
+                    "WildMenu", "CocFloating", "CocMenuSel",
+                },
+                on_clear = schedule_float_fixes,
             })
         end
     },

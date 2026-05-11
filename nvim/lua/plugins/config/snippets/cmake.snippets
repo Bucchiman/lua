@@ -3,7 +3,7 @@ snippet _8 metadata
 	# FileName:     CMakeLists
 	# Author:       8ucchiman
 	# CreatedDate:  2023-07-27 13:18:13
-	# LastModified: 2026-04-23 23:34:54
+	# LastModified: 2026-05-11 01:33:37
 	# Reference:    https://qiita.com/shohirose/items/45fb49c6b429e8b204ac
 	#               https://cmake.org/cmake/help/git-master/prop_gbl/CMAKE_CXX_KNOWN_FEATURES.html#prop_gbl:CMAKE_CXX_KNOWN_FEATURES
 	# Description:  ---
@@ -172,5 +172,28 @@ snippet _8librarylink
 	target_link_libraries(target PUBLIC -lhoge)
 
 
-#snippet _8pico
-	
+# snippet _8pico_
+# 	set(PICO_SDK $ENV{PICO_SDK_PATH})
+# 	execute_process(
+# 		COMMAND ln -sf ${PICO_SDK}/external/pico_sdk_import.cmake .
+# 	)
+# 	include(pico_sdk_import.cmake)
+# 	pico_sdk_init()
+# 	add_executable(hello
+# 		main.c
+# 	)
+# 	target_link_libraries(hello pico_stdlib)
+
+snippet _8pico
+	cmake_minimum_required(VERSION 3.13)
+	set(PICO_SDK $ENV{PICO_SDK_PATH})
+	execute_process(
+	    COMMAND ln -sf ${PICO_SDK}/external/pico_sdk_import.cmake .
+	)
+	include(pico_sdk_import.cmake)
+	project(led_project C CXX ASM)
+	set(SOURCE_FILE main.c)
+	pico_sdk_init()
+	add_executable(main ${SOURCE_FILE})
+	target_link_libraries(main pico_stdlib)
+	pico_add_extra_outputs(main)
